@@ -831,6 +831,7 @@ struct Book {
     init(name: String, price: Int) {
         self.name = name
         self.price = price
+        
     }
     
     func explain() {
@@ -841,3 +842,5 @@ struct Book {
 
 var book1 = Book(name: "Justice", price: 18000)
 book1.explain()
+
+print(book1.explain())
