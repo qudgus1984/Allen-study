@@ -796,10 +796,14 @@ print(bird1.weight)
 
 // 지연 저장 속성 (Lazy Stored Properties)
 
+func doSomething() -> Double {
+    return 0.0
+}
 struct Person {
     var name: String = "Cody"
-    lazy var weight: Double = 0.0 // 지연 저장 속성
+    lazy var weight: Double = doSomething() // 지연 저장 속성
     // 메모리 공간을 만들지 않음
+    // 기본값을 반드시 설정해주어야 함.
 }
 
 var cody = Person()
