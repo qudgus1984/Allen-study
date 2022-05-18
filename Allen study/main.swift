@@ -810,3 +810,16 @@ var cody = Person()
 cody.weight = 65.0 // => 접근하는 순간 메모리 공간을 새로 만들어냄.
 print(cody.weight)
 
+// 지연 저장 속성을 사용하는 경우
+// 1) 메모리 공간을 많이 사용하는 이미지 등의 속성을 저장할 때
+// 2) 다른 저장 속성을 이용해야 할 때. a를 가지고 b를 구해야 할 때
+
+// 계산 속성
+// 함수 복습부터!
+func addTwoNumbers(_ a: Int, _ b: Int) -> Int {
+    var c = a + b
+    return c
+}
+
+var x = addTwoNumbers(3, 4)
+print(x)
