@@ -784,42 +784,60 @@ import Foundation
 // 구조체 / 클래스 속성
 
 // 저장 속성(Stored Properties) : 값이 저장되는 일반적인 속성을 저장속성이라고 함
+//
+//struct Bird {
+//    var name: String = "새"   // 저장속성
+//    var weight: Double = 0.0  // 저장속성. 구조체나 클래스 상관 없이 둘다 가짐.
+//}
+//
+//var bird1 = Bird()
+//print(bird1.name)
+//print(bird1.weight)
+//
+//// 지연 저장 속성 (Lazy Stored Properties)
+//
+//func doSomething() -> Double {
+//    return 0.0
+//}
+//struct Person {
+//    var name: String = "Cody"
+//    lazy var weight: Double = doSomething() // 지연 저장 속성
+//    // 메모리 공간을 만들지 않음
+//    // 기본값을 반드시 설정해주어야 함.
+//}
+//
+//var cody = Person()
+//cody.weight = 65.0 // => 접근하는 순간 메모리 공간을 새로 만들어냄.
+//print(cody.weight)
+//
+//// 지연 저장 속성을 사용하는 경우
+//// 1) 메모리 공간을 많이 사용하는 이미지 등의 속성을 저장할 때
+//// 2) 다른 저장 속성을 이용해야 할 때. a를 가지고 b를 구해야 할 때
+//
+//// 계산 속성
+//// 함수 복습부터!
+//func addTwoNumbers(_ a: Int, _ b: Int) -> Int {
+//    var c = a + b
+//    return c
+//}
+//
+//var x = addTwoNumbers(3, 4)
+//print(x)
 
-struct Bird {
-    var name: String = "새"   // 저장속성
-    var weight: Double = 0.0  // 저장속성. 구조체나 클래스 상관 없이 둘다 가짐.
+struct Book {
+    var name: String
+    var price: Int
+
+    init(name: String, price: Int) {
+        self.name = name
+        self.price = price
+    }
+    
+    func explain() {
+        print("책 이름: \(name)")
+        print("가격 : \(price)원")
+    }
 }
 
-var bird1 = Bird()
-print(bird1.name)
-print(bird1.weight)
-
-// 지연 저장 속성 (Lazy Stored Properties)
-
-func doSomething() -> Double {
-    return 0.0
-}
-struct Person {
-    var name: String = "Cody"
-    lazy var weight: Double = doSomething() // 지연 저장 속성
-    // 메모리 공간을 만들지 않음
-    // 기본값을 반드시 설정해주어야 함.
-}
-
-var cody = Person()
-cody.weight = 65.0 // => 접근하는 순간 메모리 공간을 새로 만들어냄.
-print(cody.weight)
-
-// 지연 저장 속성을 사용하는 경우
-// 1) 메모리 공간을 많이 사용하는 이미지 등의 속성을 저장할 때
-// 2) 다른 저장 속성을 이용해야 할 때. a를 가지고 b를 구해야 할 때
-
-// 계산 속성
-// 함수 복습부터!
-func addTwoNumbers(_ a: Int, _ b: Int) -> Int {
-    var c = a + b
-    return c
-}
-
-var x = addTwoNumbers(3, 4)
-print(x)
+var book1 = Book(name: "Justice", price: 18000)
+book1.explain()
