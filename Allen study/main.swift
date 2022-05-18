@@ -1,0 +1,808 @@
+//
+//  main.swift
+//  Allen study
+//
+//  Created by 이병현 on 2022/05/18.
+//
+
+import Foundation
+
+//// Allen if문 가위바위보 게임
+//
+//var comRsp = Int.random(in: 0...2)
+//var rsp:Int = Int(readLine()!)!
+//if  comRsp == rsp {
+//    print("무승부입니다.")
+//} else if (comRsp == 0 && rsp == 2) || (comRsp == 1 && rsp == 0) || (comRsp == 2 && rsp == 1) {
+//    print("당신은 졌습니다.")
+//} else {
+//    print("당신이 이겼습니다.")
+//}
+//
+//// 다르게 풀기
+//if rsp == 0 {
+//    if comRsp == 0 {
+//        print("무승부입니다.")
+//    } else if comRsp == 1 {
+//        print("당신은 졌습니다.")
+//    } else {
+//        print("당신은 이겼습니다.")
+//    }
+//} else if rsp == 1 {
+//    if comRsp == 0 {
+//        print("무승부입니다.")
+//    } else if comRsp == 1 {
+//        print("당신은 졌습니다.")
+//    } else {
+//        print("당신은 이겼습니다.")
+//    }
+//}
+
+// Allen 랜덩 빙고 게임 만들기
+
+//var ranNum: Int = Int.random(in: 1...10)
+//var numChoice: Int = Int(readLine()!)!
+//if ranNum > numChoice {
+//    print("Up")
+//} else if ranNum < numChoice {
+//    print("Down")
+//} else {
+//    print("Bingo")
+//}
+
+//var j = 1
+//for _ in 1...10 {
+//    print(j)
+//    j += 1
+//}
+//
+//let list = ["right", "left", "up", "down"]
+//for i in list {
+//    print(i)
+//}
+
+//var sum = 0
+//var num = 1
+//
+//while num <= 50 {
+//    print(num)
+//    num += 1
+//}
+
+// 구구단 출력해보기
+
+//for i in 2...9 {
+//    for j in 1...9
+//    {
+//        print("\(i) x \(j) = \(i*j)")
+//    }
+//}
+
+// 배수 구해서 출력해보기
+//
+//for i in 1...100 {
+//    if (i % 3) == 0 {
+//        print("3의 배수 발견: \(i)")
+//    }
+//}
+
+// 다르게 풀어보기
+//for i in 1...100 {
+//    if i % 3 != 0 {
+//        continue
+//    }
+//    print("3의 배수 발견: \(i)")
+//}
+
+// 반복문 활용, 논리를 구성해서 출력해보기
+//var smile: String = "😄"
+//for _ in 1...5 {
+//    print("\(smile)")
+//    smile += "😄"
+//}
+
+// 다르게 풀어보기
+//for i in 1...5 {
+//    for j in 1...5 {
+//        if j <= i {
+//            print("😄", terminator: "")
+//        }
+//    }
+//    print()
+//}
+
+// 함수
+
+//func loveHeart() {
+//    for i in 1...9 {
+//        for j in 1...9 {
+//            if j <= i {
+//                print("♥︎", terminator: "")
+//            }
+//        }
+//        print()
+//    }
+//}
+//
+//loveHeart()
+
+// 함수 input
+//func doSomething(name: String) {
+//    print("당신의 이름은 \(name)입니다.")
+//}
+//doSomething(name: "cody")
+//
+//// 함수 output
+//func sayHello() -> String {
+//    return "cody"
+//}
+//
+//var nameIs = sayHello()
+//print(nameIs+sayHello())
+//
+//
+//func whatYourName() -> String {
+//    let myName = "cody"
+//    return myName
+//}
+//
+//print(whatYourName())
+//
+//// 함수에 인풋과 아웃풋이 전부 있는 경우
+//func plusFunction(a: Int, b: Int) -> Int {
+//    let c = a + b
+//    return c
+//}
+//
+//print(plusFunction(a: 3, b: 5))
+
+
+// 가변 파라미터 : 파라미터의 개수가 정해지지 않은 파라미터
+
+//func plusAllNum(_ numbers: Double...) -> Double {
+//    var total = 0.0
+//    for n in numbers {
+//        total += n
+//    }
+//    return total
+//}
+//
+//print(plusAllNum(1.1, 2.5))
+
+// 함수의 파라미터에 기본값 설정
+//func tenPlus(first num1: Int, second num2: Int = 10) -> Int {
+//    let result = num1 + num2
+//    return result
+//}
+//print(tenPlus(first: 1))
+//print(tenPlus(first: 1, second: 3))
+//
+//print("안녕하세요", "cody", separator: " 히히 ", terminator: "")
+// print라는 것도 사실 함수고, 가변 파라미터임. 기본값이 쓰이기 때문에 사용한거지 separator과 terminator가 사용된 것
+
+// 중첩 함수
+//func winLose(win: Bool, value: Int) -> Int {
+//    func canWin(input: Int)-> Int {
+//        return input + 1
+//    }
+//    func canLose(input: Int) -> Int {
+//        return input - 1
+//    }
+//
+//    if win {
+//        return canWin(input: value)
+//    } else {
+//        return canLose(input: value)
+//    }
+//}
+//
+//var value = 0
+//
+//print(winLose(win: false, value: value))
+
+// 함수 내에서 swap 구현 불가능
+//var num1 = 123 // 전역변수
+//var num2 = 456 // 전역변수
+//
+//func swap(a: Int, b: Int) {
+//
+//}
+//
+//swap(a: num1, b: num2)
+
+// 참조 -> 메모리 주소 전달
+
+//var num1 = 123 // 전역변수
+//var num2 = 456 // 전역변수
+//
+//func swapNumbers(a: inout Int, b: inout Int) {
+//    var temp = a
+//    a = b
+//    b = temp
+//}
+//
+//swapNumbers(a: &num1, b: &num2)
+//print(num1, num2) // 456 123
+
+// 함수 파트
+
+// 가드문 (guard)
+// if 문의 단점 - 여러 개 조건이 있을 때 가독성이 떨어짐 -> guard
+//
+//if true {
+//    print("1")
+//    if true {
+//        print("2")
+//        if true {
+//            print("3")
+//        }
+//    }
+//}
+//
+//func checkNumIf(password: String) -> Bool {
+//    if password.count >= 6 {
+//        return true
+//    } else {
+//        return false
+//    }
+//}
+//
+//
+//func checkNumGuard(password: String) -> Bool {
+//    guard password.count >= else { return false }
+//
+//
+//    return true
+//}
+
+// gaurd문은 if문과 매우 비슷하지만, else문을 먼저 배치하는 것이라고 생각하면 됌.
+// => 조건을 만족하는 경우 코드가 다음 줄로 넘어가서 계속 실행
+
+// 문자열 중 한글자 랜덤으로 뽑아내는 함수
+
+//func randomHangle(hangle: String) -> String {
+//    return String(hangle.randomElement()!)
+//}
+//
+//print(randomHangle(hangle: "cody"))
+//
+
+// 소수 판별하는 알고리즘
+
+//var num = Int(readLine()!)!
+//var isPrime:Bool = true
+//
+//for i in 2..<num {
+//    if num % i == 0 {
+//        isPrime = false
+//        break
+//    }
+//}
+//
+//if isPrime {
+//    print("소수입니다.")
+//} else {
+//    print("소수가 아닙니다.")
+//}
+
+
+// 소수 판별하는 함수
+//func primeNumberChoice(num: Int) -> Bool {
+//    for i in 2..<num {
+//        if num % i == 0 {
+//            return false
+//        }
+//    }
+//    return true
+//}
+//
+//if primeNumberChoice(num: 97) {
+//    print("소수입니다.")
+//} else {
+//    print("소수가 아닙니다.")
+//}
+
+// 팩토리얼 함수 만들어보기
+
+//var sum = 1
+//func factorial(num: Int) -> Int {
+//    for i in 1...num {
+//        sum = sum * i
+//    }
+//    return sum
+//}
+//
+//print(factorial(num: 8))
+
+// 재귀함수로 팩토리얼 구하기
+//func factorialF(num: Int) -> Int {
+//    if num <= 1 {
+//        return 1
+//    }
+//    return num * factorialF(num: num - 1)
+//}
+//
+//print(factorialF(num: 5))
+
+//var num1: Int? = 3
+//var num2: Int? = 4
+//print(num1!+num2!)
+
+// 옵셔널 바인딩 함수
+
+//func unwrapping(name: String?) {
+//    guard let n = name else { return }
+//    print(n)
+//}
+//
+//unwrapping(name: "옵셔널 바인딩 함수")
+
+// 코얼레싱
+//var hi: String? = "하이"
+//var hello = hi ?? "헬로우" // 기본값으로 제시
+//print(hello) // hi에 값이 있다면 "하이" 를, hi에 값이 없다면 hello의 기본값인 헬로우 를 출력
+
+// 옵셔널 바인딩 연습
+//var num: Int? = 10
+//
+//if let y = num {
+//    print(y)
+//}
+//
+//func doPrinting(x: Int?) {
+//    guard let z = x else { return }
+//    print(z)
+//}
+//
+//doPrinting(x: 9)
+//
+//func doString(st: String?) {
+//    guard let ring = st else { return }
+//    print(ring)
+//}
+//
+//doString(st: "제바알")
+
+// 옵셔널 타입의 응용
+//
+//func doSomePrint(with label: String, name: String? = nil) {
+//    print("\(label) \(name)")
+//}
+//
+//doSomePrint(with: "레이블")
+//doSomePrint(with: "레이블", name: "cody")
+
+// 위와 같이 name부분을 옵셔널로 해주고 nil값으로 미리 해두면, name 부분 생략 가능
+
+// 배열
+
+// 인덱스 : 순번, 번호표 라고 생각하기
+//var numArray = [1, 2, 3, 4, 5] // 배열의 인덱스 시작은 0부터
+// 한 개의 배열에는 같은 타입의 데이터만 담을 수 있음.
+// 순서가 있기 때문에 값은 중복 가능
+// 리터럴 : "5" => 문자열 리터럴 7 => 정수형 리터럴
+//var intArray:[Int] = [1, 2, 3, 4] // 배열의 형태
+//var stringArray:[String] = ["이것은", "문자열", "배열"]
+
+// 배열의 타입 표기
+//let strArray: Array<String> // 정식 문법
+//let strArray1: [String] = [] // 간략화
+
+// 빈 배열의 생성
+//let emptyArray1: [Int] = []
+//let emptyArray2 = Array<Int>()
+//let emptyArray3 = [Int]()
+
+//print(numArray.count)
+//print(numArray.isEmpty)
+//print(numArray.contains(1))
+//print(numArray.randomElement())
+//print(numArray.swapAt(0, 1))
+
+// 서브스크립트 문법 (대괄호를 이용한 특별한 함수)
+//print(numArray[0])
+//
+//var stringArray:[String] = ["cody", "hamang", "ddong"]
+//stringArray[1] = "manju"
+//print(stringArray[1])
+//print(stringArray.first!) // 값이 옵셔널로 나옴 why? 값이 없을 수도 있기 때문에
+//print(stringArray.endIndex) // 배열로 저장되는 메모리 값의 끝의 주소를 의미하기 때문에 3이나옴
+//print(stringArray[stringArray.endIndex-1]) // 마지막 인덱스를 나타내기 위해선 위와 같이 해주어야함
+//
+//if let index = stringArray.firstIndex(of: "cody") {
+//    print(index)
+//    print(stringArray[index])
+//}
+
+// 삽입하기 insert
+//var alpha: [String] = ["a", "b", "c"]
+//alpha.insert("d", at: 3) // 배열 4번째에 d를 추가하라는 의미
+//print(alpha) // ["a", "b", "c", "d"]
+//alpha.insert(contentsOf: ["e","f"], at: 4) // 배열을 삽입한다는 의미.
+//print(alpha) // ["a", "b", "c", "d", "e", "f"]
+//
+//// 교체하기 replace
+//alpha[0] = "A"
+//print(alpha) // ["A", "b", "c", "d", "e", "f"]
+//alpha[1...3] = ["B", "C", "D"]
+//print(alpha) // ["A", "B", "C", "D", "e", "f"]
+//
+//// 삭제하기 간단버전
+//alpha[4...5] = []
+//print(alpha) // ["A", "B", "C", "D"]
+//
+//// 교체하기 필수 문법
+//alpha.replaceSubrange(0...3, with: ["a","b","c","d"])
+//print(alpha) // ["a", "b", "c", "d"]
+//
+//// 추가하기 append
+//alpha.append("e") // 끝에 추가한다
+//print(alpha) // ["a", "b", "c", "d", "e"]
+//alpha += ["f"] // append와 같은 의미
+//print(alpha) // ["a", "b", "c", "d", "e", "f"]
+//
+//// 삭제하기 remove
+//alpha.remove(at: 5) // 6번째에 있는 인덱스 제거
+//print(alpha) // ["a", "b", "c", "d", "e"]
+//alpha.removeSubrange(0...4) // 1~5번 째 인덱스 제거
+//print(alpha) // []
+//
+//alpha.insert(contentsOf: ["a","b","c","d"], at: 0)
+//print(alpha) // ["a", "b", "c", "d"]
+//alpha.removeAll() // 모든 배열, 메모리 공간을 삭제함
+//alpha.removeAll(keepingCapacity: true) // 모든 배열은 삭제하지만, 메모리 공간은 남겨둠.
+//print(alpha) // []
+
+// 정렬
+//var nums = [1,2,3,1,1,4,5,6,7,8,5,9]
+//
+//nums.sort() // 배열을 직접 정렬. 배열을 리턴하지 않음
+//print(nums) // [1, 1, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9]
+//
+//var num = [1,2,3,1,1,4,5,6,7,8,5,9]
+//print(num.sorted()) // [1, 1, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9]
+//print(num) // [1, 2, 3, 1, 1, 4, 5, 6, 7, 8, 5, 9]
+//
+//// sorted() : 배열을 변환하고 다시 원래 배열을 리턴해줌.
+//
+//var numreverse = [1,2,3,1,1,4,5,6,7,8,5,9]
+//numreverse.reverse()
+//print(numreverse) // [9, 5, 8, 7, 6, 5, 4, 1, 1, 3, 2, 1]
+//
+//var data = [[1,2],[3,4]]
+//print(data[0][1]) // data 배열 첫번째의 2번째 인덱스에 접근
+//
+//for i in nums {
+//    print(i)
+//} // 1,21,1,2,3,4,5,5,6,7,8,9
+//
+//// enumerate : 열거하다
+//nums = [10, 11, 12, 13]
+//for tuple in nums.enumerated() {
+//    print(tuple) // (offset: 0, element: 10),(offset: 1, element: 11)
+//                 // (offset: 2, element: 12),(offset: 3, element: 13)
+//    print("\(tuple.offset)-\(tuple.element)")
+//}
+// 즉, named 튜플 형태로 출력. 인덱스 번호와 값 둘다 출력
+
+// 딕셔너리
+//
+//var dic = ["A": "apple", "B": "banana", "C": "cap"]
+//print(dic)
+//
+//if let tuple = dic.randomElement() {
+//    print(tuple)
+//}
+//
+//print(dic["B"]) // 옵셔널로 반환 => nil의 가능성이 있기 때문
+//
+//if let b = dic["B"] { // 따라서 위와 같이 옵셔널 바인딩을 해주어야 함.
+//    print(b)
+//}
+//
+//// 딕셔널는 값만 따로 검색하는 방법은 존재하지 않음.
+//
+//print(dic.keys) // 키 값만
+//print(dic.values) // 벨류 값만
+//print(dic.keys.sorted()) // 키 값을 배열로 변환시켜줌.
+//print(dic.values.sorted()) // 벨류 값을 배열로 변환시켜줌.
+//
+//for key in dic.keys.sorted() { // 이렇게 키값을 배열로 사용해 반복문에서 사용할 수 있음.
+//    print(key)
+//}
+//
+//var words:[String: String]
+//words = [:]
+//words["A"] = "Apple" // 키가 없을땐 추가
+//print(words)
+//words["A"] = "Ace" // 키값이 존재한다면 변환
+//print(words)
+//
+//words.updateValue("City", forKey: "C")
+//print(words)
+//// 삭제
+//words.removeValue(forKey: "C")
+//print(words)
+//words["A"] = nil
+//print(words)
+//
+//// 딕셔너리 비교
+//let a = ["B":"boy","A":"Auto"]
+//let b = ["A":"Auto","B":"boy"]
+//
+//print(a==b) // true
+//// 딕셔너리는 순서가 없기 때문에 위 a,b가 같다고 할 수 있음.
+//
+//// 딕셔너리 활용
+//var dict1 = [String: [String]]()
+//dict1["arr1"] = ["A","B","C"]
+//print(dict1) //["arr1": ["A", "B", "C"]]
+//
+//// 반복문과 결합
+//
+//let dict = ["A":"Apple","B":"Banana","C":"City"]
+//for (key,value) in dict {
+//    print("\(key):\(value)")
+//}
+
+// 집합 Set
+
+//var set: Set = [1,1,2,2,3,3,3]
+//print(set) // [2, 3, 1] => 중복 허용 x
+//
+//// 빈 Set 생성
+//let emptySet: Set<Int> = []
+//print(emptySet)
+//
+//// 집합은 순서도 없고 키,벨류 값도 없기 때문에 서브스크립트 관련 문법이 없음
+//// ex) Set[0] => error!
+//set.update(with: 4) // 4 추가
+//print(set) //[2, 4, 1, 3]
+//
+//// 합집합 / 교집합 / 차집합 / 대칭차집합
+//// union / intersetion / subtracting / ssymmetricDifferent
+//var a: Set = [1,2]
+//var b: Set = [2,3]
+//var unionSet = a.union(b)
+//print(unionSet)
+
+
+
+//###########################################################
+
+// 열거형
+
+//enum weekday {
+//    case monday
+//    case tuesday
+//    case wednesday
+//    case thursday
+//    case friday
+//    case saturday
+//    case sunday
+//}
+//// 열거형의 사용 : 위처럼 요일, 방향, 성별, 가위바위보 .... 등
+//
+//enum school {
+//    case elementary
+//    case middle
+//    case high
+//    case university
+//}
+//
+//var School = school.elementary // 여기서 school은 타입 자체임.
+//
+//var today: weekday = .sunday
+//
+//if today == .sunday {
+//    print("오늘은 일요일입니다.")
+//}
+//
+//let setu: Set<Int> = [1,2,3]
+//print(setu)
+//
+//enum Optional {
+//    case some(Int)
+//    case none
+//}
+
+
+// 열거형의 활용
+//enum LoginProvider: String {
+//    case email
+//    case facebook
+//    case google
+//}
+//
+//let userLogin = LoginProvider.facebook
+//
+//switch userLogin {
+//case.email:
+//    print("이메일 로그인")
+//case.facebook:
+//    print("페이스북 로그인")
+//case.google:
+//    print("구글 로그인")
+//
+//    if LoginProvider.email == userLogin {
+//        print("userLogin")
+//    }
+//}
+
+// @nuknown 키워드 열거형에 있는 케이스들을 따로따로 다 switch문에서 다루어야만 경고창이 뜨지 않음.
+
+// 열거형의 활용
+//enum LoginProvider: String {
+//    case email
+//    case facebook
+//    case google
+//    case kakaotalk
+//}
+//
+//let userLogin = LoginProvider.facebook
+//
+//switch userLogin { // 경고창이 뜸 => unknown 코드 덕!
+//case.email:
+//    print("이메일 로그인")
+//case.facebook:
+//    print("페이스북 로그인")
+//case.google:
+//    print("구글 로그인")
+//@unknown default:
+//    print("그 외의 모든 경우")
+//
+//    if LoginProvider.email == userLogin {
+//        print("userLogin")
+//    }
+//}
+
+//class Dog {
+//    var name = "강아지"
+//    var weight = 0.0
+//
+//    func sit() {
+//        print("\(name)가 앉았습니다.")
+//    }
+//}
+//
+//var bori = Dog()
+//bori.name = "보리"
+//bori.weight = 15.0
+//print(bori.name)
+//print(bori.weight)
+//bori.sit()
+//
+//var choco = Dog()
+//choco.sit()
+//choco.name = "초코"
+//choco.weight = 7
+//print(choco.name)
+//print(choco.weight)
+//choco.sit()
+
+//struct Bird {
+//    var name = "새"
+//    var weight = 0.0
+//
+//    func fly() {
+//        print("\(name)가 날아갑니다.")
+//    }
+//}
+//
+//var aBird = Bird()
+//aBird.name = "딱따구리"
+//print(aBird.name)
+//aBird.fly()
+//
+//var bBird = Bird()
+//bBird.name = "비둘기"
+//print(bBird.name)
+//bBird.fly()
+
+//class person {
+//    var name = "사람"
+//}
+//
+//struct animal {
+//    var name = "동물"
+//}
+//
+//var p = person()
+//p.name = "혜리"
+//print(p.name)
+//
+//var a = animal()
+//print(a.name)
+//
+//var p2 = p // 메모리주소가 동일함
+//p2.name = "수진"
+//print(p2.name)
+//
+//var a2 = a // 값만 복사
+//a.name = "강아지"
+//print(a.name)
+//print(a2.name) // 각각 다른 데이터
+//
+//let pclass = person()
+//let astruct = animal()
+//
+//pclass.name = "사람1"
+//print(pclass.name)
+//
+//// astruct.name = "동물1" // 오류
+//// print(astruct.name)
+
+// 이니셜라이저
+
+//class Dog {
+//    var name: String
+//    var weight: Double
+//
+//    init(name: String, weight: Double) { // 생성자
+//        self.name = name // self : 인스턴스, 즉 실제 데이터를 의미
+//        self.weight = weight
+//    }
+//}
+//
+//var bori = Dog(name: "보리", weight: 15.0)
+//print(bori.name)
+//print(bori.weight)
+
+// 도서관리 모델 설계
+//
+//class Book {
+//    var name: String
+//    var price: Int
+//    var company: String
+//    var author: String
+//    var pages: Int
+//
+//    init(name: String, price: Int, company: String, author: String, pages: Int) {
+//        self.name = name
+//        self.price = price
+//        self.company = company
+//        self.author = author
+//        self.pages = pages
+//    }
+//    func detail() {
+//        print("책 이름 :\(self.name)")
+//        print("가격 :\(self.price)")
+//        print("출판사 :\(self.company)")
+//        print("저자 :\(self.author)")
+//        print("페이지수 :\(self.pages)")
+//
+//    }
+//
+//}
+//
+//var book1 = Book(name: "스위프트", price: 30000, company: "애플", author: "잡스", pages: 300)
+//var book2 = Book(name: "정의란무엇인가", price: 18000, company: "정의", author: "다이아몬드 스튜어드", pages: 400)
+//
+//book1.detail()
+//book2.detail()
+
+// 구조체 / 클래스 속성
+
+// 저장 속성(Stored Properties) : 값이 저장되는 일반적인 속성을 저장속성이라고 함
+
+struct Bird {
+    var name: String = "새"   // 저장속성
+    var weight: Double = 0.0  // 저장속성. 구조체나 클래스 상관 없이 둘다 가짐.
+}
+
+var bird1 = Bird()
+print(bird1.name)
+print(bird1.weight)
+
+// 지연 저장 속성 (Lazy Stored Properties)
+
+struct Person {
+    var name: String = "Cody"
+    lazy var weight: Double = 0.0 // 지연 저장 속성
+    // 메모리 공간을 만들지 않음
+}
+
+var cody = Person()
+cody.weight = 65.0 // => 접근하는 순간 메모리 공간을 새로 만들어냄.
+print(cody.weight)
+
