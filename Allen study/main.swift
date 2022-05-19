@@ -848,20 +848,20 @@ import Foundation
 
 // 계산속성
 
-class Person {
-    var birth: Int = 0
-    
-    var age: Int {
-        get {
-            return 2021 - birth
-        }
-        set(age) { // age를 다시 세팅해주는 역할
-            self.birth = 2021 - age
-        } // 계산 속성. 실질적으로 메서드임.
-        set { // 이렇게 파라미터 생략 가능. 대신 파라미터 위치에 newValue로 변경해주어야함!
-            self.birth = 2021 - newValue
-        }
-    }
+//class Person {
+//    var birth: Int = 0
+//
+//    var age: Int {
+//        get {
+//            return 2021 - birth
+//        }
+////        set(age) { // age를 다시 세팅해주는 역할
+////            self.birth = 2021 - age
+////        } // 계산 속성. 실질적으로 메서드임.
+//        set { // 이렇게 파라미터 생략 가능. 대신 파라미터 위치에 newValue로 변경해주어야함!
+//            self.birth = 2021 - newValue
+//        }
+//    }
     
 //    func getAge() -> Int {
 //        return 2021 - birth
@@ -870,13 +870,49 @@ class Person {
 //    func setAge(_ age: Int) {
 //        self.birth = 2021 - age
 //    }
+//}
+
+//var p1 = Person()
+//p1.birth = 1998
+//print(p1.birth)
+//print(p1.age) // get
+//p1.age = 20 // set
+//print(p1.age)
+
+//class Person {
+//    var name: String = "사람"
+//    var height: Double = 175.0
+//    var weight: Double = 65.0
+//    
+//    func calculateBMI() -> Double {
+//        let bmi = weight / (height * height) * 10000
+//        return bmi
+//    }
+//}
+//
+//let p = Person()
+//p.height = 175
+//p.weight = 65
+//
+//print(p.calculateBMI())
+
+// 위 예제를 계산 속성으로 바꾸어보기
+
+class Person {
+    var name: String = "사람"
+    var height: Double = 175.0
+    var weight: Double = 65.0
+    
+    var bmi: Double {
+        get {
+            let bmi = weight / (height * height) * 10000
+            return bmi
+        }
+    }
 }
 
-var p1 = Person()
-p1.birth = 1998
-print(p1.birth)
-print(p1.age) // get
-p1.age = 20 // set
-print(p1.age)
+let p = Person()
+p.height = 175
+p.weight = 65
 
-
+print(p.calculateBMI())
