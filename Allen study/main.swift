@@ -1015,28 +1015,47 @@ import Foundation
 
 // 속성 감시자 : 저장 속성을 감시하는 속성
 
-class Profile {
-    var name: String = "이름"
-    
-    var statusMessage: String = "기본 상태메세지" {
-        willSet { // 바뀔 값이 파라미터로 전달
-            print("메세지가 \(statusMessage)에서 \(newValue)로 변경되었습니다.")
-            print("상태메세지 업데이트 준비")
+//class Profile {
+//    var name: String = "이름"
+//
+//    var statusMessage: String = "기본 상태메세지" {
+//        willSet { // 바뀔 값이 파라미터로 전달
+//            print("메세지가 \(statusMessage)에서 \(newValue)로 변경되었습니다.")
+//            print("상태메세지 업데이트 준비")
+//        }
+//        didSet { // 바뀌기 전의 과거값이 파라미터로 전달
+//            print("메세지가 \(oldValue)에서 \(statusMessage)로 이미 변경되었습니다.")
+//            print("상태메세지 업데이트 완료")
+//
+//        }
+//    }
+//    init(message: String) {
+//        self.statusMessage = message
+//    }
+//}
+//
+//let p = Profile(message: "기본 상태메세지")
+//
+//p.statusMessage = "행복해"
+
+// 타입메서드
+//print(Int.random(in: 1...100)) // 타입메서드임!
+
+// 서브스크립트 구현
+
+class someData {
+    var datas = ["cody", "hamang", "dong"]
+    subscript(index: Int) -> String {
+        get {
+            return datas[index]
         }
-        didSet { // 바뀌기 전의 과거값이 파라미터로 전달
-            print("메세지가 \(oldValue)에서 \(statusMessage)로 이미 변경되었습니다.")
-            print("상태메세지 업데이트 완료")
-            
+        set {
+            datas[index] = newValue
         }
-    }
-    init(message: String) {
-        self.statusMessage = message
     }
 }
 
-let p = Profile(message: "기본 상태메세지")
-
-p.statusMessage = "행복해"
-
-// 타입메서드
-Int.random(in: 1...100) // 타입메서드임!
+var data = someData()
+print(data.datas[2])
+data[0] = "coody"
+print(data[0])
