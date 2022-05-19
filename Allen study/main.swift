@@ -851,6 +851,15 @@ import Foundation
 class Person {
     var birth: Int = 0
     
+    var age: Int {
+        get {
+            return 2021 - birth
+        }
+        set(age) {
+            self.birth = 2021 - age
+        }
+    }
+    
     func getAge() -> Int {
         return 2021 - birth
     }
