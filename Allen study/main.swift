@@ -991,22 +991,46 @@ import Foundation
 
 // 계산 타입 속성
 
-class Circle {
-    // 저장 타입 속성 (값이 항상 있어야 함.)
-    static let pi: Double = 3.14
-    static var count: Int = 0
+//class Circle {
+//    // 저장 타입 속성 (값이 항상 있어야 함.)
+//    static let pi: Double = 3.14
+//    static var count: Int = 0
+//
+//    // 계산 타입 속성
+//    static var multiPi: Double {
+//        return Circle.pi * 2
+//    }
+//
+//    // 저장 속성
+//    var radius: Double // 반지름
+//
+//    // 생성자
+//    init(radius: Double) {
+//        self.radius = radius
+//    }
+//}
+//
+//let b = Circle.multiPi
+//print(b)
+
+// 속성 감시자 : 저장 속성을 감시하는 속성
+
+class Profile {
+    var name: String = "이름"
     
-    // 계산 타입 속성
-    static var multiPi: Double {
-        return Circle.pi * 2
-    }
-    
-    // 저장 속성
-    var radius: Double // 반지름
-    
-    // 생성자
-    init(radius: Double) {
-        self.radius = radius
-        Circle.count += 1
+    var statusMessage: String = "기본 상태메세지" {
+        willSet(message) { // 속성 감시자
+            print("메세지가 \(statusMessage)에서 \(message)로 변경되었습니다.")
+            print("상태메세지 업데이트 준비")
+        }
+        didSet {
+            
+        }
     }
 }
+
+let p = Profile()
+
+print(p.statusMessage)
+p.statusMessage = "행복해"
+p.statusMessage = "사랑해"
