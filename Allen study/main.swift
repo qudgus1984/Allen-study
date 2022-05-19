@@ -1037,3 +1037,6 @@ class Profile {
 let p = Profile(message: "기본 상태메세지")
 
 p.statusMessage = "행복해"
+
+// 타입메서드
+Int.random(in: 1...100) // 타입메서드임!
