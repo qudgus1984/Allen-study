@@ -923,19 +923,50 @@ import Foundation
 
 // 타입 속성
 
-class Dog {
-    static let species: String = "Dog"
-    var name: String
-    var weight: Double
+//class Dog {
+//    static let species: String = "Dog"
+//    var name: String
+//    var weight: Double
+//    
+//    init(name: String, weight: Double) {
+//        self.name = name
+//        self.weight = weight
+//    }
+//}
+//
+//let dog = Dog(name: "초코", weight: 15.0)
+//print(dog.name)
+//print(dog.weight)
+//
+//print(Dog.species) // 타입으로 접근해야 함.
+
+// 저장 타입 속성
+class Circle {
+    // 저장 타입 속성 (값이 항상 있어야 함.)
+    static let pi: Double = 3.14
+    static var count: Int = 0
     
-    init(name: String, weight: Double) {
-        self.name = name
-        self.weight = weight
+    // 저장 속성
+    var radius: Double // 반지름
+    
+    var diameter: Double { // 지름
+        get {
+            return radius * 2
+        }
+        set {
+            radius = newValue / 2
+        }
+        
+    }
+    
+    // 생성자
+    init(radius: Double) {
+        self.radius = radius
     }
 }
 
-let dog = Dog(name: "초코", weight: 15.0)
-print(dog.name)
-print(dog.weight)
 
-print(Dog.species)
+var circle1 = Circle(radius: 2)
+print(circle1.radius)
+print(circle1.diameter)
+
