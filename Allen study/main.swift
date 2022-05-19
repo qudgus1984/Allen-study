@@ -927,7 +927,7 @@ import Foundation
 //    static let species: String = "Dog"
 //    var name: String
 //    var weight: Double
-//    
+//
 //    init(name: String, weight: Double) {
 //        self.name = name
 //        self.weight = weight
@@ -962,11 +962,24 @@ class Circle {
     // 생성자
     init(radius: Double) {
         self.radius = radius
+        Circle.count += 1
     }
 }
 
+print(Circle.count)
 
 var circle1 = Circle(radius: 2)
 print(circle1.radius)
 print(circle1.diameter)
+circle1.radius = 3
+print(circle1.diameter)
+print(Circle.count)
+
+print(Circle(radius: 2).diameter) // 찍어내면 사라짐
+
+print(circle1.diameter * Circle.pi) // 저장 타입 속성 사용
+print(Circle.count)
+var circle2 = Circle(radius: 3)
+print(Circle.count) // 인스턴스를 +1개 찍어냈다.
+
 
