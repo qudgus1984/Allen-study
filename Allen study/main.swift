@@ -1072,6 +1072,7 @@ Singleton.shared
 let object = Singleton.shared
 print(object.userInfoId)
 
-object.userInfoId = 12346
+let object2 = Singleton.shared
+object2.userInfoId = 12346
 print(object.userInfoId)
 
