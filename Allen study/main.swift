@@ -1019,18 +1019,21 @@ class Profile {
     var name: String = "이름"
     
     var statusMessage: String = "기본 상태메세지" {
-        willSet(message) { // 속성 감시자
-            print("메세지가 \(statusMessage)에서 \(message)로 변경되었습니다.")
+        willSet { // 바뀔 값이 파라미터로 전달
+            print("메세지가 \(statusMessage)에서 \(newValue)로 변경되었습니다.")
             print("상태메세지 업데이트 준비")
         }
-        didSet {
+        didSet { // 바뀌기 전의 과거값이 파라미터로 전달
+            print("메세지가 \(oldValue)에서 \(statusMessage)로 이미 변경되었습니다.")
+            print("상태메세지 업데이트 완료")
             
         }
     }
+    init(message: String) {
+        self.statusMessage = message
+    }
 }
 
-let p = Profile()
+let p = Profile(message: "기본 상태메세지")
 
-print(p.statusMessage)
 p.statusMessage = "행복해"
-p.statusMessage = "사랑해"
