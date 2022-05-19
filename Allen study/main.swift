@@ -872,6 +872,7 @@ class Person {
 var p1 = Person()
 p1.birth = 1998
 print(p1.birth)
-print(p1.age)
+print(p1.age) // get
+print(p1.age = 20) // set
 
 
