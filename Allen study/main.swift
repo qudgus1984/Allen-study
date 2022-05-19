@@ -824,23 +824,45 @@ import Foundation
 //var x = addTwoNumbers(3, 4)
 //print(x)
 
-struct Book {
-    var name: String
-    var price: Int
+//struct Book {
+//    var name: String
+//    var price: Int
+//
+//    init(name: String, price: Int) {
+//        self.name = name
+//        self.price = price
+//
+//    }
+//
+//    func explain() {
+//        print("책 이름: \(name)")
+//        print("가격 : \(price)원")
+//    }
+//}
+//
+//var book1 = Book(name: "Justice", price: 18000)
+//book1.explain()
+//
+//print(book1.explain())
 
-    init(name: String, price: Int) {
-        self.name = name
-        self.price = price
-        
+
+// 계산속성
+
+class Person {
+    var birth: Int = 0
+    
+    func getAge() -> Int {
+        return 2021 - birth
     }
     
-    func explain() {
-        print("책 이름: \(name)")
-        print("가격 : \(price)원")
+    func setAge(_ age: Int) {
+        self.birth = 2021 - age
     }
 }
 
-var book1 = Book(name: "Justice", price: 18000)
-book1.explain()
+var p1 = Person()
+p1.birth = 1998
+print(p1.birth)
+print(p1.getAge())
+print(p1.setAge(25))
 
-print(book1.explain())
