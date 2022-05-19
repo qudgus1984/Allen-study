@@ -941,23 +941,68 @@ import Foundation
 //print(Dog.species) // 타입으로 접근해야 함.
 
 // 저장 타입 속성
+//class Circle {
+//    // 저장 타입 속성 (값이 항상 있어야 함.)
+//    static let pi: Double = 3.14
+//    static var count: Int = 0
+//
+//    // 저장 속성
+//    var radius: Double // 반지름
+//
+//    var diameter: Double { // 지름
+//        get {
+//            return radius * 2
+//        }
+//        set {
+//            radius = newValue / 2
+//        }
+//
+//    }
+//
+//    // 생성자
+//    init(radius: Double) {
+//        self.radius = radius
+//        Circle.count += 1
+//    }
+//}
+//
+//print(Circle.count)
+//
+//var circle1 = Circle(radius: 2)
+//print(circle1.radius)
+//print(circle1.diameter)
+//circle1.radius = 3
+//print(circle1.diameter)
+//print(Circle.count)
+//
+//print(Circle(radius: 2).diameter) // 찍어내면 사라짐
+//
+//print(circle1.diameter * Circle.pi) // 저장 타입 속성 사용
+//print(Circle.count)
+//var circle2 = Circle(radius: 3)
+//print(Circle.count) // 인스턴스를 +1개 찍어냈다.
+
+
+// 실제 사용 예시
+//print(Double.pi) // 파이 값 pi를 옵션으로 보면, static var pi: Double { get }
+//print(Int.max) // Int 타입의 최대 숫자
+//print(Int.min) // Int 타입의 최소 숫자
+// 애플에서 미리 구현해놓은 타입 저장 속성임!
+
+// 계산 타입 속성
+
 class Circle {
     // 저장 타입 속성 (값이 항상 있어야 함.)
     static let pi: Double = 3.14
     static var count: Int = 0
     
+    // 계산 타입 속성
+    static var multiPi: Double {
+        return Circle.pi * 2
+    }
+    
     // 저장 속성
     var radius: Double // 반지름
-    
-    var diameter: Double { // 지름
-        get {
-            return radius * 2
-        }
-        set {
-            radius = newValue / 2
-        }
-        
-    }
     
     // 생성자
     init(radius: Double) {
@@ -965,21 +1010,3 @@ class Circle {
         Circle.count += 1
     }
 }
-
-print(Circle.count)
-
-var circle1 = Circle(radius: 2)
-print(circle1.radius)
-print(circle1.diameter)
-circle1.radius = 3
-print(circle1.diameter)
-print(Circle.count)
-
-print(Circle(radius: 2).diameter) // 찍어내면 사라짐
-
-print(circle1.diameter * Circle.pi) // 저장 타입 속성 사용
-print(Circle.count)
-var circle2 = Circle(radius: 3)
-print(Circle.count) // 인스턴스를 +1개 찍어냈다.
-
-
