@@ -898,24 +898,44 @@ import Foundation
 
 // 위 예제를 계산 속성으로 바꾸어보기
 
-class Person {
-    var name: String = "사람"
-    var height: Double = 175.0
-    var weight: Double = 65.0
+//class Person {
+//    var name: String = "사람"
+//    var height: Double = 175.0
+//    var weight: Double = 65.0
+//
+//    var bmi: Double {
+//        get {
+//            let bmi = weight / (height * height) * 10000
+//            return bmi
+//        }
+//        set {
+//            weight = newValue * height * height / 10000
+//        }
+//    }
+//}
+//
+//let p = Person()
+//p.height = 175
+//p.weight = 65
+//p.bmi = 19
+//print(p.weight) // set을 이용하여 bmi지수가 19일때의 몸무게 => 58.1875
+
+
+// 타입 속성
+
+class Dog {
+    static let species: String = "Dog"
+    var name: String
+    var weight: Double
     
-    var bmi: Double {
-        get {
-            let bmi = weight / (height * height) * 10000
-            return bmi
-        }
-        set {
-            weight = newValue * height * height / 10000
-        }
+    init(name: String, weight: Double) {
+        self.name = name
+        self.weight = weight
     }
 }
 
-let p = Person()
-p.height = 175
-p.weight = 65
-p.bmi = 19
-print(p.weight) // set을 이용하여 bmi지수가 19일때의 몸무게 => 58.1875
+let dog = Dog(name: "초코", weight: 15.0)
+print(dog.name)
+print(dog.weight)
+
+print(Dog.species)
