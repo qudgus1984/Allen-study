@@ -883,7 +883,7 @@ import Foundation
 //    var name: String = "사람"
 //    var height: Double = 175.0
 //    var weight: Double = 65.0
-//    
+//
 //    func calculateBMI() -> Double {
 //        let bmi = weight / (height * height) * 10000
 //        return bmi
@@ -908,11 +908,13 @@ class Person {
             let bmi = weight / (height * height) * 10000
             return bmi
         }
+        set {
+            weight = newValue * height * height / 10000
+        }
     }
 }
 
 let p = Person()
 p.height = 175
 p.weight = 65
-
-print(p.calculateBMI())
+print(p.bmi)
