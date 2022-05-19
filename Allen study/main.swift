@@ -1069,7 +1069,6 @@ class Singleton {
     }
 }
 
-Singleton.shared
 
 let object = Singleton.shared
 print(object.userInfoId)
