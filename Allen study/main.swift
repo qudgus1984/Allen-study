@@ -1065,6 +1065,8 @@ import Foundation
 class Singleton {
     static let shared = Singleton() // 자신의 객체를 생성해서 객체변수에 할당
     var userInfoId = 12345
+    private init() { // 찍어낼 수 없게 만드는 것
+    }
 }
 
 Singleton.shared
@@ -1075,4 +1077,6 @@ print(object.userInfoId)
 let object2 = Singleton.shared
 object2.userInfoId = 12346
 print(object.userInfoId)
+
+//let object3 = Singleton()
 
