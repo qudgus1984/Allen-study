@@ -1043,19 +1043,35 @@ import Foundation
 
 // 서브스크립트 구현
 
-class someData {
-    var datas = ["cody", "hamang", "dong"]
-    subscript(index: Int) -> String {
-        get {
-            return datas[index]
-        }
-        set {
-            datas[index] = newValue
-        }
-    }
+//class someData {
+//    var datas = ["cody", "hamang", "dong"]
+//    subscript(index: Int) -> String {
+//        get {
+//            return datas[index]
+//        }
+//        set {
+//            datas[index] = newValue
+//        }
+//    }
+//}
+//
+//var data = someData()
+//print(data.datas[2])
+//data[0] = "coody"
+//print(data[0])
+
+// 싱글톤 패턴 : 앱 구현시 유일하게 한개만 존재하는 객체가 필요한 경우 사용
+
+class Singleton {
+    static let shared = Singleton() // 자신의 객체를 생성해서 객체변수에 할당
+    var userInfoId = 12345
 }
 
-var data = someData()
-print(data.datas[2])
-data[0] = "coody"
-print(data[0])
+Singleton.shared
+
+let object = Singleton.shared
+print(object.userInfoId)
+
+object.userInfoId = 12346
+print(object.userInfoId)
+
