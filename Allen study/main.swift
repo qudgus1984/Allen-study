@@ -855,9 +855,12 @@ class Person {
         get {
             return 2021 - birth
         }
-        set(age) {
+        set(age) { // age를 다시 세팅해주는 역할
             self.birth = 2021 - age
         } // 계산 속성. 실질적으로 메서드임.
+        set { // 이렇게 파라미터 생략 가능. 대신 파라미터 위치에 newValue로 변경해주어야함!
+            self.birth = 2021 - newValue
+        }
     }
     
 //    func getAge() -> Int {
@@ -873,6 +876,7 @@ var p1 = Person()
 p1.birth = 1998
 print(p1.birth)
 print(p1.age) // get
-print(p1.age = 20) // set
+p1.age = 20 // set
+print(p1.age)
 
 
