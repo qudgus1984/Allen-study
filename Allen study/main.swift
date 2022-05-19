@@ -857,21 +857,21 @@ class Person {
         }
         set(age) {
             self.birth = 2021 - age
-        }
+        } // 계산 속성. 실질적으로 메서드임.
     }
     
-    func getAge() -> Int {
-        return 2021 - birth
-    }
-    
-    func setAge(_ age: Int) {
-        self.birth = 2021 - age
-    }
+//    func getAge() -> Int {
+//        return 2021 - birth
+//    }
+//
+//    func setAge(_ age: Int) {
+//        self.birth = 2021 - age
+//    }
 }
 
 var p1 = Person()
 p1.birth = 1998
 print(p1.birth)
-print(p1.getAge())
-print(p1.setAge(25))
+print(p1.age)
+
 
