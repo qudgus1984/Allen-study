@@ -917,4 +917,5 @@ class Person {
 let p = Person()
 p.height = 175
 p.weight = 65
-print(p.bmi)
+p.bmi = 19
+print(p.weight) // set을 이용하여 bmi지수가 19일때의 몸무게 => 58.1875
