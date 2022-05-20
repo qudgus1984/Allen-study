@@ -1079,22 +1079,39 @@ import Foundation
 
 //let object3 = Singleton()
 
-// 상속
-class Person {
-    var id = 0
-    var name = "이름"
-    var email = "@naver.com"
+// 상속 : 저장속성을 추가하는 기능
+//class Person {
+//    var id = 0
+//    var name = "이름"
+//    var email = "@naver.com"
+//}
+//
+//class Student: Person {
+//    var studentId = 0
+//}
+//
+//class Undergraduate: Student {
+//    var major = "전공"
+//}
+//
+//var cody = Undergraduate()
+//print(cody.id)
+//print(cody.studentId)
+//print(cody.major)
+
+// 재정의 (overriding)
+
+class Aclass {
+    func doSomething() {
+        print("Do something")
+    }
 }
 
-class Student: Person {
-    var studentId = 0
+class Bclass: Aclass {
+    override func doSomething() {
+        print("Something to do")
+    }
 }
 
-class Undergraduate: Student {
-    var major = "전공"
-}
-
-var cody = Undergraduate()
-print(cody.id)
-print(cody.studentId)
-print(cody.major)
+var b = Bclass()
+b.doSomething()
