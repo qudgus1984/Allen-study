@@ -1159,4 +1159,9 @@ class Bye: Hi {
         print("잘가요")
     }
 }
-
+class Byebye: Bye {
+    override func bye() {
+        super.bye()
+        print("이젠 보내줄게요")
+    }
+}
