@@ -1119,31 +1119,38 @@ import Foundation
 
 // 재정의 예시
 
-class Vehicle {
-    var currentSpeed = 0.0
-    
-    var halfSpeed: Double {
-        get {
-            return currentSpeed / 2
-        }
-        set {
-            currentSpeed = newValue * 2
-        }
-    }
-}
-// 저장 속성을 계산 속성으로 재정의
-class Bicycle: Vehicle {
-    var hasBasket = false
-    
-    override var currentSpeed: Double {
-        get {
-            return super.currentSpeed
-        }
-        set {
-            super.currentSpeed = newValue
-        }
-    }
-}
+//class Vehicle {
+//    var currentSpeed = 0.0
+//
+//    var halfSpeed: Double {
+//        get {
+//            return currentSpeed / 2
+//        }
+//        set {
+//            currentSpeed = newValue * 2
+//        }
+//    }
+//}
+//// 저장 속성을 계산 속성으로 재정의
+//class Bicycle: Vehicle {
+//    var hasBasket = false
+//
+//    override var currentSpeed: Double {
+//        get {
+//            return super.currentSpeed
+//        }
+//        set {
+//            super.currentSpeed = newValue
+//        }
+//    }
+//}
 // 저장 속성 -> 속성감시자를 추가하는 재정의도 가능
 // 계산 속성 재정의 가능
 // 상위에 있는 계산 속성을 재정의하면서 속성 감시자 추가 가능
+// 서브스크립트도 결국 메서드이기 때문에 재정의 가능
+class Hello {
+    var hi = "안녕"
+}
+class Hi: Hello {
+    var hii = "안녕하세요"
+}
