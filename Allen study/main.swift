@@ -1154,3 +1154,9 @@ class Hello {
 class Hi: Hello {
     var hii = "안녕하세요"
 }
+class Bye: Hi {
+    func bye(){
+        print("잘가요")
+    }
+}
+
