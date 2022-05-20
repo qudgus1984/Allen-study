@@ -1109,6 +1109,7 @@ class Aclass {
 
 class Bclass: Aclass {
     override func doSomething() {
+        super.doSomething() // 상위클래스에 있는 doSomething()을 실행
         print("Something to do")
     }
 }
