@@ -1062,20 +1062,39 @@ import Foundation
 
 // 싱글톤 패턴 : 앱 구현시 유일하게 한개만 존재하는 객체가 필요한 경우 사용
 
-class Singleton {
-    static let shared = Singleton() // 자신의 객체를 생성해서 객체변수에 할당
-    var userInfoId = 12345
-    private init() { // 찍어낼 수 없게 만드는 것
-    }
-}
-
-
-let object = Singleton.shared
-print(object.userInfoId)
-
-let object2 = Singleton.shared
-object2.userInfoId = 12346
-print(object.userInfoId)
+//class Singleton {
+//    static let shared = Singleton() // 자신의 객체를 생성해서 객체변수에 할당
+//    var userInfoId = 12345
+//    private init() { // 찍어낼 수 없게 만드는 것
+//    }
+//}
+//
+//
+//let object = Singleton.shared
+//print(object.userInfoId)
+//
+//let object2 = Singleton.shared
+//object2.userInfoId = 12346
+//print(object.userInfoId)
 
 //let object3 = Singleton()
 
+// 상속
+class Person {
+    var id = 0
+    var name = "이름"
+    var email = "@naver.com"
+}
+
+class Student: Person {
+    var studentId = 0
+}
+
+class Undergraduate: Student {
+    var major = "전공"
+}
+
+var cody = Undergraduate()
+print(cody.id)
+print(cody.studentId)
+print(cody.major)
