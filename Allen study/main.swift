@@ -1148,20 +1148,28 @@ import Foundation
 // 계산 속성 재정의 가능
 // 상위에 있는 계산 속성을 재정의하면서 속성 감시자 추가 가능
 // 서브스크립트도 결국 메서드이기 때문에 재정의 가능
-class Hello {
-    var hi = "안녕"
-}
-class Hi: Hello {
-    var hii = "안녕하세요"
-}
-class Bye: Hi {
-    func bye(){
-        print("잘가요")
-    }
-}
-class Byebye: Bye {
-    override func bye() {
-        super.bye()
-        print("이젠 보내줄게요")
-    }
+//class Hello {
+//    var hi = "안녕"
+//}
+//class Hi: Hello {
+//    var hii = "안녕하세요"
+//}
+//class Bye: Hi {
+//    func bye(){
+//        print("잘가요")
+//    }
+//}
+//class Byebye: Bye {
+//    override func bye() {
+//        super.bye()
+//        print("이젠 보내줄게요")
+//    }
+//}
+
+var univercity: Int
+var minju = Int(readLine()!)!
+
+univercity = Int.random(in: 1...6)
+if univercity = 1 {
+    print("한양대학교")
 }
