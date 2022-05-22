@@ -1166,10 +1166,20 @@ import Foundation
 //    }
 //}
 
-var univercity: Int
 var minju = Int(readLine()!)!
+var univercity: Int
 
 univercity = Int.random(in: 1...6)
-if univercity = 1 {
+if univercity == 1 {
     print("한양대학교")
+} else if univercity == 2 {
+    print("건국대학교")
+} else if univercity == 3 {
+    print("홍익대학교")
+} else if univercity == 4 {
+    print("숭실대학교")
+} else if univercity == 5 {
+    print("경희대학교")
+} else if univercity == 6 {
+    print("중앙대학교")
 }
