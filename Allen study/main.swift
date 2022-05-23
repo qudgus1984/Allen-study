@@ -1186,15 +1186,15 @@ import Foundation
 
 // 이니셜라이져 자동 설정
 class Color {
-    let red: Double = 1.0
-    let blue: Double = 1.0
-    let green: Double = 1.0
+    let red: Double
+    let blue: Double
+    let green: Double
     
     // 자동 기본값 설정
     init() {
-        red
-        blue
-        green
+        red = 0.0
+        blue = 0.0
+        green = 0.0
     }
 }
 
