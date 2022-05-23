@@ -1166,20 +1166,34 @@ import Foundation
 //    }
 //}
 
-var minju = Int(readLine()!)!
-var univercity: Int
+//var minju = Int(readLine()!)!
+//var univercity: Int
+//
+//univercity = Int.random(in: 1...6)
+//if univercity == 1 {
+//    print("한양대학교")
+//} else if univercity == 2 {
+//    print("건국대학교")
+//} else if univercity == 3 {
+//    print("홍익대학교")
+//} else if univercity == 4 {
+//    print("숭실대학교")
+//} else if univercity == 5 {
+//    print("경희대학교")
+//} else if univercity == 6 {
+//    print("중앙대학교")
+//}
 
-univercity = Int.random(in: 1...6)
-if univercity == 1 {
-    print("한양대학교")
-} else if univercity == 2 {
-    print("건국대학교")
-} else if univercity == 3 {
-    print("홍익대학교")
-} else if univercity == 4 {
-    print("숭실대학교")
-} else if univercity == 5 {
-    print("경희대학교")
-} else if univercity == 6 {
-    print("중앙대학교")
+// 이니셜라이져 자동 설정
+class Color {
+    let red: Double = 1.0
+    let blue: Double = 1.0
+    let green: Double = 1.0
+    
+    // 자동 기본값 설정
+    init() {
+        red = 0.0
+        blue = 0.0
+        green = 0.0
+    }
 }
