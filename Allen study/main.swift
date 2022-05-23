@@ -1223,3 +1223,18 @@ struct Color {
         self.red = red
     }
 }
+// 클래스에 위와같이 구현하기 위해선 편의 생성자(convenience)를 설정해주어야 함
+class Color1 {
+    let red: Double
+    let blue: Double
+    let green: Double
+
+    convenience init() {
+        self.init(red: 0.0, green: 0.0, blue: 0.0)
+    }
+    init(red: Double, green: Double, blue: Double) {
+        self.green = green
+        self.blue = blue
+        self.red = red
+    }
+}
