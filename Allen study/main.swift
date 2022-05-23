@@ -1184,27 +1184,42 @@ import Foundation
 //    print("중앙대학교")
 //}
 
-// 이니셜라이져 자동 설정
-class Color {
+//// 이니셜라이져 자동 설정
+//class Color {
+//    let red: Double
+//    let blue: Double
+//    let green: Double
+//
+//    // 자동 기본값 설정
+//    init() {
+//        red = 0.0
+//        blue = 0.0
+//        green = 0.0
+//    }
+//}
+//
+//// 구조체는 멤버와이즈 이니셜라이저 자동 제공
+//
+//struct Color1 {
+//    var red: Double
+//    var green: Double
+//    var blue: Double
+//}
+//
+//var puple = Color1(red: <#T##Double#>, green: <#T##Double#>, blue: <#T##Double#>)
+//// 이렇게 자동 구성
+
+struct Color {
     let red: Double
     let blue: Double
     let green: Double
-    
-    // 자동 기본값 설정
+
     init() {
-        red = 0.0
-        blue = 0.0
-        green = 0.0
+        self.init(red: 0.0, green: 0.0, blue: 0.0)
+    }
+    init(red: Double, green: Double, blue: Double) {
+        self.green = green
+        self.blue = blue
+        self.red = red
     }
 }
-
-// 구조체는 멤버와이즈 이니셜라이저 자동 제공
-
-struct Color1 {
-    var red: Double
-    var green: Double
-    var blue: Double
-}
-
-var puple = Color1(red: <#T##Double#>, green: <#T##Double#>, blue: <#T##Double#>)
-// 이렇게 자동 구성
