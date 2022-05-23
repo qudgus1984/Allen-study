@@ -1198,3 +1198,13 @@ class Color {
     }
 }
 
+// 구조체는 멤버와이즈 이니셜라이저 자동 제공
+
+struct Color1 {
+    var red: Double
+    var green: Double
+    var blue: Double
+}
+
+var puple = Color1(red: <#T##Double#>, green: <#T##Double#>, blue: <#T##Double#>)
+// 이렇게 자동 구성
