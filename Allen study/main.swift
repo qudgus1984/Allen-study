@@ -1277,3 +1277,21 @@ print(person1 is Person) // Bool 타입으로 알려줌 true
 print(person1 is Student) // false
 print(student1 is Person) // 상속받기때문에 true
 print(student1 is Student) // 당연히 true
+
+
+// is 연산자 활용
+let person2 = Person()
+let student2 = Student()
+let undergraduate2 = Undergraduate()
+
+let people = [person1, person2, student1, student2, undergraduate1, undergraduate2]
+
+var studentNumber = 0
+
+for someOne in people {
+    if someOne is Student {
+        studentNumber += 1
+    }
+}
+
+print(studentNumber)
