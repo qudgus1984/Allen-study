@@ -1273,4 +1273,5 @@ undergraduate1.major
 
 // is 연산자 => 타입을 체크하는 연산자
 
-print(person1 is Person) // Bool 타입으로 알려줌
+print(person1 is Person) // Bool 타입으로 알려줌 true
+print(person1 is Student) // false
