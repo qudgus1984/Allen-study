@@ -1257,3 +1257,20 @@ let person1 = Person()
 person1.id
 person1.name
 person1.email
+
+let student1 = Student()
+student1.id
+student1.name
+student1.email
+student1.studentId
+
+let undergraduate1 = Undergraduate()
+undergraduate1.id
+undergraduate1.name
+undergraduate1.email
+undergraduate1.studentId
+undergraduate1.major
+
+// is 연산자 => 타입을 체크하는 연산자
+
+print(person1 is Person) // Bool 타입으로 알려줌
