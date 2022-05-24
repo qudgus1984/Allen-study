@@ -1300,36 +1300,36 @@ import Foundation
 // as 연산자
 
 
-class Person {
-    var id = 0
-    var name = "이름"
-    var email = "qudgus1984@naver.com"
-}
-
-class Student: Person {
-    var studentId = 1
-}
-
-class Undergraduate: Student {
-    var major = "전공"
-}
-let person1 = Person()
-
-
-let student1 = Student()
-
-
-let undergraduate1 = Undergraduate()
-
-// 업캐스팅, 다운캐스팅
-let person: Person = Undergraduate()
-person.id
-person.name
-person.name
+//class Person {
+//    var id = 0
+//    var name = "이름"
+//    var email = "qudgus1984@naver.com"
+//}
+//
+//class Student: Person {
+//    var studentId = 1
+//}
+//
+//class Undergraduate: Student {
+//    var major = "전공"
+//}
+//let person1 = Person()
+//
+//
+//let student1 = Student()
+//
+//
+//let undergraduate1 = Undergraduate()
+//
+//// 업캐스팅, 다운캐스팅
+//let person: Person = Undergraduate()
+//person.id
+//person.name
+//person.name
 // person.studentId // error
 // person.major // error
 
-//let ppp = person as? Undergraduate
+//let ppp = person as? Undergraduate // 다운캐스팅
 //// person이라는 인스턴스를 Undergraduate 타입으로 변환하여 ppp라는 변수에 담는 것
 //// 이때 ppp타입을 확인해보면 Undergraduate? 로 나타남.
 //if let pp = ppp {
@@ -1337,8 +1337,15 @@ person.name
 //} // if let 바인딩을 통해 옵셔널을 벗겨주어야 함.
 
 // 또는
-if let ppp = person as? Undergraduate {
-    print(ppp.studentId)
-}
+//if let ppp = person as? Undergraduate {
+//    print(ppp.studentId)
+//}
 
-person as! Undergraduate
+//let ppp = person as! Undergraduate // 옵셔널을 벗기기 쉬움. but 오류시 런타임 오류
+//
+//let undergraduate5: Undergraduate = Undergraduate()
+
+
+let str: String = "Hello"
+let otherStr = str as NSString
+// 이때 otherStr의 타입은 NSString
