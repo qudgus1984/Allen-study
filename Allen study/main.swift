@@ -1352,54 +1352,66 @@ import Foundation
 
 // 타입과 당형성
 
+//class Person {
+//    var id = 0
+//    var name = "이름"
+//    var email = "qudgus1984@naver.com"
+//
+//    func walk() {
+//        print("사람이 걷는다")
+//    }
+//}
+//
+//class Student: Person {
+//    var studentId = 1
+//
+//    override func walk() {
+//        print("학생이 걷는다")
+//    }
+//    func study() {
+//        print("학생이 공부한다")
+//    }
+//}
+//
+//class Undergraduate: Student {
+//    var major = "전공"
+//
+//    override func walk() {
+//        print("대학생이 걷는다")
+//    }
+//    override func study() {
+//        print("대학생이 공부한다")
+//    }
+//    func party() {
+//        print("대학생이 파티를 한다")
+//    }
+//}
+//
+////let person1 = Person()
+////person1.walk() // 사람이 걷는다
+////// func walk() 에만 접근 가능
+////let student1: Person = Student()
+////// func walk() 에만 접근 가능
+////student1.walk() // 학생이 걷는다라 고 나옴 -> 메모리 측면
+////let undergraduate1: Person = Undergraduate()
+////undergraduate1.walk() // 대학생이 걷는다
+//
+//
+//let people: [Person] = [Person(), Student(), Undergraduate()]
+//
+//for person in people {
+//    person.walk()
+//}
+// Any
+var some: Any = "Swift"
+some = 3.2 // error가 뜨지 않음
+
 class Person {
-    var id = 0
     var name = "이름"
-    var email = "qudgus1984@naver.com"
-    
-    func walk() {
-        print("사람이 걷는다")
-    }
+    var age = 10
 }
 
-class Student: Person {
-    var studentId = 1
-    
-    override func walk() {
-        print("학생이 걷는다")
-    }
-    func study() {
-        print("학생이 공부한다")
-    }
+class Superman {
+    var name = "이름"
+    var weight = 100
 }
-
-class Undergraduate: Student {
-    var major = "전공"
-    
-    override func walk() {
-        print("대학생이 걷는다")
-    }
-    override func study() {
-        print("대학생이 공부한다")
-    }
-    func party() {
-        print("대학생이 파티를 한다")
-    }
-}
-
-//let person1 = Person()
-//person1.walk() // 사람이 걷는다
-//// func walk() 에만 접근 가능
-//let student1: Person = Student()
-//// func walk() 에만 접근 가능
-//student1.walk() // 학생이 걷는다라 고 나옴 -> 메모리 측면
-//let undergraduate1: Person = Undergraduate()
-//undergraduate1.walk() // 대학생이 걷는다
-
-
-let people: [Person] = [Person(), Student(), Undergraduate()]
-
-for person in people {
-    person.walk()
-}
-
