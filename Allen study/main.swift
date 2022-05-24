@@ -1346,6 +1346,48 @@ import Foundation
 //let undergraduate5: Undergraduate = Undergraduate()
 
 
-let str: String = "Hello"
-let otherStr = str as NSString
+//let str: String = "Hello"
+//let otherStr = str as NSString
 // 이때 otherStr의 타입은 NSString
+
+// 타입과 당형성
+
+class Person {
+    var id = 0
+    var name = "이름"
+    var email = "qudgus1984@naver.com"
+    
+    func walk() {
+        print("사람이 걷는다")
+    }
+}
+
+class Student: Person {
+    var studentId = 1
+    
+    override func walk() {
+        print("학생이 걷는다")
+    }
+    func study() {
+        print("학생이 공부한다")
+    }
+}
+
+class Undergraduate: Student {
+    var major = "전공"
+    
+    override func walk() {
+        print("대학생이 걷는다")
+    }
+    override func study() {
+        print("대학생이 공부한다")
+    }
+    func party() {
+        print("대학생이 파티를 한다")
+    }
+}
+
+let person1 = Person()
+let student1 = Student()
+let undergraduate1 = Undergraduate()
+
