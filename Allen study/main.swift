@@ -1403,10 +1403,10 @@ import Foundation
 //    person.walk()
 //}
 // Any
-var some: Any = "Swift"
-some = 10
-var some1 = some as! Int
-print(some1)
+//var some: Any = "Swift"
+//some = 10
+//var some1 = some as! Int
+//print(some1)
 
 class Person {
     var name = "이름"
@@ -1417,3 +1417,7 @@ class Superman {
     var name = "이름"
     var weight = 100
 }
+
+let array: [Any] = [5, "안녕", 3.5, Person(), Superman() ] // Any 타입을 사용해서 다양한 타입을 담을 수 있음
+
+print((array[1] as! String).count) // 2
