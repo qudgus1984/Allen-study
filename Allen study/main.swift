@@ -1404,7 +1404,9 @@ import Foundation
 //}
 // Any
 var some: Any = "Swift"
-some = 3.2 // error가 뜨지 않음
+some = 10
+var some1 = some as! Int
+print(some1)
 
 class Person {
     var name = "이름"
