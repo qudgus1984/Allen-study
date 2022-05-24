@@ -1242,5 +1242,18 @@ import Foundation
 class Person {
     var id = 0
     var name = "이름"
-    var emaill = "qudgus1984@naver.com"
+    var email = "qudgus1984@naver.com"
 }
+
+class Student: Person {
+    var studentId = 1
+}
+
+class Undergraduate: Student {
+    var major = "전공"
+}
+
+let person1 = Person()
+person1.id
+person1.name
+person1.email
