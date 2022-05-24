@@ -1421,3 +1421,9 @@ class Superman {
 let array: [Any] = [5, "안녕", 3.5, Person(), Superman() ] // Any 타입을 사용해서 다양한 타입을 담을 수 있음
 
 print((array[1] as! String).count) // 2
+
+// AnyObject 타입 => 클래스의 오브젝트만을 담을 수 있는 타입
+
+let objArray: [AnyObject] = [Person(), Superman(), NSString()]
+
+print((objArray[0] as! Person).name) // 이름 
