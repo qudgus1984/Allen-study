@@ -1275,3 +1275,5 @@ undergraduate1.major
 
 print(person1 is Person) // Bool 타입으로 알려줌 true
 print(person1 is Student) // false
+print(student1 is Person) // 상속받기때문에 true
+print(student1 is Student) // 당연히 true
