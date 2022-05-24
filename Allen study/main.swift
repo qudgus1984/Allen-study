@@ -1387,12 +1387,19 @@ class Undergraduate: Student {
     }
 }
 
-let person1 = Person()
-person1.walk() // 사람이 걷는다
-// func walk() 에만 접근 가능
-let student1: Person = Student()
-// func walk() 에만 접근 가능
-student1.walk() // 학생이 걷는다라 고 나옴 -> 메모리 측면
-let undergraduate1: Person = Undergraduate()
-undergraduate1.walk() // 대학생이 걷는다
+//let person1 = Person()
+//person1.walk() // 사람이 걷는다
+//// func walk() 에만 접근 가능
+//let student1: Person = Student()
+//// func walk() 에만 접근 가능
+//student1.walk() // 학생이 걷는다라 고 나옴 -> 메모리 측면
+//let undergraduate1: Person = Undergraduate()
+//undergraduate1.walk() // 대학생이 걷는다
+
+
+let people: [Person] = [Person(), Student(), Undergraduate()]
+
+for person in people {
+    person.walk()
+}
 
