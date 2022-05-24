@@ -1239,6 +1239,67 @@ import Foundation
 //    }
 //}
 
+//class Person {
+//    var id = 0
+//    var name = "이름"
+//    var email = "qudgus1984@naver.com"
+//}
+//
+//class Student: Person {
+//    var studentId = 1
+//}
+//
+//class Undergraduate: Student {
+//    var major = "전공"
+//}
+//
+//let person1 = Person()
+//person1.id
+//person1.name
+//person1.email
+//
+//let student1 = Student()
+//student1.id
+//student1.name
+//student1.email
+//student1.studentId
+//
+//let undergraduate1 = Undergraduate()
+//undergraduate1.id
+//undergraduate1.name
+//undergraduate1.email
+//undergraduate1.studentId
+//undergraduate1.major
+//
+//// is 연산자 => 타입을 체크하는 연산자
+//
+//print(person1 is Person) // Bool 타입으로 알려줌 true
+//print(person1 is Student) // false
+//print(student1 is Person) // 상속받기때문에 true
+//print(student1 is Student) // 당연히 true
+//
+//
+//// is 연산자 활용
+//let person2 = Person()
+//let student2 = Student()
+//let undergraduate2 = Undergraduate()
+//
+//let people = [person1, person2, student1, student2, undergraduate1, undergraduate2]
+//
+//var studentNumber = 0
+//
+//for someOne in people {
+//    if someOne is Student {
+//        studentNumber += 1
+//    }
+//}
+//
+//print(studentNumber)
+
+
+// as 연산자
+
+
 class Person {
     var id = 0
     var name = "이름"
@@ -1252,46 +1313,18 @@ class Student: Person {
 class Undergraduate: Student {
     var major = "전공"
 }
-
 let person1 = Person()
-person1.id
-person1.name
-person1.email
+
 
 let student1 = Student()
-student1.id
-student1.name
-student1.email
-student1.studentId
+
 
 let undergraduate1 = Undergraduate()
-undergraduate1.id
-undergraduate1.name
-undergraduate1.email
-undergraduate1.studentId
-undergraduate1.major
 
-// is 연산자 => 타입을 체크하는 연산자
-
-print(person1 is Person) // Bool 타입으로 알려줌 true
-print(person1 is Student) // false
-print(student1 is Person) // 상속받기때문에 true
-print(student1 is Student) // 당연히 true
-
-
-// is 연산자 활용
-let person2 = Person()
-let student2 = Student()
-let undergraduate2 = Undergraduate()
-
-let people = [person1, person2, student1, student2, undergraduate1, undergraduate2]
-
-var studentNumber = 0
-
-for someOne in people {
-    if someOne is Student {
-        studentNumber += 1
-    }
-}
-
-print(studentNumber)
+// 업캐스팅, 다운캐스팅
+let person: Person = Undergraduate()
+person.id
+person.name
+person.name
+// person.studentId // error
+// person.major // error
