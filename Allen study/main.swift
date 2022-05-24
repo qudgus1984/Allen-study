@@ -1328,3 +1328,17 @@ person.name
 person.name
 // person.studentId // error
 // person.major // error
+
+//let ppp = person as? Undergraduate
+//// person이라는 인스턴스를 Undergraduate 타입으로 변환하여 ppp라는 변수에 담는 것
+//// 이때 ppp타입을 확인해보면 Undergraduate? 로 나타남.
+//if let pp = ppp {
+//    pp.id
+//} // if let 바인딩을 통해 옵셔널을 벗겨주어야 함.
+
+// 또는
+if let ppp = person as? Undergraduate {
+    print(ppp.studentId)
+}
+
+person as! Undergraduate
