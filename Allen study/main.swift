@@ -1454,3 +1454,10 @@ extension Int {
 }
 
 Int.printNumbersFrom1to5()
+
+extension Int {
+    mutating func square() {
+        self = self * self
+    }
+}
+
