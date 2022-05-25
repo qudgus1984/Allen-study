@@ -1408,22 +1408,34 @@ import Foundation
 //var some1 = some as! Int
 //print(some1)
 
-class Person {
-    var name = "이름"
-    var age = 10
+//class Person {
+//    var name = "이름"
+//    var age = 10
+//}
+//
+//class Superman {
+//    var name = "이름"
+//    var weight = 100
+//}
+//
+//let array: [Any] = [5, "안녕", 3.5, Person(), Superman() ] // Any 타입을 사용해서 다양한 타입을 담을 수 있음
+//
+//print((array[1] as! String).count) // 2
+//
+//// AnyObject 타입 => 클래스의 오브젝트만을 담을 수 있는 타입
+//
+//let objArray: [AnyObject] = [Person(), Superman(), NSString()]
+//
+//print((objArray[0] as! Person).name) // 이름
+
+// 확장
+
+// 확장의 장점
+
+extension Int {
+    var squared: Int {
+        return self * self
+    }
 }
 
-class Superman {
-    var name = "이름"
-    var weight = 100
-}
-
-let array: [Any] = [5, "안녕", 3.5, Person(), Superman() ] // Any 타입을 사용해서 다양한 타입을 담을 수 있음
-
-print((array[1] as! String).count) // 2
-
-// AnyObject 타입 => 클래스의 오브젝트만을 담을 수 있는 타입
-
-let objArray: [AnyObject] = [Person(), Superman(), NSString()]
-
-print((objArray[0] as! Person).name) // 이름 
+print(5.squared)
