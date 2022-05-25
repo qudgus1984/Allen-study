@@ -1444,3 +1444,13 @@ func squared(num: Int) -> Int {
 
 print(5.squared)
 print(squared(num: 5)) // 이렇게도 구현 가능하지만 확장보다 불편함
+
+extension Int {
+    static func printNumbersFrom1to5() {
+        for i in 1...5 {
+            print(i)
+        }
+    }
+}
+
+Int.printNumbersFrom1to5()
