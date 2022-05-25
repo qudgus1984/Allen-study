@@ -1438,4 +1438,9 @@ extension Int {
     }
 }
 
+func squared(num: Int) -> Int {
+    return num * num
+}
+
 print(5.squared)
+print(squared(num: 5)) // 이렇게도 구현 가능하지만 확장보다 불편함
