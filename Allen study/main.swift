@@ -1463,10 +1463,23 @@ import Foundation
 
 // 프로토콜 : 약속 / 규약 => 자격증, 리모콘 같은 의미
 
-func fly() {
-    print("하늘을 난다.")
+
+protocol SomeProtocol {
+    func flyPiano()
 }
-protocol Canfly {
-    func fly()
+
+struct MyStruct: SomeProtocol {
+    func flyPiano() {
+        print("피아노를 친다")
+    }
+}
+
+var grandPiano = MyStruct()
+grandPiano.flyPiano()
+
+class MyClass: SomeProtocol {
+    func flyPiano() {
+        print("피아노를 친다")
+    }
 }
 
