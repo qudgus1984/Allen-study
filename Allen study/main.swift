@@ -862,7 +862,7 @@ import Foundation
 //            self.birth = 2021 - newValue
 //        }
 //    }
-    
+
 //    func getAge() -> Int {
 //        return 2021 - birth
 //    }
@@ -1489,4 +1489,23 @@ class MyClass: MyProtocol {
     }
 }
 
+protocol RemoteMouse {
+    var id: String { get }
+    
+    var name: String { get set }
+    
+    static var type: String { get set }
+}
+
+struct TV: RemoteMouse {
+    var id: String {
+        get {
+            return "\(id)임"
+        } set {
+            var id = "Cody"
+        }
+    }
+    var name: String = "삼성티비"
+    static var type: String = "리모콘"
+}
 
