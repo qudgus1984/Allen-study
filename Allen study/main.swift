@@ -1477,9 +1477,16 @@ struct MyStruct: SomeProtocol {
 var grandPiano = MyStruct()
 grandPiano.flyPiano()
 
-class MyClass: SomeProtocol {
-    func flyPiano() {
-        print("피아노를 친다")
+
+// 프로토콜의 정의
+protocol MyProtocol {
+    func doSomething() -> Int
+}
+
+class MyClass: MyProtocol {
+    func doSomething() -> Int {
+        return 7
     }
 }
+
 
