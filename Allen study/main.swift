@@ -1526,3 +1526,4 @@ class Number: RandomNumber {
 
 var x = Number()
 print(x.random())
+Number.reset()
