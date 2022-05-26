@@ -1463,49 +1463,66 @@ import Foundation
 
 // 프로토콜 : 약속 / 규약 => 자격증, 리모콘 같은 의미
 
+//
+//protocol SomeProtocol {
+//    func flyPiano()
+//}
+//
+//struct MyStruct: SomeProtocol {
+//    func flyPiano() {
+//        print("피아노를 친다")
+//    }
+//}
+//
+//var grandPiano = MyStruct()
+//grandPiano.flyPiano()
+//
+//
+//// 프로토콜의 정의
+//protocol MyProtocol {
+//    func doSomething() -> Int
+//}
+//
+//class MyClass: MyProtocol {
+//    func doSomething() -> Int {
+//        return 7
+//    }
+//}
+//
+//protocol RemoteMouse {
+//    var id: String { get }
+//
+//    var name: String { get set }
+//
+//    static var type: String { get set }
+//}
+//
+//struct TV: RemoteMouse {
+//    var id: String {
+//        get {
+//            return "\(id)임"
+//        } set {
+//            var id = "Cody"
+//        }
+//    }
+//    var name: String = "삼성티비"
+//    static var type: String = "리모콘"
+//}
 
-protocol SomeProtocol {
-    func flyPiano()
+protocol RandomNumber {
+    static func reset()
+    func random() -> Int
 }
 
-struct MyStruct: SomeProtocol {
-    func flyPiano() {
-        print("피아노를 친다")
+class Number: RandomNumber {
+    static func reset() {
+        print("다시 셋팅")
     }
-}
-
-var grandPiano = MyStruct()
-grandPiano.flyPiano()
-
-
-// 프로토콜의 정의
-protocol MyProtocol {
-    func doSomething() -> Int
-}
-
-class MyClass: MyProtocol {
-    func doSomething() -> Int {
-        return 7
-    }
-}
-
-protocol RemoteMouse {
-    var id: String { get }
     
-    var name: String { get set }
-    
-    static var type: String { get set }
-}
-
-struct TV: RemoteMouse {
-    var id: String {
-        get {
-            return "\(id)임"
-        } set {
-            var id = "Cody"
-        }
+    func random() -> Int {
+        return Int.random(in: 1...100)
     }
-    var name: String = "삼성티비"
-    static var type: String = "리모콘"
 }
 
+var x = Number()
+print(x.random())
