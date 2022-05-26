@@ -1430,34 +1430,43 @@ import Foundation
 
 // 확장
 
-// 확장의 장점
+//// 확장의 장점
+//
+//extension Int {
+//    var squared: Int {
+//        return self * self
+//    }
+//}
+//
+//func squared(num: Int) -> Int {
+//    return num * num
+//}
+//
+//print(5.squared)
+//print(squared(num: 5)) // 이렇게도 구현 가능하지만 확장보다 불편함
+//
+//extension Int {
+//    static func printNumbersFrom1to5() {
+//        for i in 1...5 {
+//            print(i)
+//        }
+//    }
+//}
+//
+//Int.printNumbersFrom1to5()
+//
+//extension Int {
+//    mutating func square() {
+//        self = self * self
+//    }
+//}
 
-extension Int {
-    var squared: Int {
-        return self * self
-    }
+// 프로토콜 : 약속 / 규약 => 자격증, 리모콘 같은 의미
+
+func fly() {
+    print("하늘을 난다.")
 }
-
-func squared(num: Int) -> Int {
-    return num * num
-}
-
-print(5.squared)
-print(squared(num: 5)) // 이렇게도 구현 가능하지만 확장보다 불편함
-
-extension Int {
-    static func printNumbersFrom1to5() {
-        for i in 1...5 {
-            print(i)
-        }
-    }
-}
-
-Int.printNumbersFrom1to5()
-
-extension Int {
-    mutating func square() {
-        self = self * self
-    }
+protocol Canfly {
+    func fly()
 }
 
