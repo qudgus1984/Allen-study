@@ -1523,10 +1523,10 @@ import Foundation
 //        return Int.random(in: 1...100)
 //    }
 //}
-
-var x = Number()
-print(x.random())
-Number.reset()
+//
+//var x = Number()
+//print(x.random())
+//Number.reset()
 
 protocol DataList {
     subscript(idx: Int) -> Int { get }
@@ -1538,3 +1538,5 @@ struct DataStructure: DataList {
         return 0
     }
 }
+
+var x = DataStructure()
