@@ -1508,21 +1508,21 @@ import Foundation
 //    var name: String = "삼성티비"
 //    static var type: String = "리모콘"
 //}
-
-protocol RandomNumber {
-    static func reset()
-    func random() -> Int
-}
-
-class Number: RandomNumber {
-    static func reset() {
-        print("다시 셋팅")
-    }
-    
-    func random() -> Int {
-        return Int.random(in: 1...100)
-    }
-}
+//
+//protocol RandomNumber {
+//    static func reset()
+//    func random() -> Int
+//}
+//
+//class Number: RandomNumber {
+//    static func reset() {
+//        print("다시 셋팅")
+//    }
+//
+//    func random() -> Int {
+//        return Int.random(in: 1...100)
+//    }
+//}
 
 var x = Number()
 print(x.random())
@@ -1530,4 +1530,11 @@ Number.reset()
 
 protocol DataList {
     subscript(idx: Int) -> Int { get }
+}
+
+struct DataStructure: DataList {
+    
+    subscript(idx: Int) -> Int {
+        return 0
+    }
 }
