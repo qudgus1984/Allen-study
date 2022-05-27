@@ -1540,3 +1540,8 @@ struct DataStructure: DataList {
 }
 
 var x = DataStructure()
+
+protocol DataSet {
+    subscript(data: String) -> String { get }
+}
+
