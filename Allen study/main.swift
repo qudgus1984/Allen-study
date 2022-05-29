@@ -1545,8 +1545,12 @@ protocol DataSet {
     subscript(data: String) -> String { get }
 }
 
-class DataClasss: DataSet {
+class DataClass: DataSet {
     subscript(data: String) -> String {
         return "데이터"
     }
 }
+
+var dataBase = DataClass()
+dataBase["안녕"]
+print(dataBase)
