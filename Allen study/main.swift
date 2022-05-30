@@ -1527,30 +1527,46 @@ import Foundation
 //var x = Number()
 //print(x.random())
 //Number.reset()
+//
+//protocol DataList {
+//    subscript(idx: Int) -> Int { get }
+//}
+//
+//struct DataStructure: DataList {
+//
+//    subscript(idx: Int) -> Int {
+//        return 0
+//    }
+//}
+//
+//var x = DataStructure()
+//
+//protocol DataSet {
+//    subscript(data: String) -> String { get }
+//}
+//
+//class DataClass: DataSet {
+//    subscript(data: String) -> String {
+//        return "데이터"
+//    }
+//}
+//
+//var dataBase = DataClass()
+//dataBase["안녕"]
+//print(dataBase)
 
-protocol DataList {
-    subscript(idx: Int) -> Int { get }
+// 프로토콜은 타입
+protocol Remote {
+    func turnOn()
+    func turnOff()
 }
 
-struct DataStructure: DataList {
-    
-    subscript(idx: Int) -> Int {
-        return 0
+class TV: Remote {
+    func turnOn() {
+        print("TV켜기")
+    }
+    func turnOff() {
+        print("TV끄기")
     }
 }
 
-var x = DataStructure()
-
-protocol DataSet {
-    subscript(data: String) -> String { get }
-}
-
-class DataClass: DataSet {
-    subscript(data: String) -> String {
-        return "데이터"
-    }
-}
-
-var dataBase = DataClass()
-dataBase["안녕"]
-print(dataBase)
