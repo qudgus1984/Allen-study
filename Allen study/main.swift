@@ -1556,43 +1556,60 @@ import Foundation
 //print(dataBase)
 
 // 프로토콜은 타입
+//protocol Remote {
+//    func turnOn()
+//    func turnOff()
+//}
+//
+//class TV: Remote {
+//    func turnOn() {
+//        print("TV켜기")
+//    }
+//    func turnOff() {
+//        print("TV끄기")
+//    }
+//}
+//
+//struct SetTopBox: Remote {
+//    func turnOn() {
+//        print("셋톱박스켜기")
+//    }
+//    func turnOff() {
+//        print("셋톱박스끄기")
+//    }
+//    func doNetflix() {
+//        print("넷플릭스 켜기")
+//    }
+//}
+//
+//let tv: Remote = TV() // protocol 타입으로 선언 가능
+//tv.turnOn()
+//tv.turnOff()
+//
+//let sbox: Remote = SetTopBox()
+//sbox.turnOn()
+//sbox.turnOff()
+//(sbox as? SetTopBox)?.doNetflix() // 다운캐스팅 사용하여 SetTopBox 함수 사용
+//
+//// 프로토콜 타입 취급의 장점
+//let electronic: [Remote] = [tv, sbox] // 프로토콜 형식으로 담겨있음
+//
+//print(tv is Remote)
+//print(sbox is Remote) // is 로 특정 타입이 플토콜을 채택하고 있는지 확인
+
+
+// 프로토콜 상속
 protocol Remote {
     func turnOn()
     func turnOff()
 }
 
-class TV: Remote {
-    func turnOn() {
-        print("TV켜기")
-    }
-    func turnOff() {
-        print("TV끄기")
-    }
+protocol AirConRemote {
+    func Up()
+    func Down()
 }
 
-struct SetTopBox: Remote {
-    func turnOn() {
-        print("셋톱박스켜기")
-    }
-    func turnOff() {
-        print("셋톱박스끄기")
-    }
-    func doNetflix() {
-        print("넷플릭스 켜기")
-    }
+protocol SuperRemoteProtocol: Remote, AirConRemote {
+    // 프로토콜끼리 상속 구조를 만드는 것이 가능
+    func doSomething()
 }
-
-let tv: Remote = TV() // protocol 타입으로 선언 가능
-tv.turnOn()
-tv.turnOff()
-
-let sbox: Remote = SetTopBox()
-sbox.turnOn()
-sbox.turnOff()
-(sbox as? SetTopBox)?.doNetflix() // 다운캐스팅 사용하여 SetTopBox 함수 사용
-
-// 프로토콜 타입 취급의 장점
-let electronic: [Remote] = [tv, sbox] // 프로토콜 형식으로 담겨있음
-
-print(tv is Remote)
-print(sbox is Remote) // is 로 특정 타입이 플토콜을 채택하고 있는지 확인
