@@ -1613,3 +1613,31 @@ protocol SuperRemoteProtocol: Remote, AirConRemote {
     // 프로토콜끼리 상속 구조를 만드는 것이 가능
     func doSomething()
 }
+
+class HomePot: SuperRemoteProtocol {
+    func turnOn() {
+        print("킨다")
+    }
+    func turnOff() {
+        print("끈다")
+    }
+    func Up() {
+        print("올린다")
+    }
+    func Down() {
+        print("내린다")
+    }
+    func doSomething() {
+        print("그이외")
+    }
+}
+
+// 선택적 요구사항
+
+// 어트리뷰트
+// @available, @objc, @IBOutlet, @IBAction 등등
+
+// 실제 예시
+@available(iOS 13.0, macOS 10.12, *) // 선언에 추가정보 제공, 타입에 추가정보 제공
+class SomeType {
+}
