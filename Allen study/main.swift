@@ -1590,3 +1590,9 @@ let sbox: Remote = SetTopBox()
 sbox.turnOn()
 sbox.turnOff()
 (sbox as? SetTopBox)?.doNetflix() // 다운캐스팅 사용하여 SetTopBox 함수 사용
+
+// 프로토콜 타입 취급의 장점
+let electronic: [Remote] = [tv, sbox] // 프로토콜 형식으로 담겨있음
+
+print(tv is Remote)
+print(sbox is Remote) // is 로 특정 타입이 플토콜을 채택하고 있는지 확인
