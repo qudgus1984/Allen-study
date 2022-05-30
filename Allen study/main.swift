@@ -1644,20 +1644,20 @@ import Foundation
 
 // 프로토콜 확장
 
-protocol Remote {
-    func turnOn()
-    func turnOff()
-}
-
-extension Remote {
-    func turnOn() { print("리모콘 켜기")}
-    func turnOff() {print("리모콘 끄기")}
-    
-    // 메모리 주소에 저장하는 것
-    func doAnotherAction() {
-        print("리모콘 또 다른 동작 수행")
-    }
-}
+//protocol Remote {
+//    func turnOn()
+//    func turnOff()
+//}
+//
+//extension Remote {
+//    func turnOn() { print("리모콘 켜기")}
+//    func turnOff() {print("리모콘 끄기")}
+//
+//    // 메모리 주소에 저장하는 것
+//    func doAnotherAction() {
+//        print("리모콘 또 다른 동작 수행")
+//    }
+//}
 //
 //class TV1: Remote {
 //    func turnOn() { print("TV 켜기")}
@@ -1696,27 +1696,79 @@ extension Remote {
 // 프로토콜 - w테이블 : Direct 여기에 메모리 주소를 삽입하는 것. 직접 메모리 주소 삽입
 //ipad2.doAnotherAction() // 여기서 프로토콜 타입을 받는지, 클래스를 받는지에 따라 달라짐
 
-struct SmartPhone: Remote {
-    func turnOn() {print("스마트폰 켜기")}
-    func doAnotherAction() { print("스마트폰 다른 동작")}
-}
-
-var iphone: SmartPhone = SmartPhone()
-iphone.turnOn()  // 구조체 - Direct (직접 메서드 주소 삽입)
-iphone.turnOff() // 구조체 - Direct (직접 메서드 주소 삽입)
-iphone.doAnotherAction() // 구조체 - Direct (직접 메서드 주소 삽입)
-
-//스마트폰 켜기
-//리모콘 끄기
-//스마트폰 다른 동작
-
-// 프로토콜 타입 저장 : witness 테이블
-var iphone2: Remote = SmartPhone()
-iphone2.turnOn()   // 프로토콜 - w테이블
-iphone2.turnOff()  // 프로토콜 - w테이블
-iphone2.doAnotherAction()// 프로토콜 - Direct (직접 메서드 주소 삽입)
+//struct SmartPhone: Remote {
+//    func turnOn() {print("스마트폰 켜기")}
+//    func doAnotherAction() { print("스마트폰 다른 동작")}
+//}
+//
+//var iphone: SmartPhone = SmartPhone()
+//iphone.turnOn()  // 구조체 - Direct (직접 메서드 주소 삽입)
+//iphone.turnOff() // 구조체 - Direct (직접 메서드 주소 삽입)
+//iphone.doAnotherAction() // 구조체 - Direct (직접 메서드 주소 삽입)
+//
+////스마트폰 켜기
+////리모콘 끄기
+////스마트폰 다른 동작
+//
+//// 프로토콜 타입 저장 : witness 테이블
+//var iphone2: Remote = SmartPhone()
+//iphone2.turnOn()   // 프로토콜 - w테이블
+//iphone2.turnOff()  // 프로토콜 - w테이블
+//iphone2.doAnotherAction()// 프로토콜 - Direct (직접 메서드 주소 삽입)
 
 //스마트폰 켜기
 //리모콘 끄기
 //리모콘 또 다른 동작 수행
 
+// 프로토콜 확장 제한
+
+protocol Remote {
+    func turnOn()
+    func turnOff()
+}
+
+extension Remote {
+    func turnOn() { print("리모콘 켜기")}
+    func turnOff() {print("리모콘 끄기")}
+
+    // 메모리 주소에 저장하는 것
+    func doAnotherAction() {
+        print("리모콘 또 다른 동작 수행")
+    }
+}
+protocol Bluetooth {
+    func blueOn()
+    func blueOff()
+}
+
+// 본 확장을 제한시키는 것 가능. Remote를 채택한 경우에만 Bluetooth 확장을 적용시키는 것을 의미
+extension Bluetooth where Self: Remote { // 대문자 Self는 해당 타입 자기자신을 의미
+    func blueOn() {print("블루투스 켜기")}
+    func blueOff() {print("블루투스 끄기")}
+
+}
+
+class SmartPhone: Remote, Bluetooth { // 여기서 Remote를 채택하지 않으면 Bluetooth 확장이 적용되지 않음
+    
+}
+
+let sphone = SmartPhone()
+sphone.turnOn()
+sphone.turnOff()
+sphone.blueOn()
+sphone.blueOff()
+sphone.doAnotherAction()
+
+//class OldPhone: Bluetooth {
+//    func turnOn() { print("리모콘 켜기")}
+//    func turnOff() { print("리모콘 Rm기")}
+//}
+//
+//let ipot = OldPhone()
+//ipot.turnOn()
+//ipot.turnOff()
+//ipot.blueOn()
+//ipot.blueOff()
+//ipot.doAnotherAction()
+
+// 오류 발생!
