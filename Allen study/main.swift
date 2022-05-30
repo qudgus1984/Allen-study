@@ -1654,16 +1654,40 @@ extension Remote {
     func turnOff() {print("리모콘 끄기")}
     
     func doAnotherAction() {
-        print("다른 동작 수행")
+        print("리모콘 또 다른 동작 수행")
     }
 }
 
 class TV1: Remote {
     func turnOn() { print("TV 켜기")}
 //    func turnOff() {print("리모콘 끄기")}
+    func doAnotherAction() {print("tv 또 다른 동작 수행")}
 }
 var tv7 = TV1()
 tv7.turnOn() // class에서 요구한 메서드 먼저 적용
 tv7.turnOff() // class에서 구현하지 않았을 때는 확장에서 설정한 기본값 제공
+
 tv7.doAnotherAction() // 요구사항 메서드 x - 테이블 만들지 않음. 타입에 따른 선택
 
+var tv8: Remote = TV1()
+tv8.turnOn() // class에서 요구한 메서드 먼저 적용
+tv8.turnOff() // class에서 구현하지 않았을 때는 확장에서 설정한 기본값 제공
+
+tv8.doAnotherAction() // 요구사항 메서드 x - 테이블 만들지 않음. 타입에 따른 선택
+
+// 프로토콜 지향 프로그래밍
+
+class Ipad: Remote {
+    func turnOn() { print("아이패드 켜기") }
+    func doAnotherAction() { print("아이패드 다른 동작") }
+}
+
+let ipad: Ipad = Ipad()
+ipad.turnOn()
+ipad.turnOff()
+ipad.doAnotherAction()
+
+let ipad2: Remote = Ipad()
+ipad2.turnOn()
+ipad2.turnOff()
+ipad2.doAnotherAction() // 여기서 프로토콜 타입을 받는지, 클래스를 받는지에 따라 달라짐
