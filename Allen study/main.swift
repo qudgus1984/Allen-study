@@ -1678,21 +1678,45 @@ extension Remote {
 
 // 프로토콜 지향 프로그래밍
 
-class Ipad: Remote {
-    func turnOn() { print("아이패드 켜기") }
-    func doAnotherAction() { print("아이패드 다른 동작") }
-}
+//class Ipad: Remote {
+//    func turnOn() { print("아이패드 켜기") }
+//    func doAnotherAction() { print("아이패드 다른 동작") }
+//}
 
-let ipad: Ipad = Ipad() // 클래스를 받음
-ipad.turnOn()   // 클래스 - V테이블
-ipad.turnOff()  // 클래스 - V테이블
-
-ipad.doAnotherAction() // 클래스 - V테이블
-
-let ipad2: Remote = Ipad() // 프로토콜 타입을 받음
-ipad2.turnOn()  // 프로토콜 - w테이블
-ipad2.turnOff() // 프로토콜 - w테이블
+//let ipad: Ipad = Ipad() // 클래스를 받음
+//ipad.turnOn()   // 클래스 - V테이블
+//ipad.turnOff()  // 클래스 - V테이블
+//
+//ipad.doAnotherAction() // 클래스 - V테이블
+//
+//let ipad2: Remote = Ipad() // 프로토콜 타입을 받음
+//ipad2.turnOn()  // 프로토콜 - w테이블
+//ipad2.turnOff() // 프로토콜 - w테이블
 
 // 프로토콜 - w테이블 : Direct 여기에 메모리 주소를 삽입하는 것. 직접 메모리 주소 삽입
-ipad2.doAnotherAction() // 여기서 프로토콜 타입을 받는지, 클래스를 받는지에 따라 달라짐
+//ipad2.doAnotherAction() // 여기서 프로토콜 타입을 받는지, 클래스를 받는지에 따라 달라짐
+
+struct SmartPhone: Remote {
+    func turnOn() {print("스마트폰 켜기")}
+    func doAnotherAction() { print("스마트폰 다른 동작")}
+}
+
+var iphone: SmartPhone = SmartPhone()
+iphone.turnOn()  // 구조체 - Direct (직접 메서드 주소 삽입)
+iphone.turnOff() // 구조체 - Direct (직접 메서드 주소 삽입)
+iphone.doAnotherAction() // 구조체 - Direct (직접 메서드 주소 삽입)
+
+//스마트폰 켜기
+//리모콘 끄기
+//스마트폰 다른 동작
+
+// 프로토콜 타입 저장 : witness 테이블
+var iphone2: Remote = SmartPhone()
+iphone2.turnOn()   // 프로토콜 - w테이블
+iphone2.turnOff()  // 프로토콜 - w테이블
+iphone2.doAnotherAction()// 프로토콜 - Direct (직접 메서드 주소 삽입)
+
+//스마트폰 켜기
+//리모콘 끄기
+//리모콘 또 다른 동작 수행
 
