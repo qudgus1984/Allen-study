@@ -1589,4 +1589,4 @@ tv.turnOff()
 let sbox: Remote = SetTopBox()
 sbox.turnOn()
 sbox.turnOff()
-
+(sbox as? SetTopBox)?.doNetflix() // 다운캐스팅 사용하여 SetTopBox 함수 사용
