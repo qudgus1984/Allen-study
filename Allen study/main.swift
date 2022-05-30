@@ -1659,11 +1659,11 @@ extension Remote {
 }
 
 class TV1: Remote {
-//    func turnOn() { print("리모콘 켜기")}
+    func turnOn() { print("TV 켜기")}
 //    func turnOff() {print("리모콘 끄기")}
 }
 var tv7 = TV1()
-tv7.turnOn()
-tv7.turnOff()
-tv7.doAnotherAction()   
+tv7.turnOn() // class에서 요구한 메서드 먼저 적용
+tv7.turnOff() // class에서 구현하지 않았을 때는 확장에서 설정한 기본값 제공
+tv7.doAnotherAction() // 요구사항 메서드 x - 테이블 만들지 않음. 타입에 따른 선택
 
