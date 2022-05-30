@@ -1586,5 +1586,7 @@ let tv: Remote = TV() // protocol 타입으로 선언 가능
 tv.turnOn()
 tv.turnOff()
 
-
+let sbox: Remote = SetTopBox()
+sbox.turnOn()
+sbox.turnOff()
 
