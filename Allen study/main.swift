@@ -1759,16 +1759,16 @@ sphone.blueOn()
 sphone.blueOff()
 sphone.doAnotherAction()
 
-//class OldPhone: Bluetooth {
-//    func turnOn() { print("리모콘 켜기")}
-//    func turnOff() { print("리모콘 Rm기")}
-//}
-//
-//let ipot = OldPhone()
-//ipot.turnOn()
-//ipot.turnOff()
-//ipot.blueOn()
-//ipot.blueOff()
-//ipot.doAnotherAction()
+class OldPhone: Remote, Bluetooth {
+    func turnOn() { print("블루투스 켜기")}
+    func turnOff() { print("블루투스 끄기")}
+}
+
+let ipot = OldPhone()
+ipot.turnOn()
+ipot.turnOff()
+ipot.blueOn()
+ipot.blueOff()
+ipot.doAnotherAction()
 
 // 오류 발생!
