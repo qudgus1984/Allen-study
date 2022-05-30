@@ -1581,3 +1581,10 @@ struct SetTopBox: Remote {
         print("넷플릭스 켜기")
     }
 }
+
+let tv: Remote = TV() // protocol 타입으로 선언 가능
+tv.turnOn()
+tv.turnOff()
+
+
+
