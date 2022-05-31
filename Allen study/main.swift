@@ -1859,3 +1859,6 @@ class ThirdClass: MyProtocol {
 // func method2() {print("Protocol - Withness Table method2")} // 요구사항 - 우선순위 반영
 // =================================
 
+// 함수란 결국 cpu가 실행될 수 있는 형태의 명령어. 명령어는 당연히 코드영역에서밖에 없음.
+// 데이터, 힙, 스택 : 결국 cpu에 관련된 명령어가 쓰고있는 데이터
+// 데이터 영역엔 메모리를 저장
