@@ -1895,3 +1895,9 @@ let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
 // Bstruct는 Aclass 타입과 관계가 있고, Aclass없이는 의미가 없을 수 있음
 // 2) 타입 간의 연관성을 명확히 구분하고, 내부 구조를 디테일하게 설계 가능
 
+// 중첩타입으로 선언된 API들을 볼 줄 알아야 함!!
+// 1) 중간 타입에 대문자가 나오면, 중첩타입임을 인지
+// (ex: DateFormatter.Style.full)아 Date라는 구조체 or 클래스 안에 중첩타입으로
+// enum 타입의 Style의 full case를 의미하는구나! 파악
+// 2) 실제 앱을 만들때 중첩 선언을 잘 활용해야 함 (타입 관계 명확성)
+// 3) 하나의 타입의 내부 구조(계층 관계 등)을 디테일 하게 설계 가능
