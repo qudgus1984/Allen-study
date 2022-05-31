@@ -1868,7 +1868,7 @@ class Aclass {
     struct Bstruct {
         enum Cenum {
             case aCase
-            case Bcase
+            case bCase
             
             struct Dstruct {
                 
@@ -1877,3 +1877,21 @@ class Aclass {
         var name: Cenum
     }
 }
+
+// 타입 선언과 인스턴스 생성
+
+let aClass: Aclass = Aclass()
+//            타입     인스턴스
+let bStruct: Aclass.Bstruct = Aclass.Bstruct(name: .bCase)
+//                타입                인스턴스
+let cEnum: Aclass.Bstruct.Cenum = Aclass.Bstruct.Cenum.aCase
+//                  타입                       인스턴스
+let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
+//                        타입                            인스턴스
+
+
+// Why?
+// 1) 특정정 타입에서만 사용하기 위함
+// Bstruct는 Aclass 타입과 관계가 있고, Aclass없이는 의미가 없을 수 있음
+// 2) 타입 간의 연관성을 명확히 구분하고, 내부 구조를 디테일하게 설계 가능
+
