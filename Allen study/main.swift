@@ -1774,77 +1774,77 @@ import Foundation
 //// 오류 발생!
 
 // 메서드 디스패치
-struct MyStruct {
-    func method1() {print("Struct - Direct method1")}
-    // cpu에서 메모리 주소 영역 90~99만큼 차지한다고 가정
-    func method2() {print("Struct - Direct method2")}
-    // cpu에서 메모리 주소 영역 100~109만큼 차지한다고 가정
-}
-
-let myStruct = MyStruct() // 위 실행이 1000번째 줄이라고 가정
-myStruct.method1() // 메모리 주소 90으로 들어감 1000번째 -> 90번째로 이동
-myStruct.method2() // 메모리 주소 100으로 들어감 1000번째 -> 100번째로 이동
-
-
-// 버츄얼 테이블 디스팿
-class FirstClass {
-    func method1() {print("Class - Table method1")}
-    // 메모리 주소 영역에 110~119만큼 차지한다고 가정
-    func method2() {print("Class - Table method2")}
-    // 메모리 주소 영역에 120~129만큼 차지한다고 가정
-}
-
-// Data 영역 테이블
-// ===========================
-// 110
-// 120
-// ===========================
-
-// 자식 클래스에서 테이블을 따로 보유
-class SecondClass: FirstClass {
-    override func method2() { print("Class - Table method2-2")} // 130~139
-    func method3() {print("Class - Table method3")} // 140~149
-}
-
-// Data 영역 테이블 - 배열로 저장
-// ===========================
-// 110
-// 130
-// 140
-// 실제 [110, 130, 140] 이러한 형태로 저장
-// ===========================
-
-let first = FirstClass()
-first.method1()
-first.method2()
-
-let second = SecondClass()
-second.method1()
-second.method2() // 상속 - 재정의
-second.method3()
-
-// 메세지 디스패치 : @objc dynamic 을 붙이면 옵젝 C 형태로 변환되어 메서드 디스패치 방식으로 구현 가능
-class ParentClass {
-    @objc dynamic func method1() {(print("Class - Message method1"))}
-}
-
-// 프로토콜 - Witness Table
-
-protocol MyProtocol {
-    func method1()
-    func method2()
-}
-
-extension MyProtocol {
-    func method1() {print("Protocol - Withness Table method1")}
-    func method2() {print("Protocol - Withness Table method2")}
-}
-
-class ThirdClass: MyProtocol {
-    func method1() {print("Class - Virtual Table method1")}
-    func method2() {print("Class - Virtual Table method2")}
-    func anotherMethod() {print("Class - Virtual Table method3")}
-}
+//struct MyStruct {
+//    func method1() {print("Struct - Direct method1")}
+//    // cpu에서 메모리 주소 영역 90~99만큼 차지한다고 가정
+//    func method2() {print("Struct - Direct method2")}
+//    // cpu에서 메모리 주소 영역 100~109만큼 차지한다고 가정
+//}
+//
+//let myStruct = MyStruct() // 위 실행이 1000번째 줄이라고 가정
+//myStruct.method1() // 메모리 주소 90으로 들어감 1000번째 -> 90번째로 이동
+//myStruct.method2() // 메모리 주소 100으로 들어감 1000번째 -> 100번째로 이동
+//
+//
+//// 버츄얼 테이블 디스팿
+//class FirstClass {
+//    func method1() {print("Class - Table method1")}
+//    // 메모리 주소 영역에 110~119만큼 차지한다고 가정
+//    func method2() {print("Class - Table method2")}
+//    // 메모리 주소 영역에 120~129만큼 차지한다고 가정
+//}
+//
+//// Data 영역 테이블
+//// ===========================
+//// 110
+//// 120
+//// ===========================
+//
+//// 자식 클래스에서 테이블을 따로 보유
+//class SecondClass: FirstClass {
+//    override func method2() { print("Class - Table method2-2")} // 130~139
+//    func method3() {print("Class - Table method3")} // 140~149
+//}
+//
+//// Data 영역 테이블 - 배열로 저장
+//// ===========================
+//// 110
+//// 130
+//// 140
+//// 실제 [110, 130, 140] 이러한 형태로 저장
+//// ===========================
+//
+//let first = FirstClass()
+//first.method1()
+//first.method2()
+//
+//let second = SecondClass()
+//second.method1()
+//second.method2() // 상속 - 재정의
+//second.method3()
+//
+//// 메세지 디스패치 : @objc dynamic 을 붙이면 옵젝 C 형태로 변환되어 메서드 디스패치 방식으로 구현 가능
+//class ParentClass {
+//    @objc dynamic func method1() {(print("Class - Message method1"))}
+//}
+//
+//// 프로토콜 - Witness Table
+//
+//protocol MyProtocol {
+//    func method1()
+//    func method2()
+//}
+//
+//extension MyProtocol {
+//    func method1() {print("Protocol - Withness Table method1")}
+//    func method2() {print("Protocol - Withness Table method2")}
+//}
+//
+//class ThirdClass: MyProtocol {
+//    func method1() {print("Class - Virtual Table method1")}
+//    func method2() {print("Class - Virtual Table method2")}
+//    func anotherMethod() {print("Class - Virtual Table method3")}
+//}
 // =================================
 // [Class Virtual Table]
 // func method1() {print("Class - Virtual Table method1")}
@@ -1862,3 +1862,18 @@ class ThirdClass: MyProtocol {
 // 함수란 결국 cpu가 실행될 수 있는 형태의 명령어. 명령어는 당연히 코드영역에서밖에 없음.
 // 데이터, 힙, 스택 : 결국 cpu에 관련된 명령어가 쓰고있는 데이터
 // 데이터 영역엔 메모리를 저장
+
+// 중첩타입
+class Aclass {
+    struct Bstruct {
+        enum Cenum {
+            case aCase
+            case Bcase
+            
+            struct Dstruct {
+                
+            }
+        }
+        var name: Cenum
+    }
+}
