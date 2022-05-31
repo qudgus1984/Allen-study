@@ -1785,6 +1785,8 @@ let myStruct = MyStruct() // 위 실행이 1000번째 줄이라고 가정
 myStruct.method1() // 메모리 주소 90으로 들어감 1000번째 -> 90번째로 이동
 myStruct.method2() // 메모리 주소 100으로 들어감 1000번째 -> 100번째로 이동
 
+
+// 버츄얼 테이블 디스팿
 class FirstClass {
     func method1() {print("Class - Table method1")}
     // 메모리 주소 영역에 110~119만큼 차지한다고 가정
@@ -1825,3 +1827,35 @@ second.method3()
 class ParentClass {
     @objc dynamic func method1() {(print("Class - Message method1"))}
 }
+
+// 프로토콜 - Witness Table
+
+protocol MyProtocol {
+    func method1()
+    func method2()
+}
+
+extension MyProtocol {
+    func method1() {print("Protocol - Withness Table method1")}
+    func method2() {print("Protocol - Withness Table method2")}
+}
+
+class ThirdClass: MyProtocol {
+    func method1() {print("Class - Virtual Table method1")}
+    func method2() {print("Class - Virtual Table method2")}
+    func anotherMethod() {print("Class - Virtual Table method3")}
+}
+// =================================
+// [Class Virtual Table]
+// func method1() {print("Class - Virtual Table method1")}
+// func method2() {print("Class - Virtual Table method2")}
+// func anotherMethod() {print("Class - Virtual Table method3")}
+// =================================
+
+
+// =================================
+// [Protocol Witness Table]
+// func method1() {print("Protocol - Withness Table method1") // 요구사항 - 우선순위 반영
+// func method2() {print("Protocol - Withness Table method2")} // 요구사항 - 우선순위 반영
+// =================================
+
