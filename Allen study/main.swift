@@ -1864,31 +1864,31 @@ import Foundation
 // 데이터 영역엔 메모리를 저장
 
 // 중첩타입
-class Aclass {
-    struct Bstruct {
-        enum Cenum {
-            case aCase
-            case bCase
-            
-            struct Dstruct {
-                
-            }
-        }
-        var name: Cenum
-    }
-}
-
-// 타입 선언과 인스턴스 생성
-
-let aClass: Aclass = Aclass()
-//            타입     인스턴스
-let bStruct: Aclass.Bstruct = Aclass.Bstruct(name: .bCase)
-//                타입                인스턴스
-let cEnum: Aclass.Bstruct.Cenum = Aclass.Bstruct.Cenum.aCase
-//                  타입                       인스턴스
-let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
-//                        타입                            인스턴스
-
+//class Aclass {
+//    struct Bstruct {
+//        enum Cenum {
+//            case aCase
+//            case bCase
+//
+//            struct Dstruct {
+//
+//            }
+//        }
+//        var name: Cenum
+//    }
+//}
+//
+//// 타입 선언과 인스턴스 생성
+//
+//let aClass: Aclass = Aclass()
+////            타입     인스턴스
+//let bStruct: Aclass.Bstruct = Aclass.Bstruct(name: .bCase)
+////                타입                인스턴스
+//let cEnum: Aclass.Bstruct.Cenum = Aclass.Bstruct.Cenum.aCase
+////                  타입                       인스턴스
+//let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
+////                        타입                            인스턴스
+//
 
 // Why?
 // 1) 특정정 타입에서만 사용하기 위함
@@ -1901,3 +1901,9 @@ let dStruct: Aclass.Bstruct.Cenum.Dstruct = Aclass.Bstruct.Cenum.Dstruct()
 // enum 타입의 Style의 full case를 의미하는구나! 파악
 // 2) 실제 앱을 만들때 중첩 선언을 잘 활용해야 함 (타입 관계 명확성)
 // 3) 하나의 타입의 내부 구조(계층 관계 등)을 디테일 하게 설계 가능
+
+
+// 클로저
+let functionA: (String) -> String // 1) 파라미터 문자열 2) 리턴형 문자열
+let functionB: (Int) -> ()        // 1) 파라미터 정수 2) 리턴형 없음
+let functionC: (String) -> Void   // 1) 파라미터 문자열 2) 리턴형 없음
