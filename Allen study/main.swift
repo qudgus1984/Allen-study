@@ -1721,54 +1721,73 @@ import Foundation
 //리모콘 또 다른 동작 수행
 
 // 프로토콜 확장 제한
+//
+//protocol Remote {
+//    func turnOn()
+//    func turnOff()
+//}
+//
+//extension Remote {
+//    func turnOn() { print("리모콘 켜기")}
+//    func turnOff() {print("리모콘 끄기")}
+//
+//    // 메모리 주소에 저장하는 것
+//    func doAnotherAction() {
+//        print("리모콘 또 다른 동작 수행")
+//    }
+//}
+//protocol Bluetooth {
+//    func blueOn()
+//    func blueOff()
+//}
+//
+//// 본 확장을 제한시키는 것 가능. Remote를 채택한 경우에만 Bluetooth 확장을 적용시키는 것을 의미
+//extension Bluetooth where Self: Remote { // 대문자 Self는 해당 타입 자기자신을 의미
+//    func blueOn() {print("블루투스 켜기")}
+//    func blueOff() {print("블루투스 끄기")}
+//
+//}
+//
+//class SmartPhone: Remote, Bluetooth { // 여기서 Remote를 채택하지 않으면 Bluetooth 확장이 적용되지 않음
+//
+//}
+//
+//let sphone = SmartPhone()
+//sphone.turnOn()
+//sphone.turnOff()
+//sphone.blueOn()
+//sphone.blueOff()
+//sphone.doAnotherAction()
+//
+//class OldPhone: Remote, Bluetooth {
+//    func turnOn() { print("블루투스 켜기")}
+//    func turnOff() { print("블루투스 끄기")}
+//}
+//
+//let ipot = OldPhone()
+//ipot.turnOn()
+//ipot.turnOff()
+//ipot.blueOn()
+//ipot.blueOff()
+//ipot.doAnotherAction()
+//
+//// 오류 발생!
 
-protocol Remote {
-    func turnOn()
-    func turnOff()
+// 메서드 디스패치
+struct MyStruct {
+    func method1() {print("Struct - Direct method1")}
+    // cpu에서 메모리 주소 영역 90~99만큼 차지한다고 가정
+    func method2() {print("Struct - Direct method2")}
+    // cpu에서 메모리 주소 영역 100~109만큼 차지한다고 가정
 }
 
-extension Remote {
-    func turnOn() { print("리모콘 켜기")}
-    func turnOff() {print("리모콘 끄기")}
+let myStruct = MyStruct() // 위 실행이 1000번째 줄이라고 가정
+myStruct.method1() // 메모리 주소 90으로 들어감 1000번째 -> 90번째로 이동
+myStruct.method2() // 메모리 주소 100으로 들어감 1000번째 -> 100번째로 이동
 
-    // 메모리 주소에 저장하는 것
-    func doAnotherAction() {
-        print("리모콘 또 다른 동작 수행")
-    }
+class FirstClass {
+    func methode1() {print("Class - Table method1")}
+    // 메모리 주소 영역에 110~119만큼 차지한다고 가정
+    func methode2() {print("Class - Table method2")}
+    // 메모리 주소 영역에 120~129만큼 차지한다고 가정
 }
-protocol Bluetooth {
-    func blueOn()
-    func blueOff()
-}
-
-// 본 확장을 제한시키는 것 가능. Remote를 채택한 경우에만 Bluetooth 확장을 적용시키는 것을 의미
-extension Bluetooth where Self: Remote { // 대문자 Self는 해당 타입 자기자신을 의미
-    func blueOn() {print("블루투스 켜기")}
-    func blueOff() {print("블루투스 끄기")}
-
-}
-
-class SmartPhone: Remote, Bluetooth { // 여기서 Remote를 채택하지 않으면 Bluetooth 확장이 적용되지 않음
-    
-}
-
-let sphone = SmartPhone()
-sphone.turnOn()
-sphone.turnOff()
-sphone.blueOn()
-sphone.blueOff()
-sphone.doAnotherAction()
-
-class OldPhone: Remote, Bluetooth {
-    func turnOn() { print("블루투스 켜기")}
-    func turnOff() { print("블루투스 끄기")}
-}
-
-let ipot = OldPhone()
-ipot.turnOn()
-ipot.turnOff()
-ipot.blueOn()
-ipot.blueOff()
-ipot.doAnotherAction()
-
-// 오류 발생!
