@@ -1907,3 +1907,16 @@ import Foundation
 let functionA: (String) -> String // 1) 파라미터 문자열 2) 리턴형 문자열
 let functionB: (Int) -> ()        // 1) 파라미터 정수 2) 리턴형 없음
 let functionC: (String) -> Void   // 1) 파라미터 문자열 2) 리턴형 없음
+
+// 함수의 정의
+func aFunction(str: String) -> String {
+    return "Hello, \(str)"
+}
+
+// 클로저 형태
+let _ = {(str: String) -> String in
+    return "Hello, \(str)"
+}
+
+let aClosureType = {print("안녕")}
+aClosureType()
