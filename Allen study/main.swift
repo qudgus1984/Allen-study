@@ -1811,3 +1811,13 @@ class SecondClass: FirstClass {
 // 140
 // 실제 [110, 130, 140] 이러한 형태로 저장
 // ===========================
+
+let first = FirstClass()
+first.method1()
+first.method2()
+
+let second = SecondClass()
+second.method1()
+second.method2() // 상속 - 재정의
+second.method3()
+
