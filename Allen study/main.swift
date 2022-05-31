@@ -1786,8 +1786,28 @@ myStruct.method1() // 메모리 주소 90으로 들어감 1000번째 -> 90번째
 myStruct.method2() // 메모리 주소 100으로 들어감 1000번째 -> 100번째로 이동
 
 class FirstClass {
-    func methode1() {print("Class - Table method1")}
+    func method1() {print("Class - Table method1")}
     // 메모리 주소 영역에 110~119만큼 차지한다고 가정
-    func methode2() {print("Class - Table method2")}
+    func method2() {print("Class - Table method2")}
     // 메모리 주소 영역에 120~129만큼 차지한다고 가정
 }
+
+// Data 영역 테이블
+// ===========================
+// 110
+// 120
+// ===========================
+
+// 자식 클래스에서 테이블을 따로 보유
+class SecondClass: FirstClass {
+    override func method2() { print("Class - Table method2-2")} // 130~139
+    func method3() {print("Class - Table method3")} // 140~149
+}
+
+// Data 영역 테이블 - 배열로 저장
+// ===========================
+// 110
+// 130
+// 140
+// 실제 [110, 130, 140] 이러한 형태로 저장
+// ===========================
