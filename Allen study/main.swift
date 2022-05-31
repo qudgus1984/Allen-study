@@ -1944,3 +1944,6 @@ performClosure(param: { str in
 performClosure(param: {
     $0.count
 })
+
+performClosure(){ $0.count }
+performClosure { $0.count }
