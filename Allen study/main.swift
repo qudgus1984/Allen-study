@@ -1821,3 +1821,7 @@ second.method1()
 second.method2() // 상속 - 재정의
 second.method3()
 
+// 메세지 디스패치 : @objc dynamic 을 붙이면 옵젝 C 형태로 변환되어 메서드 디스패치 방식으로 구현 가능
+class ParentClass {
+    @objc dynamic func method1() {(print("Class - Message method1"))}
+}
