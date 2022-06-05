@@ -2004,16 +2004,29 @@ import Foundation
 
 // reduce
 
-var numbersArray = [1,2,3,4,5,6,7,8,9,10]
-
-//var aaa = numbersArray.reduce(0) { a, b in
-//    return a+b
+//var numbersArray = [1,2,3,4,5,6,7,8,9,10]
+//
+////var aaa = numbersArray.reduce(0) { a, b in
+////    return a+b
+////}
+////
+////print(aaa)
+//
+//var aaa = numbersArray.reduce("0") { result, item in
+//    return result + String(item)
 //}
 //
 //print(aaa)
 
-var aaa = numbersArray.reduce("0") { result, item in
-    return result + String(item)
+var numbersArray = [1,2,3,4,5,6,7,8,9,10]
+
+// 위의 배열 중에, 홀수만 제곱해서, 그 숫자를 다 더한 값은?
+
+var aaa = numbersArray.filter{ $0 % 2 != 0 }.map { num in
+    return num * num
+}.reduce(0) { first, item in
+    return first + item
 }
 
 print(aaa)
+
