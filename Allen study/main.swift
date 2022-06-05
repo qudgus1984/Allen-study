@@ -1970,10 +1970,22 @@ import Foundation
 //
 //print(bbb)
 
+// filter
 let names = ["Cody", "Allen", "Hamang", "Bebe"]
 
 var name = names.filter { str in
-    return str.contains("B") // B를 포함한 문자열이 있는지 확인
+    return str.contains("B") // B를 포함한 문자열이 있는지 확인 -> Bool 타입으로 리턴
 }
 
 print(name)
+
+// filter의 활용
+let array = [1,2,3,4,5,6,7,8]
+
+var evenNumbersArray = array.filter { num in
+    return num % 2 == 0
+}
+
+//evenNumbersArray = array.filter{ $0 % 2 == 0 } // 축약형
+
+print(evenNumbersArray)
