@@ -1953,8 +1953,14 @@ import Foundation
 
 let numbers:[Int] = [1, 2, 3, 4, 5]
 
-var aaa = numbers.map { num in // 여기서 num은 파라미터의 이름임
+var aaa: [String] = numbers.map { num in // 여기서 num은 파라미터의 이름임
     return "숫자: \(num)" // Int -> String으로!
 }
 
 print(aaa)
+
+var bbb = numbers.map{ number in
+    return number * 1000
+}
+
+print(bbb)
