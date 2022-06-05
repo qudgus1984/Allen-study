@@ -1971,16 +1971,16 @@ import Foundation
 //print(bbb)
 
 // filter
-let names = ["Cody", "Allen", "Hamang", "Bebe"]
-
-var name = names.filter { str in
-    return str.contains("B") // B를 포함한 문자열이 있는지 확인 -> Bool 타입으로 리턴
-}
-
-print(name)
-
-// filter의 활용
-let array = [1,2,3,4,5,6,7,8]
+//let names = ["Cody", "Allen", "Hamang", "Bebe"]
+//
+//var name = names.filter { str in
+//    return str.contains("B") // B를 포함한 문자열이 있는지 확인 -> Bool 타입으로 리턴
+//}
+//
+//print(name)
+//
+//// filter의 활용
+//let array = [1,2,3,4,5,6,7,8]
 
 //var evenNumbersArray = array.filter { num in
 //    return num % 2 == 0
@@ -1998,6 +1998,16 @@ let array = [1,2,3,4,5,6,7,8]
 //
 //var bbb = array.filter(isEven)
 //print(bbb)
+//
+//var evenNumbersArray = array.filter { $0 % 2 == 0 }.filter{ $0 < 5 }
+//print(evenNumbersArray)
 
-var evenNumbersArray = array.filter { $0 % 2 == 0 }.filter{ $0 < 5 }
-print(evenNumbersArray)
+// reduce
+
+var numbersArray = [1,2,3,4,5,6,7,8,9,10]
+
+var aaa = numbersArray.reduce(0) { a, b in
+    return a+b
+}
+
+print(aaa)
