@@ -2006,8 +2006,14 @@ import Foundation
 
 var numbersArray = [1,2,3,4,5,6,7,8,9,10]
 
-var aaa = numbersArray.reduce(0) { a, b in
-    return a+b
+//var aaa = numbersArray.reduce(0) { a, b in
+//    return a+b
+//}
+//
+//print(aaa)
+
+var aaa = numbersArray.reduce("0") { result, item in
+    return result + String(item)
 }
 
 print(aaa)
