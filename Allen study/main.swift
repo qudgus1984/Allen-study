@@ -1921,29 +1921,34 @@ import Foundation
 //let aClosureType = {print("안녕")}
 //aClosureType() // 클로저를 변수에 담아 실행할 수 있음
 
-func performClosure(param: (String) -> Int) {
-    param("Swift")
-}
+//func performClosure(param: (String) -> Int) {
+//    param("Swift")
+//}
+//
+//performClosure(param: { (str: String) -> Int in
+//    return str.count
+//})
+//
+//performClosure(param: { (str: String) in
+//    return str.count
+//})
+//
+//performClosure(param: { (str: String) in
+//    str.count
+//})
+//
+//performClosure(param: { str in
+//    str.count
+//})
+//
+//performClosure(param: {
+//    $0.count
+//})
+//
+//performClosure(){ $0.count }
+//performClosure { $0.count }
 
-performClosure(param: { (str: String) -> Int in
-    return str.count
-})
 
-performClosure(param: { (str: String) in
-    return str.count
-})
+// map 함수
 
-performClosure(param: { (str: String) in
-    str.count
-})
-
-performClosure(param: { str in
-    str.count
-})
-
-performClosure(param: {
-    $0.count
-})
-
-performClosure(){ $0.count }
-performClosure { $0.count }
+let numbers = [1, 2, 3, 4, 5]
