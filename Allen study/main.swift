@@ -1951,4 +1951,10 @@ import Foundation
 
 // map 함수
 
-let numbers = [1, 2, 3, 4, 5]
+let numbers:[Int] = [1, 2, 3, 4, 5]
+
+var aaa = numbers.map { num in // 여기서 num은 파라미터의 이름임
+    return "숫자: \(num)" // Int -> String으로!
+}
+
+print(aaa)
