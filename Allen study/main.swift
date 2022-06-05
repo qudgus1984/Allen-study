@@ -1986,15 +1986,18 @@ let array = [1,2,3,4,5,6,7,8]
 //    return num % 2 == 0
 //}
 
-var evenNumbersArray = array.filter { $0 % 2 == 0 } // 축약형
+//var evenNumbersArray = array.filter { $0 % 2 == 0 } // 축약형
+//
+//print(evenNumbersArray)
+//
+//// 함수에 넣어서 구현 가능
+//
+//func isEven(_ i: Int) -> Bool {
+//    return i % 2 == 0
+//}
+//
+//var bbb = array.filter(isEven)
+//print(bbb)
 
+var evenNumbersArray = array.filter { $0 % 2 == 0 }.filter{ $0 < 5 }
 print(evenNumbersArray)
-
-// 함수에 넣어서 구현 가능
-
-func isEven(_ i: Int) -> Bool {
-    return i % 2 == 0
-}
-
-var bbb = array.filter(isEven)
-print(bbb)
