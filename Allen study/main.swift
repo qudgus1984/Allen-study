@@ -1982,10 +1982,19 @@ print(name)
 // filter의 활용
 let array = [1,2,3,4,5,6,7,8]
 
-var evenNumbersArray = array.filter { num in
-    return num % 2 == 0
-}
+//var evenNumbersArray = array.filter { num in
+//    return num % 2 == 0
+//}
 
-//evenNumbersArray = array.filter{ $0 % 2 == 0 } // 축약형
+var evenNumbersArray = array.filter { $0 % 2 == 0 } // 축약형
 
 print(evenNumbersArray)
+
+// 함수에 넣어서 구현 가능
+
+func isEven(_ i: Int) -> Bool {
+    return i % 2 == 0
+}
+
+var bbb = array.filter(isEven)
+print(bbb)
