@@ -2022,11 +2022,7 @@ var numbersArray = [1,2,3,4,5,6,7,8,9,10]
 
 // 위의 배열 중에, 홀수만 제곱해서, 그 숫자를 다 더한 값은?
 
-var aaa = numbersArray.filter{ $0 % 2 != 0 }.map { num in
-    return num * num
-}.reduce(0) { first, item in
-    return first + item
-}
+var aaa = numbersArray.filter{ $0 % 2 != 0 }.map{ $0 * $0}.reduce(0){ $0 + $1}
 
 print(aaa)
 
