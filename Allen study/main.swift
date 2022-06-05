@@ -1949,7 +1949,8 @@ import Foundation
 //performClosure { $0.count }
 
 
-// map 함수
+// map 함수 -> 배열에 있는 함수 라고 생각!
+// 기존의 배열에서 각 아이템을 새롭게 매칭하는 함수 -> mapping => 클로저에서 개발자가 구현!
 
 let numbers:[Int] = [1, 2, 3, 4, 5]
 
@@ -1958,6 +1959,10 @@ var aaa: [String] = numbers.map { num in // 여기서 num은 파라미터의 이
 }
 
 print(aaa)
+
+// 위를 줄이면
+var aa = numbers.map {"숫자: \($0)"}
+print(aa) // 동일한 출력값이 나옴
 
 var bbb = numbers.map{ number in
     return number * 1000
