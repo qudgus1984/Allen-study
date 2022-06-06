@@ -2018,11 +2018,22 @@ import Foundation
 //
 //print(aaa)
 
-var numbersArray = [1,2,3,4,5,6,7,8,9,10]
+//var numbersArray = [1,2,3,4,5,6,7,8,9,10]
+//
+//// 위의 배열 중에, 홀수만 제곱해서, 그 숫자를 다 더한 값은?
+//
+//var aaa = numbersArray.filter{ $0 % 2 != 0 }.map{ $0 * $0}.reduce(0){ $0 + $1}
+//
+//print(aaa)
 
-// 위의 배열 중에, 홀수만 제곱해서, 그 숫자를 다 더한 값은?
+// forEach 함수
+// 기존 배열 등의 각 아이템을 활용해서 각 아이템별로 특정 작업을 실행
 
-var aaa = numbersArray.filter{ $0 % 2 != 0 }.map{ $0 * $0}.reduce(0){ $0 + $1}
+let imutableArray = [1,2,3,4,5]
 
-print(aaa)
+imutableArray.forEach { num in
+    print(num)
+}
+
+
 
