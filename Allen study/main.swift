@@ -2048,3 +2048,9 @@ let numbers = [-2, -1, 0, 1, 2]
 
 var positiveNumbers = numbers.compactMap { $0 >= 0 ? $0 : nil}
 print(positiveNumbers)
+
+// flatMap
+// 중첩된 각 배열을 새롭게 매핑해서 내부 중첩된 배열을 제거하고 리턴
+
+let newNnestedArray = [[1,2,3], [4,5,6],[7,8,9], [[10,11],[12,13,14]]]
+print(newNnestedArray.flatMap{ $0 })
