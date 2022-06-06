@@ -2035,5 +2035,16 @@ imutableArray.forEach { num in
     print(num)
 }
 
+// compactMap 함수
+// 기존 배열 등의 각 아이템을 새롭게 매핑해서 변형하되, 옵셔널 요소는 제거하고 새로운 배열을 리턴
+// map + 옵셔널 제거
+// 옵셔널 바인딩의 기능까지 내장
+let stringArray: [String?] = ["A", nil, "B", nil, "C"]
 
+var newStringArray = stringArray.compactMap{ $0 }
+print(newStringArray)
 
+let numbers = [-2, -1, 0, 1, 2]
+
+var positiveNumbers = numbers.compactMap { $0 >= 0 ? $0 : nil}
+print(positiveNumbers)
