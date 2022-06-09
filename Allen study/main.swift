@@ -2028,29 +2028,53 @@ import Foundation
 
 // forEach 함수
 // 기존 배열 등의 각 아이템을 활용해서 각 아이템별로 특정 작업을 실행
+//
+//let imutableArray = [1,2,3,4,5]
+//
+//imutableArray.forEach { num in
+//    print(num)
+//}
+//
+//// compactMap 함수
+//// 기존 배열 등의 각 아이템을 새롭게 매핑해서 변형하되, 옵셔널 요소는 제거하고 새로운 배열을 리턴
+//// map + 옵셔널 제거
+//// 옵셔널 바인딩의 기능까지 내장
+//let stringArray: [String?] = ["A", nil, "B", nil, "C"]
+//
+//var newStringArray = stringArray.compactMap{ $0 }
+//print(newStringArray)
+//
+//let numbers = [-2, -1, 0, 1, 2]
+//
+//var positiveNumbers = numbers.compactMap { $0 >= 0 ? $0 : nil}
+//print(positiveNumbers)
+//
+//// flatMap
+//// 중첩된 각 배열을 새롭게 매핑해서 내부 중첩된 배열을 제거하고 리턴
+//
+//let newNnestedArray = [[1,2,3], [4,5,6],[7,8,9], [[10,11],[12,13,14]]]
+//print(newNnestedArray.flatMap{ $0 })
 
-let imutableArray = [1,2,3,4,5]
 
-imutableArray.forEach { num in
-    print(num)
+// 옵셔널 체이닝 (옵셔널 타입에 대해, 접근연산자를 호출하는 방법)
+// 옵셔널 체이닝의 결과는 항상 옵셔널
+// 옵셔널 체이닝에 값 중에서 하나라도 nil을 리턴한다면, 이어지는 표현식을 평가하지 않고 nil을 리턴
+
+class Cat {
+    var name: String?
+    
+    var myMaster: (() -> Person?)?
+    init(aFunction: @escaping () -> Person?) {
+        self.myMaster = aFunction
+    }
 }
 
-// compactMap 함수
-// 기존 배열 등의 각 아이템을 새롭게 매핑해서 변형하되, 옵셔널 요소는 제거하고 새로운 배열을 리턴
-// map + 옵셔널 제거
-// 옵셔널 바인딩의 기능까지 내장
-let stringArray: [String?] = ["A", nil, "B", nil, "C"]
+class Person {
+    var name: String?
+}
 
-var newStringArray = stringArray.compactMap{ $0 }
-print(newStringArray)
-
-let numbers = [-2, -1, 0, 1, 2]
-
-var positiveNumbers = numbers.compactMap { $0 >= 0 ? $0 : nil}
-print(positiveNumbers)
-
-// flatMap
-// 중첩된 각 배열을 새롭게 매핑해서 내부 중첩된 배열을 제거하고 리턴
-
-let newNnestedArray = [[1,2,3], [4,5,6],[7,8,9], [[10,11],[12,13,14]]]
-print(newNnestedArray.flatMap{ $0 })
+func meowmeow() -> Person? {
+    let person = Person()
+    person.name = "Jobs"
+    return person
+}
