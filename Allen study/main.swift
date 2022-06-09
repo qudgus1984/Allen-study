@@ -2078,3 +2078,12 @@ func meowmeow() -> Person? {
     person.name = "Jobs"
     return person
 }
+
+// 예제를 위한 예제
+
+let cat: Cat? = Cat(aFunction: meowmeow)
+
+var name = cat?.myMaster?()?.name
+// ?()? 에서 앞에있는 물음표는 함수가 없을 수도 있다라는 의미.
+// ?()? 에서 뒤에있는 물음표는 함수의 결과값이 없을 수도 있다라는 의미.
+print(name)
