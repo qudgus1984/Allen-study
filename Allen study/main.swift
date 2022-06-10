@@ -2219,20 +2219,37 @@ import Foundation
 // nil로 설정하고 접근하면 에러 발생!
 
 // 클로저 캡쳐현상
-func calculate(number: Int) -> Int {
+//func calculate(number: Int) -> Int {
+//    var sum = 0
+//
+//    func square(num: Int) -> Int {
+//        sum += (num * num)
+//        return sum
+//    }
+//
+//    let result = square(num: number)
+//
+//    return result
+//}
+//
+//print(calculate(number: 10))
+//print(calculate(number: 20))
+//print(calculate(number: 30))
+
+func calculateFunc() -> ((Int) -> Int) {
     var sum = 0
     
     func square(num: Int) -> Int {
         sum += (num * num)
         return sum
     }
-    
-    let result = square(num: number)
-    
-    return result
+    return square
 }
 
-print(calculate(number: 10))
-print(calculate(number: 20))
-print(calculate(number: 30))
+// 함수를 변수에 할당하는 경우
+// (heap 메모리에 유지를 해야함. 즉, 함수라 하더라도 클로저 방식으로 동작)
+var squareFunc = calculateFunc()
 
+print(squareFunc(10))
+print(squareFunc(20))
+print(squareFunc(30))
