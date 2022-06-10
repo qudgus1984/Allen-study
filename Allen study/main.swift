@@ -2235,21 +2235,36 @@ import Foundation
 //print(calculate(number: 10))
 //print(calculate(number: 20))
 //print(calculate(number: 30))
+//
+//func calculateFunc() -> ((Int) -> Int) {
+//    var sum = 0
+//
+//    func square(num: Int) -> Int {
+//        sum += (num * num)
+//        return sum
+//    }
+//    return square
+//}
+//
+//// 함수를 변수에 할당하는 경우
+//// (heap 메모리에 유지를 해야함. 즉, 함수라 하더라도 클로저 방식으로 동작)
+//var squareFunc = calculateFunc()
+//
+//print(squareFunc(10))
+//print(squareFunc(20))
+//print(squareFunc(30))
 
-func calculateFunc() -> ((Int) -> Int) {
-    var sum = 0
+class Dog {
+    var name = "초코"
     
-    func square(num: Int) -> Int {
-        sum += (num * num)
-        return sum
+    func doSomething() {
+        // 비동기적으로 실행하는 클로저
+        // 해당 클로저는 오래동안 저장할 필요가 있음 => 새로운 스택을 만들어서 실행하기 때문
+        DispatchQueue.global().async { // 2번 cpu에서 작동하는 명령어
+            print("나의 이름은 \(self.name)입니다.")
+        }
     }
-    return square
 }
 
-// 함수를 변수에 할당하는 경우
-// (heap 메모리에 유지를 해야함. 즉, 함수라 하더라도 클로저 방식으로 동작)
-var squareFunc = calculateFunc()
-
-print(squareFunc(10))
-print(squareFunc(20))
-print(squareFunc(30))
+var choco = Dog()
+choco.doSomething()
