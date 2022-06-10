@@ -2110,8 +2110,20 @@ class Person {
     }
     
     deinit {
-        print("\(name) 메모리 해제)
+        print("\(name) 메모리 해제")
     }
 }
               
+var bori: Dog? = Dog(name: "보리")
+var gildong: Person? = Person(name: "홍길동")
+
+bori?.owner = gildong // bori의 owner이 gildong
+gildong?.pet = bori // gildong의 pet이 bori
+
+
+// -> 레퍼런스 카운팅이 서로 2가 됌.
+
+bori = nil
+gildong = nil
+// 강한 참조 사이클이 일어나 nil을 할당해도 메모리 해제가 되지 않고 메모리 누수 현상이 일어남
 
