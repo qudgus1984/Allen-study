@@ -2060,30 +2060,58 @@ import Foundation
 // 옵셔널 체이닝의 결과는 항상 옵셔널
 // 옵셔널 체이닝에 값 중에서 하나라도 nil을 리턴한다면, 이어지는 표현식을 평가하지 않고 nil을 리턴
 
-class Cat {
-    var name: String?
+//class Cat {
+//    var name: String?
+//
+//    var myMaster: (() -> Person?)?
+//    init(aFunction: @escaping () -> Person?) {
+//        self.myMaster = aFunction
+//    }
+//}
+//
+//class Person {
+//    var name: String?
+//}
+//
+//func meowmeow() -> Person? {
+//    let person = Person()
+//    person.name = "Jobs"
+//    return person
+//}
+//
+//// 예제를 위한 예제
+//
+//let cat: Cat? = Cat(aFunction: meowmeow)
+//
+//var name = cat?.myMaster?()?.name
+//// ?()? 에서 앞에있는 물음표는 함수가 없을 수도 있다라는 의미.
+//// ?()? 에서 뒤에있는 물음표는 함수의 결과값이 없을 수도 있다라는 의미.
+//print(name)
+
+class Dog {
+    var name: String
+    var owner: Person?
     
-    var myMaster: (() -> Person?)?
-    init(aFunction: @escaping () -> Person?) {
-        self.myMaster = aFunction
+    init(name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제")
     }
 }
 
 class Person {
-    var name: String?
+    var name: String
+    var pet: Dog?
+    
+    init (name: String) {
+        self.name = name
+    }
+    
+    deinit {
+        print("\(name) 메모리 해제)
+    }
 }
+              
 
-func meowmeow() -> Person? {
-    let person = Person()
-    person.name = "Jobs"
-    return person
-}
-
-// 예제를 위한 예제
-
-let cat: Cat? = Cat(aFunction: meowmeow)
-
-var name = cat?.myMaster?()?.name
-// ?()? 에서 앞에있는 물음표는 함수가 없을 수도 있다라는 의미.
-// ?()? 에서 뒤에있는 물음표는 함수의 결과값이 없을 수도 있다라는 의미.
-print(name)
