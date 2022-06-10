@@ -2137,10 +2137,51 @@ import Foundation
 
 // 해결 방안 1) 약한 참조
 
+//class Dog {
+//    var name: String
+//    weak var owner: Person? // 약한 참조를 사용해 reference count를 증가시키지 않음
+//
+//    init(name: String) {
+//        self.name = name
+//    }
+//
+//    deinit {
+//        print("\(name) 메모리 해제")
+//    }
+//}
+//
+//class Person {
+//    var name: String
+//    weak var pet: Dog? // 약한 참조 사용
+//
+//    init (name: String) {
+//        self.name = name
+//    }
+//
+//    deinit {
+//        print("\(name) 메모리 해제")
+//    }
+//}
+//
+//var bori: Dog? = Dog(name: "보리")
+//var gildong: Person? = Person(name: "홍길동")
+//
+//bori?.owner = gildong // bori의 owner이 gildong
+//gildong?.pet = bori // gildong의 pet이 bori
+//
+//
+//
+//bori = nil
+//gildong = nil
+
+// 약한 참조의 경우 참조하고 있던 인스턴스가 사라지면, nil로 초기화 되어있음.
+
+// 2) 비소유 참조
+
 class Dog {
     var name: String
-    weak var owner: Person? // 약한 참조를 사용해 reference count를 증가시키지 않음
-    
+    unowned var owner: Person? // 비소유 참조를 사용해 reference count를 증가시키지 않음
+                               // Swift 5.3 이전버전에서는 비소유 참조의 경우 옵셔널 타입 선언이 안되었음
     init(name: String) {
         self.name = name
     }
@@ -2152,7 +2193,7 @@ class Dog {
 
 class Person {
     var name: String
-    weak var pet: Dog? // 약한 참조 사용
+    unowned var pet: Dog? // 비소유 참조 사용
     
     init (name: String) {
         self.name = name
@@ -2170,6 +2211,7 @@ bori?.owner = gildong // bori의 owner이 gildong
 gildong?.pet = bori // gildong의 pet이 bori
 
 
-
 bori = nil
 gildong = nil
+
+// 비소유 참조와 약한 참조가 비슷함
