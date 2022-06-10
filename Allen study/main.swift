@@ -2258,25 +2258,25 @@ import Foundation
 // 클로저 내에서 객체의 속성 및 메서드에 접근 시에는 self키워드를 반드시 사용해야 함.
 // (강한 참조를 하고 있다는 것을 표시하기 위한 목적) ==> 여기서는 Dog의 RC를 올리는 역할
 
-class Dog {
-    var name = "초코"
-    
-    func doSomething() {
-        // 비동기적으로 실행하는 클로저
-        // 해당 클로저는 오래동안 저장할 필요가 있음 => 새로운 스택을 만들어서 실행하기 때문
-        DispatchQueue.global().async {
-            print("나의 이름은 \(self.name)입니다.") // 여기서는 self를 제거하면 error 발생
-            // 2번 쓰레드에서 작동하는 명령어
-        }
-    }
-    
-//    func walk() {
-//        print("\(name)가 걷는다") // 인스턴스 내에 name이 있기 때문에 굳이 self 사용안해도 됌
+//class Dog {
+//    var name = "초코"
+//
+//    func doSomething() {
+//        // 비동기적으로 실행하는 클로저
+//        // 해당 클로저는 오래동안 저장할 필요가 있음 => 새로운 스택을 만들어서 실행하기 때문
+//        DispatchQueue.global().async {
+//            print("나의 이름은 \(self.name)입니다.") // 여기서는 self를 제거하면 error 발생
+//            // 2번 쓰레드에서 작동하는 명령어
+//        }
 //    }
-}
-
-var choco = Dog()
-choco.doSomething()
+//
+////    func walk() {
+////        print("\(name)가 걷는다") // 인스턴스 내에 name이 있기 때문에 굳이 self 사용안해도 됌
+////    }
+//}
+//
+//var choco = Dog()
+//choco.doSomething()
 
 // 약한 참조
 
@@ -2292,3 +2292,52 @@ choco.doSomething()
 //    }
 //
 //}
+
+//class Person {
+//    var name = "Cody"
+//
+//    func myName() {
+//        print("나의 이름은 \(name)입니다.")
+//    }
+//
+//    func myName1() {
+//        DispatchQueue.global().async {
+//            print("나의 이름은 \(self.name)입니다.")
+//        }
+//    }
+//    func myName2() { // 약한 참조
+//        DispatchQueue.global().async { [weak self] in
+//            print("나의 이름은 \(self?.name)입니다.")
+//        }
+//    }
+//    func myName3() { // 약한 참조 + 옵셔널 바인딩
+//        DispatchQueue.global().async { [weak self] in
+//
+//            guard let weakSelf = self else { return }
+//            print("나의 이름은 \(weakSelf.name)입니다.")
+//        }
+//    }
+//}
+//
+//let person = Person()
+//
+//person.myName()
+//print(person.myName1())
+//person.myName2()
+//person.myName3()
+
+// 메모리 누수의 약한참조
+class Dog {
+    var name = "초코"
+    
+    var run: (() -> Void)?
+    
+    func walk() {
+        print("\(self.name)가 걷는다.")
+    }
+    func saveClosure() {
+        run = {
+            print("\(self.name)가 뛴다.")
+        }
+    }
+}
