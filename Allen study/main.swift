@@ -2088,9 +2088,58 @@ import Foundation
 //// ?()? 에서 뒤에있는 물음표는 함수의 결과값이 없을 수도 있다라는 의미.
 //print(name)
 
+//class Dog {
+//    var name: String
+//    var owner: Person?
+//
+//    init(name: String) {
+//        self.name = name
+//    }
+//
+//    deinit {
+//        print("\(name) 메모리 해제")
+//    }
+//}
+//
+//class Person {
+//    var name: String
+//    var pet: Dog?
+//
+//    init (name: String) {
+//        self.name = name
+//    }
+//
+//    deinit {
+//        print("\(name) 메모리 해제")
+//    }
+//}
+//
+//var bori: Dog? = Dog(name: "보리")
+//var gildong: Person? = Person(name: "홍길동")
+//
+//bori?.owner = gildong // bori의 owner이 gildong
+//gildong?.pet = bori // gildong의 pet이 bori
+//
+//// 메모리 해제를 하기 위해선 이렇게 해주어야 함.
+//bori?.owner = nil
+//gildong?.pet = nil
+//// -> 레퍼런스 카운팅이 서로 2가 됌.
+//
+//bori = nil
+//gildong = nil
+// 강한 참조 사이클이 일어나 nil을 할당해도 메모리 해제가 되지 않고 메모리 누수 현상이 일어남
+
+// 메모리 누수(Memory Leak)의 해결방안
+// RC를 고려하여 참조 해제 순서를 주의해서 코드 작성 -> 신경쓸 것이 많고 실수 가능성 존재
+
+// 1) Weak Reference (약한 참조)
+// 2) Unowned Reference (비소유 참조)
+
+// 해결 방안 1) 약한 참조
+
 class Dog {
     var name: String
-    var owner: Person?
+    weak var owner: Person? // 약한 참조를 사용해 reference count를 증가시키지 않음
     
     init(name: String) {
         self.name = name
@@ -2103,7 +2152,7 @@ class Dog {
 
 class Person {
     var name: String
-    var pet: Dog?
+    weak var pet: Dog? // 약한 참조 사용
     
     init (name: String) {
         self.name = name
@@ -2121,9 +2170,6 @@ bori?.owner = gildong // bori의 owner이 gildong
 gildong?.pet = bori // gildong의 pet이 bori
 
 
-// -> 레퍼런스 카운팅이 서로 2가 됌.
 
 bori = nil
 gildong = nil
-// 강한 참조 사이클이 일어나 nil을 할당해도 메모리 해제가 되지 않고 메모리 누수 현상이 일어남
-
