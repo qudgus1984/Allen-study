@@ -2340,4 +2340,7 @@ class Dog {
             print("\(self.name)가 뛴다.")
         }
     }
+    deinit {
+        print("\(self.name) 메모리 해제")
+    }
 }
