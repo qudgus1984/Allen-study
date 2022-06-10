@@ -2254,17 +2254,41 @@ import Foundation
 //print(squareFunc(20))
 //print(squareFunc(30))
 
+// 객체(class) 내에서 클로저의 사용 => 대부분 앱에서 이렇게 사용
+// 클로저 내에서 객체의 속성 및 메서드에 접근 시에는 self키워드를 반드시 사용해야 함.
+// (강한 참조를 하고 있다는 것을 표시하기 위한 목적) ==> 여기서는 Dog의 RC를 올리는 역할
+
 class Dog {
     var name = "초코"
     
     func doSomething() {
         // 비동기적으로 실행하는 클로저
         // 해당 클로저는 오래동안 저장할 필요가 있음 => 새로운 스택을 만들어서 실행하기 때문
-        DispatchQueue.global().async { // 2번 cpu에서 작동하는 명령어
-            print("나의 이름은 \(self.name)입니다.")
+        DispatchQueue.global().async {
+            print("나의 이름은 \(self.name)입니다.") // 여기서는 self를 제거하면 error 발생
+            // 2번 쓰레드에서 작동하는 명령어
         }
     }
+    
+//    func walk() {
+//        print("\(name)가 걷는다") // 인스턴스 내에 name이 있기 때문에 굳이 self 사용안해도 됌
+//    }
 }
 
 var choco = Dog()
 choco.doSomething()
+
+// 약한 참조
+
+
+//class Dog {
+//    var name = "초코"
+//
+//    func doSomething() {
+//        DispatchQueue.global().async { [weak self] in
+//            print("나의 이름은 \(self?.name)입니다.")
+
+//        }
+//    }
+//
+//}
