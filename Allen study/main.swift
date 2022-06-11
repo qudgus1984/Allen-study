@@ -2369,3 +2369,8 @@ class Dog {
         print("\(self.name) 메모리 해제")
     }
 }
+
+func doSomething() {
+    let choco: Dog? = Dog()
+    choco?.saveClosure() // 강한 참조사이클 일어남 (메모리 누수가 일어남)
+}
