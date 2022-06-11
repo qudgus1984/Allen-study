@@ -2372,8 +2372,29 @@ class Dog {
 
 func doSomething() {
     let choco: Dog? = Dog()
-    choco?.saveClosure() // 강한 참조사이클 일어남 (메모리 누수가 일어남)
+    //choco?.saveClosure() // 강한 참조사이클 일어남 (메모리 누수가 일어남)
 }
 
 print(doSomething())
 doSomething()
+
+class ViewController: UIViewController {
+    var name: String = "뷰컨"
+    
+    func doSomething() {
+        DispatchQueue.global().async {
+            sleep(3) // 3초동안 동작을 멈추는 함수
+            print("글로벌큐에서 출력하기: \(self.name)")
+        }
+    }
+    deinit {
+        print("\(name) 메모리 해제")
+    }
+}
+
+func localScopeFunction() {
+    let vc = ViewController()
+    vc.doSomething()
+}
+
+localScopeFunction()
