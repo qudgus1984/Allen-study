@@ -2327,6 +2327,27 @@ import Foundation
 //person.myName3()
 
 // 메모리 누수의 약한참조
+//class Dog {
+//    var name = "초코"
+//
+//    var run: (() -> Void)?
+//
+//    func walk() {
+//        print("\(self.name)가 걷는다.")
+//    }
+//    func saveClosure() {
+//        run = {
+//            print("\(self.name)가 뛴다.")
+//        }
+//    }
+//    deinit {
+//        print("\(self.name) 메모리 해제")
+//    }
+//}
+
+// 메모리 누수의 사례
+// 강한참조 사이클로 인한 메모리누수의 사례
+
 class Dog {
     var name = "초코"
     
@@ -2335,11 +2356,15 @@ class Dog {
     func walk() {
         print("\(self.name)가 걷는다.")
     }
+    
     func saveClosure() {
+        // 클로저를 인스턴스의 변수에 저장
         run = {
             print("\(self.name)가 뛴다.")
         }
+        
     }
+    
     deinit {
         print("\(self.name) 메모리 해제")
     }
