@@ -2423,9 +2423,16 @@ func doSomething(num: Int) throws -> Bool { // 에러를 던질 수 있는 함�
         
         if num < 0 {
             throw SomeError.aError
+        } else {
+            throw SomeError.bError
         }
+        
         return false
     }
 }
 
-print(doSomething(num: 7))
+
+// 에러 처리 과정 -> 3단계
+// 1. 에러를 정의
+// 2. 에러를 던질 수 있는 함수를 정의
+// 3. 에러를 정의할 수 있는 처리를 해야 함.
