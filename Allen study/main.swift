@@ -2440,34 +2440,50 @@ import Foundation
 
 
 // 1) 에러 정의
-enum HeightError: Error {
-    case maxHeight
-    case minHeight
-}
+//enum HeightError: Error {
+//    case maxHeight
+//    case minHeight
+//}
+//
+//
+//// 2) 에러가 발생할 수 있는 함수에 대한 정의
+//func checkKingHeight(height: Int) throws -> Bool {
+//
+//    if height > 190 {
+//        throw HeightError.maxHeight
+//    } else if height < 130 {
+//        throw HeightError.minHeight
+//    } else {
+//        if height >= 160 {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//}
+//
+//// 3) 에러가 발생할 수 있는 함수의 처리 (함수의 실행)
+//
+//do { // 정상적인 경우의 처리 상황
+//    let isChecked = try checkKingHeight(height: 200)
+//    print("놀이기구 타는 것 가능: \(isChecked)")
+//
+//} catch {
+//    print("놀이기구 타는 것 불가능")
+//}
 
+// () throws -> () // 에러를 발생시킬 수 있는 함수 타입이구나! 라고 생각!
 
-// 2) 에러가 발생할 수 있는 함수에 대한 정의
-func checkKingHeight(height: Int) throws -> Bool {
+// Defer문
+// 할일을 미루는 것
+
+func deferStatement1() {
     
-    if height > 190 {
-        throw HeightError.maxHeight
-    } else if height < 130 {
-        throw HeightError.minHeight
-    } else {
-        if height >= 160 {
-            return true
-        } else {
-            return false
-        }
+    defer {
+        print("나중에 실행하기")
     }
-}
-
-// 3) 에러가 발생할 수 있는 함수의 처리 (함수의 실행)
-
-do { // 정상적인 경우의 처리 상황
-    let isChecked = try checkKingHeight(height: 200)
-    print("놀이기구 타는 것 가능: \(isChecked)")
     
-} catch {
-    print("놀이기구 타는 것 불가능")
+    print("먼저 실행하기")
 }
+
+deferStatement1()
