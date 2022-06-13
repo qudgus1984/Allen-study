@@ -2408,31 +2408,67 @@ import Foundation
 // 에러를 정의하는 법
 // 에러를 정의하려면 error 프로토콜을 채택해야 함
 // 에러를 먼저 정의해주어야 함수에서 에러처리를 할 수 있음.
-enum SomeError: Error {
-    case aError
-    case bError
-    case cError
-}
-
-
-// 여기서 에러는 열거형임
-func doSomething(num: Int) throws -> Bool { // 에러를 던질 수 있는 함수
-    if num >= 7 {
-        return true
-    } else {
-        
-        if num < 0 {
-            throw SomeError.aError
-        } else {
-            throw SomeError.bError
-        }
-        
-        return false
-    }
-}
+//enum SomeError: Error {
+//    case aError
+//    case bError
+//    case cError
+//}
+//
+//
+//// 여기서 에러는 열거형임
+//func doSomething(num: Int) throws -> Bool { // 에러를 던질 수 있는 함수
+//    if num >= 7 {
+//        return true
+//    } else {
+//
+//        if num < 0 {
+//            throw SomeError.aError
+//        } else {
+//            throw SomeError.bError
+//        }
+//
+//        return false
+//    }
+//}
 
 
 // 에러 처리 과정 -> 3단계
 // 1. 에러를 정의
 // 2. 에러를 던질 수 있는 함수를 정의
 // 3. 에러를 정의할 수 있는 처리를 해야 함.
+
+enum HeightError: Error {
+    case maxHeight
+    case minHeight
+}
+
+func checkKingHeight(height: Int) throws -> Bool {
+    
+    if height > 190 {
+        throw HeightError.maxHeight
+    } else if height < 130 {
+        throw HeightError.minHeight
+    } else {
+        if height >= 160 {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+try checkKingHeight(height: 160)
+
+do { // 정상적인 경우의 처리 상황
+    
+    var result = try checkKingHeight(height: 160)
+    if result {
+        print("놀이기구 탈 수 있음")
+    } else {
+        print("놀이기구 못타용")
+    }
+    
+    
+} catch {
+    
+}
