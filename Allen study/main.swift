@@ -2477,13 +2477,30 @@ import Foundation
 // Defer문
 // 할일을 미루는 것
 
-func deferStatement1() {
-    
+//func deferStatement1() {
+//
+//    defer {
+//        print("나중에 실행하기")
+//    }
+//
+//    print("먼저 실행하기")
+//}
+//
+//deferStatement1()
+
+func deferStatement2() {
+    if true {
+        print("먼저 실행하기")
+        return
+    }
     defer {
         print("나중에 실행하기")
     }
-    
-    print("먼저 실행하기")
 }
 
-deferStatement1()
+deferStatement2() // defer문이 한번이라도 실행되야 defer문이 나옴! 매우 중요!!
+
+for i in 1...3 {
+    defer { print("Defer된 숫자 : \(i)")}
+    print("현재 스코프 :\(i)")
+}
