@@ -2378,23 +2378,54 @@ import Foundation
 //print(doSomething())
 //doSomething()
 
-class ViewController: UIViewController {
-    var name: String = "뷰컨"
-    
-    func doSomething() {
-        DispatchQueue.global().async {
-            sleep(3) // 3초동안 동작을 멈추는 함수
-            print("글로벌큐에서 출력하기: \(self.name)")
+//class ViewController: UIViewController {
+//    var name: String = "뷰컨"
+//
+//    func doSomething() {
+//        DispatchQueue.global().async {
+//            sleep(3) // 3초동안 동작을 멈추는 함수
+//            print("글로벌큐에서 출력하기: \(self.name)")
+//        }
+//    }
+//    deinit {
+//        print("\(name) 메모리 해제")
+//    }
+//}
+//
+//func localScopeFunction() {
+//    let vc = ViewController()
+//    vc.doSomething()
+//}
+//
+//localScopeFunction()
+
+
+// 에러처리
+// 에러 종류
+// 1) 컴파일 타임 에러 -> 코드를 수정하면 됌
+// 2) 런타임 에러 -> 프로그램이 실행하는 동안 발생
+
+// 에러를 정의하는 법
+// 에러를 정의하려면 error 프로토콜을 채택해야 함
+// 에러를 먼저 정의해주어야 함수에서 에러처리를 할 수 있음.
+enum SomeError: Error {
+    case aError
+    case bError
+    case cError
+}
+
+
+// 여기서 에러는 열거형임
+func doSomething(num: Int) throws -> Bool { // 에러를 던질 수 있는 함수
+    if num >= 7 {
+        return true
+    } else {
+        
+        if num < 0 {
+            throw SomeError.aError
         }
-    }
-    deinit {
-        print("\(name) 메모리 해제")
+        return false
     }
 }
 
-func localScopeFunction() {
-    let vc = ViewController()
-    vc.doSomething()
-}
-
-localScopeFunction()
+print(doSomething(num: 7))
