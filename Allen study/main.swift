@@ -2437,11 +2437,16 @@ import Foundation
 // 2. 에러를 던질 수 있는 함수를 정의
 // 3. 에러를 정의할 수 있는 처리를 해야 함.
 
+
+
+// 1) 에러 정의
 enum HeightError: Error {
     case maxHeight
     case minHeight
 }
 
+
+// 2) 에러가 발생할 수 있는 함수에 대한 정의
 func checkKingHeight(height: Int) throws -> Bool {
     
     if height > 190 {
@@ -2457,18 +2462,12 @@ func checkKingHeight(height: Int) throws -> Bool {
     }
 }
 
-try checkKingHeight(height: 160)
+// 3) 에러가 발생할 수 있는 함수의 처리 (함수의 실행)
 
 do { // 정상적인 경우의 처리 상황
-    
-    var result = try checkKingHeight(height: 160)
-    if result {
-        print("놀이기구 탈 수 있음")
-    } else {
-        print("놀이기구 못타용")
-    }
-    
+    let isChecked = try checkKingHeight(height: 200)
+    print("놀이기구 타는 것 가능: \(isChecked)")
     
 } catch {
-    
+    print("놀이기구 타는 것 불가능")
 }
