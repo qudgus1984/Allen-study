@@ -2488,19 +2488,46 @@ import Foundation
 //
 //deferStatement1()
 
-func deferStatement2() {
-    if true {
-        print("먼저 실행하기")
+//func deferStatement2() {
+//    if true {
+//        print("먼저 실행하기")
+//        return
+//    }
+//    defer {
+//        print("나중에 실행하기")
+//    }
+//}
+//
+//deferStatement2() // defer문이 한번이라도 실행되야 defer문이 나옴! 매우 중요!!
+//
+//for i in 1...3 {
+//    defer { print("Defer된 숫자 : \(i)")}
+//    print("현재 스코프 :\(i)")
+//}
+
+// iOS에서의 네트워킹 기본
+
+// 0. URL주소 - 문자열로
+let movieURL = "주소"
+
+// 1. URL 구조체 만들기
+let url = URL(string: movieURL)!
+
+// 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+let session = URLSession.shared
+
+// 3. 세션에 (일시정지 상태로) 작업 부여
+let task = session.dataTask(with: url) { data, response, error in
+    if error != nil {
+        print(error!)
         return
     }
-    defer {
-        print("나중에 실행하기")
+    
+    guard let safeData = data else {
+        return
     }
-}
-
-deferStatement2() // defer문이 한번이라도 실행되야 defer문이 나옴! 매우 중요!!
-
-for i in 1...3 {
-    defer { print("Defer된 숫자 : \(i)")}
-    print("현재 스코프 :\(i)")
+    
+    // 데이터를 그냥 한번 출력해보기
+    print(String(decoding: safeData, as: UTF8.self))
+    
 }
