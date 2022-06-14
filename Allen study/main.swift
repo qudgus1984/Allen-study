@@ -2507,73 +2507,223 @@ import Foundation
 
 // iOS에서의 네트워킹 기본
 
+//// 0. URL주소 - 문자열로
+//let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?targetDt=20120101&key=ed5188d191b44830a2133865842b6868"
+//
+//// 1. URL 구조체 만들기
+//let url = URL(string: movieURL)!
+//
+//// 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+//let session = URLSession.shared
+//
+//// 3. 세션에 (일시정지 상태로) 작업 부여
+//let task = session.dataTask(with: url) { data, response, error in
+//    if error != nil {
+//        print(error!)
+//        return
+//    }
+//
+//    guard let safeData = data else {
+//        return
+//    }
+//
+//    // 필요한 데이터 출력
+//
+//    var movieArray = parseJSON1(safeData)
+//    dump(movieArray!) // 깔끔하게 데이터를 출력해 줌
+//}
+//
+//// 4. 작업시작
+//task.resume() // 일시정지된 상태로 작업이 시작하기 때문
+//
+//// http://app.quicktype.io json 데이터를 swift 코드로 변환시켜 주는 것
+//
+//
+//// 분석 ====================================================
+//// 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 -> 분석
+//
+//// 궁극적인 형태로 배열로 반환
+//func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
+//    do {
+//        // 자동으로 원하는 클래스 / 구조체 형태로 분석
+//        // JSONDecoder
+//        let decoder = JSONDecoder()
+//
+//        let decodeData = try decoder.decode(MovieData.self, from: movieData)
+//        // decoder.decode는 error를 발생시킬 수 있는 메서드이기 때문에 옵셔널 타입으로 반환해야함.
+//        // 따라서 try를 반드시 사용해야 하고, try를 사용하기 위해 do-catch문을 사용해야 함.
+//        return decodeData.boxOfficeResult.dailyBoxOfficeList
+//
+//    } catch {
+//
+//        return nil
+//    }
+//}
+//
+//
+//// 서버에서 주는 데이터 형태============================
+//
+//// Decodable : 데이터를 코드로 변환, Encodable : 구조체 / 클래스를 데이터로 변환
+//// Codable : Decodable + Encodable 둘이 합친 것으로 자동으로 코드를 분석해줌
+//
+//struct MovieData: Codable {
+//    let boxOfficeResult: BoxOfficeResult
+//}
+//
+//struct BoxOfficeResult: Codable {
+//    let dailyBoxOfficeList: [DailyBoxOfficeList]
+//}
+//
+//struct DailyBoxOfficeList: Codable {
+//    let rank: String
+//    let movieNm: String
+//    let audiCnt: String
+//    let audiAcc: String
+//    let openDt: String
+//}
+
 // 0. URL주소 - 문자열로
-let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?targetDt=20120101&key=ed5188d191b44830a2133865842b6868"
+//let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?&key=ed5188d191b44830a2133865842b6868&targetDt=20210201"
+//
+//
+//// 1. URL 구조체 만들기
+//let url = URL(string: movieURL)!
+//
+//
+//// 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+//let session = URLSession.shared
+//
+//
+//// 3. 세션에 (일시정지 상태로)작업 부여
+//let task = session.dataTask(with: url) { (data, response, error) in
+//    if error != nil {
+//        print(error!)
+//        return
+//    }
+//
+//    guard let safeData = data else {
+//        return
+//    }
+//
+//    // 데이터를 그냥 한번 출력해보기
+//    //print(String(decoding: safeData, as: UTF8.self))
+//
+//    dump(parseJSON1(safeData)!)
+//
+//
+//}
+//
+//// 4.작업시작
+//task.resume()   // 일시정지된 상태로 작업이 시작하기 때문
+//
+//
+//// ⭐️ 비동기적으로 동작함
+//
+//
+//
+//
+//// 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 (분석) ======================================
+//
+//// 현재의 형태
+//func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
+//
+//    do {
+//        // 스위프트5
+//        // 자동으로 원하는 클래스/구조체 형태로 분석
+//        // JSONDecoder
+//        let decoder = JSONDecoder()
+//
+//        let decodedData = try decoder.decode(MovieData.self, from: movieData)
+//
+//        return decodedData.boxOfficeResult.dailyBoxOfficeList
+//
+//    } catch {
+//
+//        return nil
+//    }
+//
+//}
+//
 
-// 1. URL 구조체 만들기
-let url = URL(string: movieURL)!
-
-// 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
-let session = URLSession.shared
-
-// 3. 세션에 (일시정지 상태로) 작업 부여
-let task = session.dataTask(with: url) { data, response, error in
-    if error != nil {
-        print(error!)
-        return
-    }
-    
-    guard let safeData = data else {
-        return
-    }
-    
-    // 필요한 데이터 출력
-    
-    var movieArray = parseJSON1(safeData)
-    dump(movieArray!) // 깔끔하게 데이터를 출력해 줌
-}
-
-// 4. 작업시작
-task.resume() // 일시정지된 상태로 작업이 시작하기 때문
-
-// http://app.quicktype.io json 데이터를 swift 코드로 변환시켜 주는 것
 
 
-// 분석 ====================================================
-// 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 -> 분석
+// 예전의 형태
+//func parseJSON2(_ movieData: Data) -> [DailyBoxOfficeList]? {
+//
+//    do {
+//
+//        var movieLists = [DailyBoxOfficeList]()
+//
+//        // 스위프트4 버전까지
+//        // 딕셔너리 형태로 분석
+//        // JSONSerialization
+//        if let json = try JSONSerialization.jsonObject(with: movieData) as? [String: Any] {
+//            if let boxOfficeResult = json["boxOfficeResult"] as? [String: Any] {
+//                if let dailyBoxOfficeList = boxOfficeResult["dailyBoxOfficeList"] as? [[String: Any]] {
+//
+//                    for item in dailyBoxOfficeList {
+//                        let rank = item["rank"] as! String
+//                        let movieNm = item["movieNm"] as! String
+//                        let audiCnt = item["audiCnt"] as! String
+//                        let audiAcc = item["audiAcc"] as! String
+//                        let openDt = item["openDt"] as! String
+//
+//                        // 하나씩 인스턴스 만들어서 배열에 append
+//                        let movie = DailyBoxOfficeList(rank: rank, movieNm: movieNm, audiCnt: audiCnt, audiAcc: audiAcc, openDt: openDt)
+//
+//
+//                        movieLists.append(movie)
+//                    }
+//
+//                    return movieLists
+//
+//                }
+//            }
+//        }
+//
+//        return nil
+//
+//    } catch {
+//
+//        return nil
+//    }
+//
+//}
+//
 
-// 궁극적인 형태로 배열로 반환
-func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
-    do {
-        // 자동으로 원하는 클래스 / 구조체 형태로 분석
-        // JSONDecoder
-        let decoder = JSONDecoder()
-        
-        let decodeData = try decoder.decode(MovieData.self, from: movieData)
-        // decoder.decode는 error를 발생시킬 수 있는 메서드이기 때문에 옵셔널 타입으로 반환해야함.
-        // 따라서 try를 반드시 사용해야 하고, try를 사용하기 위해 do-catch문을 사용해야 함.
-        return decodeData.boxOfficeResult.dailyBoxOfficeList
-        
-    } catch {
-        
-        return nil
-    }
-}
 
 
-// 서버에서 주는 데이터 형태============================
+// 서버에서 주는 데이터의 형태 ====================================================
 
-// Decodable : 데이터를 코드로 변환, Encodable : 구조체 / 클래스를 데이터로 변환
-// Codable : Decodable + Encodable 둘이 합친 것으로 자동으로 코드를 분석해줌
-
+//struct MovieData: Codable {
+//    let boxOfficeResult: BoxOfficeResult
+//}
+//
+//// MARK: - BoxOfficeResult
+//struct BoxOfficeResult: Codable {
+//    let dailyBoxOfficeList: [DailyBoxOfficeList]
+//}
+//
+//// MARK: - DailyBoxOfficeList
+//struct DailyBoxOfficeList: Codable {
+//    let rank: String
+//    let movieNm: String
+//    let audiCnt: String
+//    let audiAcc: String
+//    let openDt: String
+//}
+//
+// 서버에서 주는 데이터 ===========================================================
 struct MovieData: Codable {
     let boxOfficeResult: BoxOfficeResult
 }
 
+// MARK: - BoxOfficeResult
 struct BoxOfficeResult: Codable {
     let dailyBoxOfficeList: [DailyBoxOfficeList]
 }
 
+// MARK: - DailyBoxOfficeList
 struct DailyBoxOfficeList: Codable {
     let rank: String
     let movieNm: String
@@ -2581,3 +2731,150 @@ struct DailyBoxOfficeList: Codable {
     let audiAcc: String
     let openDt: String
 }
+
+
+
+// 내가 만들고 싶은 데이터 (우리가 쓰려는 Struct / Class) =======================
+struct Movie {
+    static var movieId: Int = 0   // 아이디가 하나씩 부여되도록 만듦
+    let movieName: String
+    let rank: Int
+    let openDate: String
+    let todayAudience: Int
+    let totalAudience: Int
+    
+    init(movieNm: String, rank: String, openDate: String, audiCnt: String, accAudi: String) {
+        self.movieName = movieNm
+        self.rank = Int(rank)!
+        self.openDate = openDate
+        self.todayAudience = Int(audiCnt)!
+        self.totalAudience = Int(accAudi)!
+        Movie.movieId += 1
+    }
+    
+}
+
+
+
+// 서버와 통신 ===========================================================
+struct MovieDataManager {
+    
+    let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?"
+    
+    let myKey = "ed5188d191b44830a2133865842b6868"
+    
+    func fetchMovie(date: String, completion: @escaping ([Movie]?) -> Void) {
+        let urlString = "\(movieURL)&key=\(myKey)&targetDt=\(date)"
+        performRequest(with: urlString) { movies in
+            completion(movies)
+        }
+    }
+    
+    func performRequest(with urlString: String, completion: @escaping ([Movie]?) -> Void) {
+        print(#function)
+        
+        // 1. URL 구조체 만들기
+        guard let url = URL(string: urlString) else { return }
+        
+        // 2. URLSession 만들기 (네트워킹을 하는 객체 - 브라우저 같은 역할)
+        let session = URLSession(configuration: .default)
+        
+        // 3. 세션에 작업 부여
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                completion(nil)
+                return
+            }
+            
+            guard let safeData = data else {
+                completion(nil)
+                return
+            }
+            
+            
+            // 데이터 분석하기
+            if let movies = self.parseJSON(safeData) {
+                //print("parse")
+                completion(movies)
+            } else {
+                completion(nil)
+            }
+        }
+        
+        // 4.Start the task
+        task.resume()   // 일시정지된 상태로 작업이 시작하기 때문
+    }
+    
+    
+    func parseJSON(_ movieData: Data) -> [Movie]? {
+        // 함수실행 확인 코드
+        print(#function)
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(MovieData.self, from: movieData)
+            
+            let dailyLists = decodedData.boxOfficeResult.dailyBoxOfficeList
+            
+            // 반복문으로 movie배열 생성 ⭐️
+//            var myMovielists = [Movie]()
+//
+//            for movie in dailyLists {
+//
+//                let name = movie.movieNm
+//                let rank = movie.rank
+//                let openDate = movie.openDt
+//                let todayAudi = movie.audiCnt
+//                let accAudi = movie.audiAcc
+//
+//                let myMovie = Movie(movieNm: name, rank: rank, openDate: openDate, audiCnt: todayAudi, accAudi: accAudi)
+//
+//                myMovielists.append(myMovie)
+//            }
+            
+            // 고차함수를 이용해 movie배열 생성하는 경우 ⭐️
+            let myMovielists = dailyLists.map {
+                Movie(movieNm: $0.movieNm, rank: $0.rank, openDate: $0.openDt, audiCnt: $0.audiCnt, accAudi: $0.audiAcc)
+            }
+            
+            return myMovielists
+            
+        } catch {
+            //print(error.localizedDescription)
+            
+            // (파싱 실패 에러)
+            print("파싱 실패")
+            
+            return nil
+        }
+        
+    }
+    
+}
+
+
+// 뷰컨트롤러에서 일어나는 일 ===========================================================
+// 빈배열
+var downloadedMovies = [Movie]()
+
+// 데이터를 다운로드 및 분석/변환하는 구조체
+let movieManager = MovieDataManager()
+
+
+// 실제 다운로드 코드
+movieManager.fetchMovie(date: "20210201") { (movies) in
+    
+    if let movies = movies {
+        
+        // 배열 받아서 빈배열에 넣기
+        downloadedMovies = movies
+        dump(downloadedMovies)
+        
+        print("전체 영화 갯수 확인: \(Movie.movieId)")
+    } else {
+        print("영화데이터가 없습니다. 또는 다운로드에 실패했습니다.")
+    }
+}
+
