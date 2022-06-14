@@ -2508,7 +2508,7 @@ import Foundation
 // iOS에서의 네트워킹 기본
 
 // 0. URL주소 - 문자열로
-let movieURL = "주소"
+let movieURL = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?targetDt=20120101&key=ed5188d191b44830a2133865842b6868"
 
 // 1. URL 구조체 만들기
 let url = URL(string: movieURL)!
@@ -2527,9 +2527,10 @@ let task = session.dataTask(with: url) { data, response, error in
         return
     }
     
-    // 데이터를 그냥 한번 출력해보기
-    print(String(decoding: safeData, as: UTF8.self))
+    // 필요한 데이터 출력
     
+    var movieArray = parseJSON1(safeData)
+    dump(movieArray!) // 깔끔하게 데이터를 출력해 줌
 }
 
 // 4. 작업시작
@@ -2537,6 +2538,8 @@ task.resume() // 일시정지된 상태로 작업이 시작하기 때문
 
 // http://app.quicktype.io json 데이터를 swift 코드로 변환시켜 주는 것
 
+
+// 분석 ====================================================
 // 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 -> 분석
 
 // 궁극적인 형태로 배열로 반환
@@ -2546,8 +2549,9 @@ func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
         // JSONDecoder
         let decoder = JSONDecoder()
         
-        let decodedData = try decoder.decode(MovieData.self, from: movieData)
+        let decodeData = try decoder.decode(MovieData.self, from: movieData)
         // decoder.decode는 error를 발생시킬 수 있는 메서드이기 때문에 옵셔널 타입으로 반환해야함.
+        // 따라서 try를 반드시 사용해야 하고, try를 사용하기 위해 do-catch문을 사용해야 함.
         return decodeData.boxOfficeResult.dailyBoxOfficeList
         
     } catch {
@@ -2556,3 +2560,24 @@ func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
     }
 }
 
+
+// 서버에서 주는 데이터 형태============================
+
+// Decodable : 데이터를 코드로 변환, Encodable : 구조체 / 클래스를 데이터로 변환
+// Codable : Decodable + Encodable 둘이 합친 것으로 자동으로 코드를 분석해줌
+
+struct MovieData: Codable {
+    let boxOfficeResult: BoxOfficeResult
+}
+
+struct BoxOfficeResult: Codable {
+    let dailyBoxOfficeList: [DailyBoxOfficeList]
+}
+
+struct DailyBoxOfficeList: Codable {
+    let rank: String
+    let movieNm: String
+    let audiCnt: String
+    let audiAcc: String
+    let openDt: String
+}
