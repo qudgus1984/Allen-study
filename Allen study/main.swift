@@ -2536,3 +2536,23 @@ let task = session.dataTask(with: url) { data, response, error in
 task.resume() // 일시정지된 상태로 작업이 시작하기 때문
 
 // http://app.quicktype.io json 데이터를 swift 코드로 변환시켜 주는 것
+
+// 받아온 데이터를 우리가 쓰기 좋게 변환하는 과정 -> 분석
+
+// 궁극적인 형태로 배열로 반환
+func parseJSON1(_ movieData: Data) -> [DailyBoxOfficeList]? {
+    do {
+        // 자동으로 원하는 클래스 / 구조체 형태로 분석
+        // JSONDecoder
+        let decoder = JSONDecoder()
+        
+        let decodedData = try decoder.decode(MovieData.self, from: movieData)
+        // decoder.decode는 error를 발생시킬 수 있는 메서드이기 때문에 옵셔널 타입으로 반환해야함.
+        return decodeData.boxOfficeResult.dailyBoxOfficeList
+        
+    } catch {
+        
+        return nil
+    }
+}
+
