@@ -2531,3 +2531,8 @@ let task = session.dataTask(with: url) { data, response, error in
     print(String(decoding: safeData, as: UTF8.self))
     
 }
+
+// 4. 작업시작
+task.resume() // 일시정지된 상태로 작업이 시작하기 때문
+
+// http://app.quicktype.io json 데이터를 swift 코드로 변환시켜 주는 것
