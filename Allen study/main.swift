@@ -2878,82 +2878,112 @@ import Foundation
 //    }
 //}
 
-// switch 문의 응용
-var num = 12
-switch num {
-case let x where x % 2 == 0: // where 절을 사용해 조건을 붙이는 것.
-    print("짝수 숫자: \(x)")
-default:
-    print("홀수 숫자: \(num)")
+print("Hello") // print라는 함수를 실행한다는 의미!
+// someFunction() // someFunction이라는 함수를 실행한다는 의미!
+// => 소문자로 시작하고, 뒤에 ()가 온다면 이제 이것이 함수의 실행이라는 것을 알아야 함!
+
+// 1) 정의
+func saySomething(name: String) { // (name: String)  => 파라미터
+    print("안녕하세요 \(name) 님")
 }
 
-// 와일드카드 패턴 : 생략을 위해 사용하는 (_)언더바
-for _ in 1...5 {
-    print("5번 반복")
+// 2) 실행
+saySomething(name: "Cody")
+
+// 1) 정의
+func sayHello() -> String {
+    return "안녕하세요"
 }
 
-//사용 예시
-for num in (1...10).reversed() {
-    print(num)
+// 2) 실행
+sayHello() // 실행결과 : "안녕하세요"
+print(sayHello())
+
+// 1) 정의
+func plusFunction(a: Int, b: Int) -> Int {
+    var c = a + b
+    return c
 }
 
-for item in stride(from: 1, to: 15, by: 2) {
-    print(item)
+// 2) 실행
+
+print(plusFunction(a: 5, b: 7))
+
+func plusFunction1(number1 a: Int, number2 b: Int) -> Int {
+    var c = a + b
+    return c
+}
+// 여기서 number1, number2는 아규먼트 레이블이고, a,b는 파라미터 이름임
+// 여기서 야규먼트 레이블을 생략하고 싶다면
+func plusFunction2(_ a: Int, _ b: Int) -> Int {
+    var c = a + b
+    return c
 }
 
-// continue
-for num in 1...30 {
-    if num % 2 == 0 {
-        continue
+func plusFunction3(numbers: Int..., num: Int = 5) -> Int {
+// Int...은 정해지지 않은 여러개의 파라미터를 받을때 사용
+// num: Int = 5 => 기본값 (디폴트) 설정 가능
+    return 1
+}
+
+/**==================================================================
+ [6번 문제] 가변파라미터 예시
+  - 함수 만들어 보기: 여러개의 정해지지 않은 갯수의 정수를 받아서, 평균을 구하는 함수를 작성해 보세요.
+    (힌트: 함수의 이름은 누구봐도 알아볼 수 있게, 평균..이란 말이 들어가면 좋겠네요!)
+ ===================================================================**/
+
+
+func makeAverage(nums: Int...) -> Double {
+    var sum = 0
+    for i in nums {
+        sum += i
     }
-    print(num)
+    return Double(sum) / Double(nums.count)
+}
+makeAverage(nums: 4, 2, 7)
+
+// 함수 오버로딩
+func introduce(name: String) {
+    print(name)
+}
+func introduce(name: String, age: Int) {
+    print("이름:\(name) 나이:\(age)")
+}
+func introduce(hobby: String) {
+    print("취미: \(hobby)")
 }
 
-// break
-for num in 1...20 {
-    if num % 2 == 0 {
-        break
-    }
-    print(num)
+introduce(name: "Cody")
+introduce(name: "Cody", age: 25)
+introduce(hobby: "옷구경")
+
+// 전부 사용 가능!
+// 즉 함수의 이름을 재사용 가능하다
+
+// 입출력 파라미터
+// 1) 정의
+var num1 = 10
+var num2 = 20
+func swapNumbers(a: inout Int, b: inout Int) {
+// 파라미터 타입 앞에 inout 키워드 추가 : 파라미터의 복사본이 전달된다는 것이 아니라 원본이 전달
+    var a1 = b
+    var b1 = a
+    print("a:\(a1) b:\(b1)")
 }
 
-//tuple 예시
-let IntroduceMySelf = ("Cody", 25, "서울시")
-let IntroduceMySelf1 = (name: "Cody", age:25, adress:"서울시")
+// 2) 실행
+swapNumbers(a: &num1, b: &num2) // 변수 전달시, &기호를 꼭 붙여야 함(원본이 전달된다는 의미)
 
-//튜플의 내부의 각각 데이터 접근
-IntroduceMySelf.0 // "Cody"
-IntroduceMySelf.1 // 25
-
-// 튜플의 각 요소를 상수화, 변수화 가능(바인딩)
-let (name, age, adress) = ("Cody", 25, "서울시")
-print(name) // "Cody"
-print(adress) // "서울시"
-
-//튜플은 switch문과 자주 활용
-let iOS = ("Swift","5")
-
-switch iOS {
-case("Swift","5"):
-    print("스위프트 버전 5입니다.")
-case ("Swift","4"):
-    print("스위프트 버전 4입니다.")
-default:
-    break
+// 1) 선언에 추가정보 제공
+@available(iOS 10.0, *)
+class MyClass {
 }
 
-// 이렇게도 사용 가능
-if iOS == ("Swift","5") {
-    print("스위프트 버전 5입니다.")
+// 2) 타입에 추가정보 제공
+
+func doSomething(completion: @escaping() -> ()) {
 }
 
-// 튜플을 사용하는 이유 : 함수는 원칙적으로 리턴값이 한개만 존재하기 때문에 여러개의 값을 변환할 수 없지만,
-// 어떤 묶음 값으로 변환하는 것은 가능
+// 컴파일러에게 추가적인 정보를 알려주는 역할 (2가지 종류)
 
-func Example(name: String) -> (Int, String) {
-    
-    return (7, name)
-}
-print(Example(name: "Cody"))
-//이런 식으로 활용 가능하다는 의미!
-
+// @discardableResult : 함수의 리턴값을 활용하지 않는 경우 사용
