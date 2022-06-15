@@ -2877,4 +2877,3 @@ movieManager.fetchMovie(date: "20210201") { (movies) in
         print("영화데이터가 없습니다. 또는 다운로드에 실패했습니다.")
     }
 }
-
