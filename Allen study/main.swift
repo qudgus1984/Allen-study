@@ -3044,3 +3044,92 @@ print("2") // 안기다리기 때문에 바로 2를 출력
 print("1")
 // syncMethod(5) 5초동안 여기서 함수가 끝날때까지 기다림
 print("2") // 기다린 후 함수가 끝난 후 2를 출력
+
+// 간단한 작업들
+func task1() {
+    print("task1 시작")
+    print("task1 완료")
+}
+func task2() {
+    print("task2 시작")
+    print("task2 완료")
+}
+func task3() {
+    print("task3 시작")
+    print("task3 완료")
+}
+func task4() {
+    print("task4 시작")
+    print("task4 완료")
+}
+func task5() {
+    print("task5 시작")
+    print("task5 완료")
+}
+
+task1()
+task2()
+task3()
+task4()
+task5()
+
+// 오래 걸리는 작업
+
+func task6() {
+    print("task6 시작")
+    sleep(2)
+    print("task6 완료")
+}
+func task7() {
+    print("task7 시작")
+    sleep(2)
+    print("task7 완료")
+}
+
+func task8() {
+    print("task8 시작")
+    sleep(2)
+    print("task8 완료")
+}
+
+func task9() {
+    print("task9 시작")
+    sleep(2)
+    print("task9 완료")
+}
+
+func task10() {
+    print("task10 시작")
+    sleep(2)
+    print("task10 완료")
+}
+
+// 비동기 처리를 하지 않으면 앱이 버벅거림
+task6()
+task7()
+task8()
+task9()
+task10()
+
+// 오래 걸리는 작업을 비동기 처리를 한다면
+// async : 비동기 sync : 동기
+
+DispatchQueue.global().async {
+    task6()
+}
+
+DispatchQueue.global().async {
+    task7()
+}
+
+DispatchQueue.global().async {
+    task8()
+}
+
+DispatchQueue.global().async {
+    task9()
+}
+
+DispatchQueue.global().async {
+    task10()
+}
