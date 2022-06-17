@@ -3133,3 +3133,58 @@ DispatchQueue.global().async {
 DispatchQueue.global().async {
     task10()
 }
+// 큐 생성, 글로벌 큐로, 비동기 적으로
+
+DispatchQueue.global().async {
+}
+
+// 클로저 내부에 있는 작업은 하나의 작업으로 취급 -> 동기적으로 작동
+// 클로저 1개 -> 작업 하나
+DispatchQueue.global().async {
+    print("test1")
+    print("test2")
+    print("test3")
+}
+
+// 비동기적 함수 생성
+func task11() {
+    DispatchQueue.global().async {
+        print("Task 11 시작")
+        sleep(5)
+        print("Task 11 완료")
+    }
+}
+
+// 직렬큐 선언
+
+let seriaQueue = DispatchQueue(label: "serial") // 직렬 큐 정의
+
+seriaQueue.async {
+    task1()
+}
+
+seriaQueue.async {
+    task2()
+}
+
+seriaQueue.async {
+    task3()
+}
+// 비동기적으로 보내더라도 직렬큐이기 때문에 순서적으로 출력
+
+// 동시큐 선언
+let concurrentQueue = DispatchQueue.global()
+
+concurrentQueue.async {
+    task1()
+}
+
+concurrentQueue.async {
+    task2()
+}
+
+concurrentQueue.async {
+    task3()
+}
+
+// 분산해서 동작하기 때문에 순서를 알 수 없음
