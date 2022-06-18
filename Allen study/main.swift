@@ -3188,3 +3188,18 @@ concurrentQueue.async {
 }
 
 // 분산해서 동작하기 때문에 순서를 알 수 없음
+
+// 1) 메인 큐
+
+let mainQueue = DispatchQueue.main
+
+mainQueue.async {
+    <#code#>
+}
+
+// 2) 글로벌 큐
+
+let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
+let userInitiateQueue = DispatchQueue.global(qos: .userInitiated)
+let defaultQueue = DispatchQueue.global() // 디폴트 글로벌 큐
+let utilityQueue = DispatchQueue.global(qos: .utility)
