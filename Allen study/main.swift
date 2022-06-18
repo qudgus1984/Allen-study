@@ -3203,3 +3203,11 @@ let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
 let userInitiateQueue = DispatchQueue.global(qos: .userInitiated)
 let defaultQueue = DispatchQueue.global() // 디폴트 글로벌 큐
 let utilityQueue = DispatchQueue.global(qos: .utility)
+
+// 3) 프라이빗(커스텀) 큐
+
+let privateQueue = DispatchQueue(label:  "com.inflearn.serial")
+
+sleep(5)
+// PlaygroundPage.current.finishExecution()
+
