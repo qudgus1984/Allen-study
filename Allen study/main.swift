@@ -3211,3 +3211,31 @@ let privateQueue = DispatchQueue(label:  "com.inflearn.serial")
 sleep(5)
 // PlaygroundPage.current.finishExecution()
 
+
+var imageView: UIImageView? = nil
+
+
+let url = URL(string: "https://bit.ly/32ps0DI")!
+
+
+// URL세션은 내부적으로 비동기로 처리된 함수임.
+URLSession.shared.dataTask(with: url) { (data, response, error) in
+    
+    if error != nil{
+        print("에러있음")
+    }
+    
+    guard let imageData = data else { return }
+    
+    // 즉, 데이터를 가지고 이미지로 변형하는 코드
+    let photoImage = UIImage(data: imageData)
+    
+    // 🎾 이미지 표시는 DispatchQueue.main에서 🎾
+    DispatchQueue.main.async {
+        imageView?.image = photoImage
+    }
+    
+    
+}.resume()
+
+
