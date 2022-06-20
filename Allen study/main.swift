@@ -3303,21 +3303,53 @@ import Foundation
 
 // THread - safe 해결법 : 동시큐에서 직렬큐로 보내기
 
-var array = [String]()
+//var array = [String]()
+//
+//let serialQueue = DispatchQueue(label: "serial") // 직렬큐 생성
+//
+//for i in 1...20 {
+//    DispatchQueue.global().async {
+//        print("\(i)")
+////        array.append("\(i)") // 동시큐에서 실행하면 동시다발적으로 배열의 메모리에 접근
+//
+//         serialQueue.async {
+//              array.append("\(i)") // 올바른 처리
+//         }
+//    }
+//}
+//
+//DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//    print(array)
+//}
 
-let serialQueue = DispatchQueue(label: "serial") // 직렬큐 생성
+// 제네릭 문법
 
-for i in 1...20 {
-    DispatchQueue.global().async {
-        print("\(i)")
-        array.append("\(i)") // 동시큐에서 실행하면 동시다발적으로 배열의 메모리에 접근
-        
-        // serialQueue.async {
-        //      array.append("\(i)") // 올바른 처리
-        // }
-    }
+var num1 = 10
+var num2 = 20
+
+// 두 수자를 스왑(서로 교환) 하는 함수의 정의
+
+func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+    let tempA = a
+    a = b
+    b = tempA
 }
 
-DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-    print(array)
+swapTwoInts(&num1, &num2)
+
+print(num1) // 20
+print(num2) // 10
+
+// 만약, Double을 교환하고 싶다면? String을 교환하고 싶다면?
+
+func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+
+func swapTwoString(_ a: inout String, _ b: inout String) {
+    let tempA = a
+    a = b
+    b = tempA
 }
