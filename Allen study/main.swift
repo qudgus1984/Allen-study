@@ -3034,208 +3034,223 @@ import Foundation
 // 비동기 vs 동기의 개념
 
 // 비동기 함수
-
-print("1")
-// asyncMethod(5) 5초동안 일이 걸린다고 가정
-print("2") // 안기다리기 때문에 바로 2를 출력
-
-// 동기 함수
-
-print("1")
-// syncMethod(5) 5초동안 여기서 함수가 끝날때까지 기다림
-print("2") // 기다린 후 함수가 끝난 후 2를 출력
-
-// 간단한 작업들
-func task1() {
-    print("task1 시작")
-    print("task1 완료")
-}
-func task2() {
-    print("task2 시작")
-    print("task2 완료")
-}
-func task3() {
-    print("task3 시작")
-    print("task3 완료")
-}
-func task4() {
-    print("task4 시작")
-    print("task4 완료")
-}
-func task5() {
-    print("task5 시작")
-    print("task5 완료")
-}
-
-task1()
-task2()
-task3()
-task4()
-task5()
-
-// 오래 걸리는 작업
-
-func task6() {
-    print("task6 시작")
-    sleep(2)
-    print("task6 완료")
-}
-func task7() {
-    print("task7 시작")
-    sleep(2)
-    print("task7 완료")
-}
-
-func task8() {
-    print("task8 시작")
-    sleep(2)
-    print("task8 완료")
-}
-
-func task9() {
-    print("task9 시작")
-    sleep(2)
-    print("task9 완료")
-}
-
-func task10() {
-    print("task10 시작")
-    sleep(2)
-    print("task10 완료")
-}
-
-// 비동기 처리를 하지 않으면 앱이 버벅거림
-task6()
-task7()
-task8()
-task9()
-task10()
-
-// 오래 걸리는 작업을 비동기 처리를 한다면
-// async : 비동기 sync : 동기
-
-DispatchQueue.global().async {
-    task6()
-}
-
-DispatchQueue.global().async {
-    task7()
-}
-
-DispatchQueue.global().async {
-    task8()
-}
-
-DispatchQueue.global().async {
-    task9()
-}
-
-DispatchQueue.global().async {
-    task10()
-}
-// 큐 생성, 글로벌 큐로, 비동기 적으로
-
-DispatchQueue.global().async {
-}
-
-// 클로저 내부에 있는 작업은 하나의 작업으로 취급 -> 동기적으로 작동
-// 클로저 1개 -> 작업 하나
-DispatchQueue.global().async {
-    print("test1")
-    print("test2")
-    print("test3")
-}
-
-// 비동기적 함수 생성
-func task11() {
-    DispatchQueue.global().async {
-        print("Task 11 시작")
-        sleep(5)
-        print("Task 11 완료")
-    }
-}
-
-// 직렬큐 선언
-
-let seriaQueue = DispatchQueue(label: "serial") // 직렬 큐 정의
-
-seriaQueue.async {
-    task1()
-}
-
-seriaQueue.async {
-    task2()
-}
-
-seriaQueue.async {
-    task3()
-}
-// 비동기적으로 보내더라도 직렬큐이기 때문에 순서적으로 출력
-
-// 동시큐 선언
-let concurrentQueue = DispatchQueue.global()
-
-concurrentQueue.async {
-    task1()
-}
-
-concurrentQueue.async {
-    task2()
-}
-
-concurrentQueue.async {
-    task3()
-}
-
-// 분산해서 동작하기 때문에 순서를 알 수 없음
+//
+//print("1")
+//// asyncMethod(5) 5초동안 일이 걸린다고 가정
+//print("2") // 안기다리기 때문에 바로 2를 출력
+//
+//// 동기 함수
+//
+//print("1")
+//// syncMethod(5) 5초동안 여기서 함수가 끝날때까지 기다림
+//print("2") // 기다린 후 함수가 끝난 후 2를 출력
+//
+//// 간단한 작업들
+//func task1() {
+//    print("task1 시작")
+//    print("task1 완료")
+//}
+//func task2() {
+//    print("task2 시작")
+//    print("task2 완료")
+//}
+//func task3() {
+//    print("task3 시작")
+//    print("task3 완료")
+//}
+//func task4() {
+//    print("task4 시작")
+//    print("task4 완료")
+//}
+//func task5() {
+//    print("task5 시작")
+//    print("task5 완료")
+//}
+//
+//task1()
+//task2()
+//task3()
+//task4()
+//task5()
+//
+//// 오래 걸리는 작업
+//
+//func task6() {
+//    print("task6 시작")
+//    sleep(2)
+//    print("task6 완료")
+//}
+//func task7() {
+//    print("task7 시작")
+//    sleep(2)
+//    print("task7 완료")
+//}
+//
+//func task8() {
+//    print("task8 시작")
+//    sleep(2)
+//    print("task8 완료")
+//}
+//
+//func task9() {
+//    print("task9 시작")
+//    sleep(2)
+//    print("task9 완료")
+//}
+//
+//func task10() {
+//    print("task10 시작")
+//    sleep(2)
+//    print("task10 완료")
+//}
+//
+//// 비동기 처리를 하지 않으면 앱이 버벅거림
+//task6()
+//task7()
+//task8()
+//task9()
+//task10()
+//
+//// 오래 걸리는 작업을 비동기 처리를 한다면
+//// async : 비동기 sync : 동기
+//
+//DispatchQueue.global().async {
+//    task6()
+//}
+//
+//DispatchQueue.global().async {
+//    task7()
+//}
+//
+//DispatchQueue.global().async {
+//    task8()
+//}
+//
+//DispatchQueue.global().async {
+//    task9()
+//}
+//
+//DispatchQueue.global().async {
+//    task10()
+//}
+//// 큐 생성, 글로벌 큐로, 비동기 적으로
+//
+//DispatchQueue.global().async {
+//}
+//
+//// 클로저 내부에 있는 작업은 하나의 작업으로 취급 -> 동기적으로 작동
+//// 클로저 1개 -> 작업 하나
+//DispatchQueue.global().async {
+//    print("test1")
+//    print("test2")
+//    print("test3")
+//}
+//
+//// 비동기적 함수 생성
+//func task11() {
+//    DispatchQueue.global().async {
+//        print("Task 11 시작")
+//        sleep(5)
+//        print("Task 11 완료")
+//    }
+//}
+//
+//// 직렬큐 선언
+//
+//let seriaQueue = DispatchQueue(label: "serial") // 직렬 큐 정의
+//
+//seriaQueue.async {
+//    task1()
+//}
+//
+//seriaQueue.async {
+//    task2()
+//}
+//
+//seriaQueue.async {
+//    task3()
+//}
+//// 비동기적으로 보내더라도 직렬큐이기 때문에 순서적으로 출력
+//
+//// 동시큐 선언
+//let concurrentQueue = DispatchQueue.global()
+//
+//concurrentQueue.async {
+//    task1()
+//}
+//
+//concurrentQueue.async {
+//    task2()
+//}
+//
+//concurrentQueue.async {
+//    task3()
+//}
+//
+//// 분산해서 동작하기 때문에 순서를 알 수 없음
+//
+//// 1) 메인 큐
+//
+//let mainQueue = DispatchQueue.main
+//
+//mainQueue.async {
+//    <#code#>
+//}
+//
+//// 2) 글로벌 큐
+//
+//let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
+//let userInitiateQueue = DispatchQueue.global(qos: .userInitiated)
+//let defaultQueue = DispatchQueue.global() // 디폴트 글로벌 큐
+//let utilityQueue = DispatchQueue.global(qos: .utility)
+//
+//// 3) 프라이빗(커스텀) 큐
+//
+//let privateQueue = DispatchQueue(label:  "com.inflearn.serial")
+//
+//sleep(5)
+//// PlaygroundPage.current.finishExecution()
+//
+//
+//var imageView: UIImageView? = nil
+//
+//
+//let url = URL(string: "https://bit.ly/32ps0DI")!
+//
+//
+//// URL세션은 내부적으로 비동기로 처리된 함수임.
+//URLSession.shared.dataTask(with: url) { (data, response, error) in
+//
+//    if error != nil{
+//        print("에러있음")
+//    }
+//
+//    guard let imageData = data else { return }
+//
+//    // 즉, 데이터를 가지고 이미지로 변형하는 코드
+//    let photoImage = UIImage(data: imageData)
+//
+//    // 🎾 이미지 표시는 DispatchQueue.main에서 🎾
+//    DispatchQueue.main.async {
+//        imageView?.image = photoImage
+//    }
+//
+//
+//}.resume()
+//
 
 // 1) 메인 큐
-
-let mainQueue = DispatchQueue.main
-
-mainQueue.async {
-    <#code#>
-}
+let mainQueue = DispatchQueue.main // 메인 큐
 
 // 2) 글로벌 큐
 
 let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
-let userInitiateQueue = DispatchQueue.global(qos: .userInitiated)
-let defaultQueue = DispatchQueue.global() // 디폴트 글로벌 큐
+let userInitatedQueue = DispatchQueue.global(qos: .userInitiated)
+let dafaultQueue = DispatchQueue.global()
 let utilityQueue = DispatchQueue.global(qos: .utility)
+let backgroundQueue = DispatchQueue.global(qos: .background)
+let unspecifiedQueue = DispatchQueue.global(qos: .unspecified)
 
-// 3) 프라이빗(커스텀) 큐
+// 3) 프라이빗(커스텀)큐
 
-let privateQueue = DispatchQueue(label:  "com.inflearn.serial")
-
-sleep(5)
-// PlaygroundPage.current.finishExecution()
-
-
-var imageView: UIImageView? = nil
-
-
-let url = URL(string: "https://bit.ly/32ps0DI")!
-
-
-// URL세션은 내부적으로 비동기로 처리된 함수임.
-URLSession.shared.dataTask(with: url) { (data, response, error) in
-    
-    if error != nil{
-        print("에러있음")
-    }
-    
-    guard let imageData = data else { return }
-    
-    // 즉, 데이터를 가지고 이미지로 변형하는 코드
-    let photoImage = UIImage(data: imageData)
-    
-    // 🎾 이미지 표시는 DispatchQueue.main에서 🎾
-    DispatchQueue.main.async {
-        imageView?.image = photoImage
-    }
-    
-    
-}.resume()
-
-
+let privateQueue = DispatchQueue(label: "qudgus1984@naver.com")
