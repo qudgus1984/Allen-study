@@ -3353,3 +3353,22 @@ func swapTwoString(_ a: inout String, _ b: inout String) {
     a = b
     b = tempA
 }
+
+// 제네릭의 개념이 없으면 함수를 모든 경우마다 다시 정의해야함
+
+// 제네릭 정의
+
+func swapTwoValue<T>(_ a: inout T, _ b: inout T) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+
+var string1 = "Cody"
+var string2 = "iOSdeveloper"
+
+swapTwoValue(&string1, &string2)
+print(string1)
+print(string2)
+
+// <>는 제네릭 타입이라는 뜻! 딕셔너리, 집합, 배열, 옵셔널 타입 등 다양한 곳에서 사용했음! 제네릭은 특별한 타입이 아님!
