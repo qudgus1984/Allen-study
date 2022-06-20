@@ -3238,66 +3238,86 @@ import Foundation
 //
 //}.resume()
 //
+//
+//// 1) 메인 큐
+//let mainQueue = DispatchQueue.main // 메인 큐
+//
+//// 2) 글로벌 큐
+//
+//let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
+//let userInitatedQueue = DispatchQueue.global(qos: .userInitiated)
+//let dafaultQueue = DispatchQueue.global()
+//let utilityQueue = DispatchQueue.global(qos: .utility)
+//let backgroundQueue = DispatchQueue.global(qos: .background)
+//let unspecifiedQueue = DispatchQueue.global(qos: .unspecified)
+//
+//// 3) 프라이빗(커스텀)큐
+//
+//let privateQueue = DispatchQueue(label: "qudgus1984@naver.com")
+//
+//// 메인 큐에서 실행하기 위한 코드 : UI관련 코드는 다시 메인쓰레드로 보내야 함!!
+//DispatchQueue.main.async {
+//    imageView?.image = photoImage
+//}
+//
+//// 올바른 비동기함수의 설계
+//// return이 아닌 콜백함수를 통해 끝나는 시점을 알려주어야 함
+//
+//func properlyGetImage(with urlString: String, completionHandler: @escaping (UIImage?) -> Void) {
+//
+//    let url = URL(string: urlString)!
+//
+//    var photoImage: UIImage? = nil
+//
+//    URLSession.shared.dataTask(with: url) { (data, response, error) in
+//        if error != nil {
+//            print("에러있음: \(error!)")
+//        }
+//        // 옵셔널 바인딩
+//        guard let imageData = data else { return }
+//
+//        // 데이터를 UIImage 타입으로 변형
+//        photoImage = UIImage(data: imageData)
+//
+//        completionHandler(photoImage)
+//    }.resume()
+//
+//}
+//
+//properlyGetImage(with: <#T##String#>, completionHandler: <#T##<<error type>>#>)
+//
+//// 동기함수를 비동기적으로 동작하는 함수로 변형하는 방법
+//// 내부에 비동기적 처리를 하면 비동기로 동작하는 함수로 변형 가능
+//
+//func doSomething(com: @escaping(Void) -> Void) {
+//    DispatchQueue.global().async {
+//        print("프린트 시작")
+//        sleep(3)
+//        print("프린트 종료")
+//        com()
+//    }
+//}
+//print("1")
+//doSomething()
+//print("2")
 
-// 1) 메인 큐
-let mainQueue = DispatchQueue.main // 메인 큐
+// THread - safe 해결법 : 동시큐에서 직렬큐로 보내기
 
-// 2) 글로벌 큐
+var array = [String]()
 
-let userInteractiveQueue = DispatchQueue.global(qos: .userInteractive)
-let userInitatedQueue = DispatchQueue.global(qos: .userInitiated)
-let dafaultQueue = DispatchQueue.global()
-let utilityQueue = DispatchQueue.global(qos: .utility)
-let backgroundQueue = DispatchQueue.global(qos: .background)
-let unspecifiedQueue = DispatchQueue.global(qos: .unspecified)
+let serialQueue = DispatchQueue(label: "serial") // 직렬큐 생성
 
-// 3) 프라이빗(커스텀)큐
-
-let privateQueue = DispatchQueue(label: "qudgus1984@naver.com")
-
-// 메인 큐에서 실행하기 위한 코드 : UI관련 코드는 다시 메인쓰레드로 보내야 함!!
-DispatchQueue.main.async {
-    imageView?.image = photoImage
-}
-
-// 올바른 비동기함수의 설계
-// return이 아닌 콜백함수를 통해 끝나는 시점을 알려주어야 함
-
-func properlyGetImage(with urlString: String, completionHandler: @escaping (UIImage?) -> Void) {
-    
-    let url = URL(string: urlString)!
-    
-    var photoImage: UIImage? = nil
-    
-    URLSession.shared.dataTask(with: url) { (data, response, error) in
-        if error != nil {
-            print("에러있음: \(error!)")
-        }
-        // 옵셔널 바인딩
-        guard let imageData = data else { return }
-        
-        // 데이터를 UIImage 타입으로 변형
-        photoImage = UIImage(data: imageData)
-        
-        completionHandler(photoImage)
-    }.resume()
-    
-}
-
-properlyGetImage(with: <#T##String#>, completionHandler: <#T##<<error type>>#>)
-
-// 동기함수를 비동기적으로 동작하는 함수로 변형하는 방법
-// 내부에 비동기적 처리를 하면 비동기로 동작하는 함수로 변형 가능
-
-func doSomething(com: @escaping(Void) -> Void) {
+for i in 1...20 {
     DispatchQueue.global().async {
-        print("프린트 시작")
-        sleep(3)
-        print("프린트 종료")
-        com()
+        print("\(i)")
+        array.append("\(i)") // 동시큐에서 실행하면 동시다발적으로 배열의 메모리에 접근
+        
+        // serialQueue.async {
+        //      array.append("\(i)") // 올바른 처리
+        // }
     }
 }
-print("1")
-doSomething()
-print("2")
 
+DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+    print(array)
+}
