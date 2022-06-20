@@ -3285,3 +3285,19 @@ func properlyGetImage(with urlString: String, completionHandler: @escaping (UIIm
 }
 
 properlyGetImage(with: <#T##String#>, completionHandler: <#T##<<error type>>#>)
+
+// 동기함수를 비동기적으로 동작하는 함수로 변형하는 방법
+// 내부에 비동기적 처리를 하면 비동기로 동작하는 함수로 변형 가능
+
+func doSomething(com: @escaping(Void) -> Void) {
+    DispatchQueue.global().async {
+        print("프린트 시작")
+        sleep(3)
+        print("프린트 종료")
+        com()
+    }
+}
+print("1")
+doSomething()
+print("2")
+
