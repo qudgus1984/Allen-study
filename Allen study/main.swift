@@ -3254,3 +3254,34 @@ let unspecifiedQueue = DispatchQueue.global(qos: .unspecified)
 // 3) 프라이빗(커스텀)큐
 
 let privateQueue = DispatchQueue(label: "qudgus1984@naver.com")
+
+// 메인 큐에서 실행하기 위한 코드 : UI관련 코드는 다시 메인쓰레드로 보내야 함!!
+DispatchQueue.main.async {
+    imageView?.image = photoImage
+}
+
+// 올바른 비동기함수의 설계
+// return이 아닌 콜백함수를 통해 끝나는 시점을 알려주어야 함
+
+func properlyGetImage(with urlString: String, completionHandler: @escaping (UIImage?) -> Void) {
+    
+    let url = URL(string: urlString)!
+    
+    var photoImage: UIImage? = nil
+    
+    URLSession.shared.dataTask(with: url) { (data, response, error) in
+        if error != nil {
+            print("에러있음: \(error!)")
+        }
+        // 옵셔널 바인딩
+        guard let imageData = data else { return }
+        
+        // 데이터를 UIImage 타입으로 변형
+        photoImage = UIImage(data: imageData)
+        
+        completionHandler(photoImage)
+    }.resume()
+    
+}
+
+properlyGetImage(with: <#T##String#>, completionHandler: <#T##<<error type>>#>)
