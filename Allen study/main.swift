@@ -3465,3 +3465,19 @@ func resultTypeCheckingHeight(height: Int) -> Result<Bool, HeightError> {
         }
     }
 }
+
+// 리턴값을 받음
+let result = resultTypeCheckingHeight(height: 200)
+
+// 처리
+
+switch result {
+case .success(let data):
+    print("결과값은 \(data)입니다.")
+case .failure(let error):
+    print(error)
+}
+
+// do - catch 문 사용할 필요 없이 처리가 간편해지고 코드가 간결해짐
+// 개발자에게 에러 처리를 다양하게 활용할 수 있도록 만든 것!
+
