@@ -3323,122 +3323,145 @@ import Foundation
 //}
 
 // 제네릭 문법
+//
+//var num1 = 10
+//var num2 = 20
+//
+//// 두 수자를 스왑(서로 교환) 하는 함수의 정의
+//
+//func swapTwoInts(_ a: inout Int, _ b: inout Int) {
+//    let tempA = a
+//    a = b
+//    b = tempA
+//}
+//
+//swapTwoInts(&num1, &num2)
+//
+//print(num1) // 20
+//print(num2) // 10
+//
+//// 만약, Double을 교환하고 싶다면? String을 교환하고 싶다면?
+//
+//func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
+//    let tempA = a
+//    a = b
+//    b = tempA
+//}
+//
+//func swapTwoString(_ a: inout String, _ b: inout String) {
+//    let tempA = a
+//    a = b
+//    b = tempA
+//}
+//
+//// 제네릭의 개념이 없으면 함수를 모든 경우마다 다시 정의해야함
+//
+//// 제네릭 정의
+//
+//func swapTwoValue<T>(_ a: inout T, _ b: inout T) {
+//    let tempA = a
+//    a = b
+//    b = tempA
+//}
+//
+//var string1 = "Cody"
+//var string2 = "iOSdeveloper"
+//
+//swapTwoValue(&string1, &string2)
+//print(string1)
+//print(string2)
+//
+//// <>는 제네릭 타입이라는 뜻! 딕셔너리, 집합, 배열, 옵셔널 타입 등 다양한 곳에서 사용했음! 제네릭은 특별한 타입이 아님!
+//
+//// 제네릭 구조체 / 클래스 / 열거형
+//// 일반적인 구조체 생성
+//struct Member {
+//    var member: [String] = []
+//}
+//
+//// 제네릭 구조체 생성
+//struct GenericMember<T> {
+//    var members: [T] = []
+//}
+//
+//let name = GenericMember(members: ["Cody", "Hamang", "Dong"])
+//// let age = GenericMember(members: [25, 26, 27])
+//// 위에 이미 붕어빵을 찍어낼 때 변수의 타입을 결정해서 고정하기 때문에 다른 타입 불가능
+//
+//class GridPoint<A> {
+//    var x: A
+//    var y: A
+//
+//    init(x: A, y: A) {
+//        self.x = x
+//        self.y = y
+//    }
+//}
+//
+//let aPoint = GridPoint(x: 10, y: 20)
+//let bPoint = GridPoint(x: 10.4, y: 20.5)
+//
+//// 열거형에서 연관값을 가질 때 제네릭으로 정의 가능
+//
+//enum Pet<T> {
+//    case dog
+//    case cat
+//    case etc(T)
+//}
+//
+//let animal = Pet.etc("고슴도치")
+//
+//// 프로토콜에서 제네릭의 사용
+//
+//protocol RemoteControl { // <T>의 방식이 아님
+//    associatedtype T     // 연관형식은 대문자로 시작해야 함
+//    func changeChannel(to: T) // 관습적으로 Element를 많이 사용
+//    func alert() -> T?
+//}
+//
+//// 연관형식이 선언된 프로토콜을 적용한 타입은, typealias로 실제 형식을 표시해야함
+//struct TV: RemoteControl {
+//
+//    typealias T = Int // 생략 가능
+//
+//    func changeChannel(to: Int) {
+//        print("TV 채널 바꿈: \(to)")
+//    }
+//
+//    func alert() -> Int? {
+//        return 1
+//    }
+//}
+//
+//class Aircon: RemoteControl {
+//    func changeChannel(to: String) {
+//        print("Aircon 온도바꿈: \(to)")
+//    }
+//
+//    func alert() -> String? {
+//        return "1"
+//    }
+//}
 
-var num1 = 10
-var num2 = 20
+// Result 타입
+// 에러처리를 조금 더 편리하게 사용하기 위한 개념
 
-// 두 수자를 스왑(서로 교환) 하는 함수의 정의
-
-func swapTwoInts(_ a: inout Int, _ b: inout Int) {
-    let tempA = a
-    a = b
-    b = tempA
+enum HeightError: Error { // 에러 프로토콜 채택
+    case maxHeight
+    case minHeight
 }
 
-swapTwoInts(&num1, &num2)
-
-print(num1) // 20
-print(num2) // 10
-
-// 만약, Double을 교환하고 싶다면? String을 교환하고 싶다면?
-
-func swapTwoDoubles(_ a: inout Double, _ b: inout Double) {
-    let tempA = a
-    a = b
-    b = tempA
-}
-
-func swapTwoString(_ a: inout String, _ b: inout String) {
-    let tempA = a
-    a = b
-    b = tempA
-}
-
-// 제네릭의 개념이 없으면 함수를 모든 경우마다 다시 정의해야함
-
-// 제네릭 정의
-
-func swapTwoValue<T>(_ a: inout T, _ b: inout T) {
-    let tempA = a
-    a = b
-    b = tempA
-}
-
-var string1 = "Cody"
-var string2 = "iOSdeveloper"
-
-swapTwoValue(&string1, &string2)
-print(string1)
-print(string2)
-
-// <>는 제네릭 타입이라는 뜻! 딕셔너리, 집합, 배열, 옵셔널 타입 등 다양한 곳에서 사용했음! 제네릭은 특별한 타입이 아님!
-
-// 제네릭 구조체 / 클래스 / 열거형
-// 일반적인 구조체 생성
-struct Member {
-    var member: [String] = []
-}
-
-// 제네릭 구조체 생성
-struct GenericMember<T> {
-    var members: [T] = []
-}
-
-let name = GenericMember(members: ["Cody", "Hamang", "Dong"])
-// let age = GenericMember(members: [25, 26, 27])
-// 위에 이미 붕어빵을 찍어낼 때 변수의 타입을 결정해서 고정하기 때문에 다른 타입 불가능
-
-class GridPoint<A> {
-    var x: A
-    var y: A
-    
-    init(x: A, y: A) {
-        self.x = x
-        self.y = y
-    }
-}
-
-let aPoint = GridPoint(x: 10, y: 20)
-let bPoint = GridPoint(x: 10.4, y: 20.5)
-
-// 열거형에서 연관값을 가질 때 제네릭으로 정의 가능
-
-enum Pet<T> {
-    case dog
-    case cat
-    case etc(T)
-}
-
-let animal = Pet.etc("고슴도치")
-
-// 프로토콜에서 제네릭의 사용
-
-protocol RemoteControl { // <T>의 방식이 아님
-    associatedtype T     // 연관형식은 대문자로 시작해야 함
-    func changeChannel(to: T) // 관습적으로 Element를 많이 사용
-    func alert() -> T?
-}
-
-// 연관형식이 선언된 프로토콜을 적용한 타입은, typealias로 실제 형식을 표시해야함
-struct TV: RemoteControl {
-    
-    typealias T = Int // 생략 가능
-    
-    func changeChannel(to: Int) {
-        print("TV 채널 바꿈: \(to)")
-    }
-    
-    func alert() -> Int? {
-        return 1
-    }
-}
-
-class Aircon: RemoteControl {
-    func changeChannel(to: String) {
-        print("Aircon 온도바꿈: \(to)")
-    }
-    
-    func alert() -> String? {
-        return "1"
+// Result 타입에서는 성공 / 실패했을 경우에 대한 정보가 다 들어있음.
+func resultTypeCheckingHeight(height: Int) -> Result<Bool, HeightError> {
+    if height > 190 {
+        return Result.failure(HeightError.maxHeight)
+    } else if height < 130 {
+        return Result.failure(HeightError.minHeight)
+    } else {
+        if height >= 160 {
+            return Result.success(true)
+        } else {
+            return Result.success(false)
+        }
     }
 }
