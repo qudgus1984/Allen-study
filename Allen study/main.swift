@@ -3372,3 +3372,41 @@ print(string1)
 print(string2)
 
 // <>는 제네릭 타입이라는 뜻! 딕셔너리, 집합, 배열, 옵셔널 타입 등 다양한 곳에서 사용했음! 제네릭은 특별한 타입이 아님!
+
+// 제네릭 구조체 / 클래스 / 열거형
+// 일반적인 구조체 생성
+struct Member {
+    var member: [String] = []
+}
+
+// 제네릭 구조체 생성
+struct GenericMember<T> {
+    var members: [T] = []
+}
+
+let name = GenericMember(members: ["Cody", "Hamang", "Dong"])
+// let age = GenericMember(members: [25, 26, 27])
+// 위에 이미 붕어빵을 찍어낼 때 변수의 타입을 결정해서 고정하기 때문에 다른 타입 불가능
+
+class GridPoint<A> {
+    var x: A
+    var y: A
+    
+    init(x: A, y: A) {
+        self.x = x
+        self.y = y
+    }
+}
+
+let aPoint = GridPoint(x: 10, y: 20)
+let bPoint = GridPoint(x: 10.4, y: 20.5)
+
+// 열거형에서 연관값을 가질 때 제네릭으로 정의 가능
+
+enum Pet<T> {
+    case dog
+    case cat
+    case etc(T)
+}
+
+let animal = Pet.etc("고슴도치")
