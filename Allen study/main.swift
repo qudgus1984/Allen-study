@@ -3410,3 +3410,35 @@ enum Pet<T> {
 }
 
 let animal = Pet.etc("고슴도치")
+
+// 프로토콜에서 제네릭의 사용
+
+protocol RemoteControl { // <T>의 방식이 아님
+    associatedtype T     // 연관형식은 대문자로 시작해야 함
+    func changeChannel(to: T) // 관습적으로 Element를 많이 사용
+    func alert() -> T?
+}
+
+// 연관형식이 선언된 프로토콜을 적용한 타입은, typealias로 실제 형식을 표시해야함
+struct TV: RemoteControl {
+    
+    typealias T = Int // 생략 가능
+    
+    func changeChannel(to: Int) {
+        print("TV 채널 바꿈: \(to)")
+    }
+    
+    func alert() -> Int? {
+        return 1
+    }
+}
+
+class Aircon: RemoteControl {
+    func changeChannel(to: String) {
+        print("Aircon 온도바꿈: \(to)")
+    }
+    
+    func alert() -> String? {
+        return "1"
+    }
+}
