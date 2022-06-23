@@ -3554,3 +3554,33 @@ print(weekday) // 5
 // 월요일: 2
 // ...
 // 토요일: 7
+
+let myCal = Calendar.current
+var myDateCom = myCal.dateComponents([.year, .month, .day], from: now)
+
+print(myDateCom.year!)  // 2022
+print(myDateCom.month!) // 6
+print(myDateCom.day!)   // 23
+
+
+// 실제 사용 예시
+class Dog {
+    var name: String
+    var yearOfBirth: Int
+    
+    init(name: String, year: Int) {
+        self.name = name
+        self.yearOfBirth = year
+    }
+    
+    // 나이를 계산하는 계산속성
+    var age: Int {
+        get {
+            let year = Calendar.current.component(.year, from: Date())
+            return year - yearOfBirth
+        }
+    }
+}
+
+let choco = Dog(name: "초코", year: 2015)
+print(choco.age) // 7
