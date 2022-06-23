@@ -3483,34 +3483,74 @@ import Foundation
 
 // Date 구조체의 이해
 
+//let now = Date()
+//print(now) // 2022-06-23 07:28:35 +0000
+//
+//let yesterDay = now - 86400
+//print(yesterDay) // 2022-06-22 07:28:35 +0000
+//
+//print(now.timeIntervalSinceReferenceDate) // 2001년 1월 1일 기준으로 얼마나 시간이 흘렀는지
+//// 677662172.791793
+//
+//print(now.timeIntervalSince1970) // 1970년 1월 1일 기준으로 얼마나 시간이 흘렀는지
+//// 1655969419.808432
+//
+//let oneSecond = TimeInterval(1.0) // 1초간격
+//print(oneSecond) // 1.0
+//
+//// Date의 속성
+//
+//print(now.distance(to: yesterDay)) // 해당 시점으로부터 차이를 초로 -86400.0
+//print(yesterDay.distance(to: now)) // 86400.0
+//
+//// 날짜를 제대로 다루려면
+//// 달력을 다루는 Calender 구조체의 도움도 필요 (양력, 음력인지)
+//// 문자열로 변형해주는 DateFormatter 클래스의 도움도 필요
+//// 기본적으로 지역 / 타임존의 영향이 있음
+//
+//for localeName in TimeZone.knownTimeZoneIdentifiers {
+//    print(localeName)
+//}
+//
+//print(TimeZone.current) // Asia/Seoul (fixed (equal to current))
+
+// Calendar 구조체의 이해
+
+// 그레로리력 - 양력 : 전세계 표준
+var calendar = Calendar.current // 타입 속성 : 현재의 달력(양력) 변환
+// Calendar(identifier: .gregorian) 직접 생성 but 이런 방식으로는 잘 사용하지 않음
+
+// 지역설정
+
+calendar.locale   // 달력의 지역 (영어 / 한국어) (달력 표기 방법과 관련된 개념)
+calendar.timeZone // 타임존 : Aisa / Seoul (UTC 시간관련된 개념)
+
+// 필요할 때 찾아서 사용
+//calendar.locale = Locale(identifier: "ko_KR")
+//calendar.timeZone = TimeZone(identifier: "Aisa/Seoul")
+
 let now = Date()
-print(now) // 2022-06-23 07:28:35 +0000
 
-let yesterDay = now - 86400
-print(yesterDay) // 2022-06-22 07:28:35 +0000
+// Date의 년/월/일/시/분/초를 확인하는 방법
+let year: Int = calendar.component(.year, from: now)
+print(year) // 2022
+let month: Int = calendar.component(.month, from: now)
+print(month) // 6
+let day: Int = calendar.component(.day, from: now)
+print(day) // 23
+let hour: Int = calendar.component(.hour, from: now)
+print(hour) // 16
+let minute: Int = calendar.component(.minute, from: now)
+print(minute) // 48
+let second: Int = calendar.component(.second, from: now)
+print(second) // 46
+// 현재 시간 : 2022.06.23 16시 48분 46초라는 의미!
 
-print(now.timeIntervalSinceReferenceDate) // 2001년 1월 1일 기준으로 얼마나 시간이 흘렀는지
-// 677662172.791793
+// 요일
+let weekday: Int = calendar.component(.weekday, from: now)
+print(weekday) // 5
 
-print(now.timeIntervalSince1970) // 1970년 1월 1일 기준으로 얼마나 시간이 흘렀는지
-// 1655969419.808432
-
-let oneSecond = TimeInterval(1.0) // 1초간격
-print(oneSecond) // 1.0
-
-// Date의 속성
-
-print(now.distance(to: yesterDay)) // 해당 시점으로부터 차이를 초로 -86400.0
-print(yesterDay.distance(to: now)) // 86400.0
-
-// 날짜를 제대로 다루려면
-// 달력을 다루는 Calender 구조체의 도움도 필요 (양력, 음력인지)
-// 문자열로 변형해주는 DateFormatter 클래스의 도움도 필요
-// 기본적으로 지역 / 타임존의 영향이 있음
-
-for localeName in TimeZone.knownTimeZoneIdentifiers {
-    print(localeName)
-}
-
-print(TimeZone.current) // Asia/Seoul (fixed (equal to current))
-
+// 일요일: 1
+// 월요일: 2
+// ...
+// 토요일: 7
