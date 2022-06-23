@@ -3590,37 +3590,115 @@ import Foundation
 // Date를 특정 형식의 문자열로 변환하려면 -> 지역설정 + 시간대설정 + 날짜형식 + 시간형식
 
 // 날짜 + 시간 <======> String
-let formatter = DateFormatter()
+//let formatter = DateFormatter()
+//
+//// 지역설정 : 나라 / 지역마다 날짜와 시간을 표시하는 형식과 언어가 다르기 때문
+//formatter.locale = Locale(identifier: "en_US")
+//// Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
+//// formatter.locale = Locale(identifier: "ko_KR")
+//// 2022년 6월 23일 목요일 오후 5시 11분 30초 대한민국 표준시
+//
+//// 시간대 설정
+//formatter.timeZone = TimeZone.current
+//
+//// 날짜 형식 성택
+//formatter.dateStyle = .full // Thursday, june 23, 2022
+//
+//// 시간 형식 선택
+//formatter.timeStyle = .full // 5:11:30 Korean Standard Time
+//
+//let someString = formatter.string(from: Date())
+//print(someString) // Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
+//
+//// 커스텀 형식으로 생성
+//formatter.dateFormat = "yyyy/MM/dd"
+//
+//let someString2 = formatter.string(from: Date())
+//print(someString2) // 2022/06/23
+//
+//// 반대로 문자열에서 Date로 변환하는 것도 가능
+//
+//let newFormatter = DateFormatter()
+//newFormatter.dateFormat = "yyyy/MM/dd"
+//
+//let someDate = newFormatter.date(from: "2022/06/23")!
+//print(someDate)
+//
 
-// 지역설정 : 나라 / 지역마다 날짜와 시간을 표시하는 형식과 언어가 다르기 때문
-formatter.locale = Locale(identifier: "en_US")
-// Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
-// formatter.locale = Locale(identifier: "ko_KR")
-// 2022년 6월 23일 목요일 오후 5시 11분 30초 대한민국 표준시
+// 접근제어
 
-// 시간대 설정
-formatter.timeZone = TimeZone.current
+class SomeClass {
+    private var name = "이름" // 내부적으로만 사용하겠다고 제한
+    
+    func nameChange(name: String) {
+        if name == "길동" {
+            return
+        }
+        self.name = name
+    }
+}
 
-// 날짜 형식 성택
-formatter.dateStyle = .full // Thursday, june 23, 2022
+let object1 = SomeClass()
 
-// 시간 형식 선택
-formatter.timeStyle = .full // 5:11:30 Korean Standard Time
+//object1.name // error 발생 -> private로 접근을 제한했기 때문!
+//object1.name = "Cody" // 마찬가지로 error 이러한 것이 접근 제어!
 
-let someString = formatter.string(from: Date())
-print(someString) // Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
+// 이름을 바꾸려면 특정 메서드로 실행 가능
+object1.nameChange(name: "Cody")
 
-// 커스텀 형식으로 생성
-formatter.dateFormat = "yyyy/MM/dd"
+// 스위프트의 5가지 접근 수준 (Access Levels)
 
-let someString2 = formatter.string(from: Date())
-print(someString2) // 2022/06/23
+//1. open          - 다른 모듈에서도 접근가능 / 상속 및 재정의도 가능
+//2. public        - 다른 모듈에서도 접근 가능 / 상속 및 재정의 불가
+//3. internal      - 같은 모듈 내에서만 접근 가능 : 기본적으로 internal로 설정(디폴트값)
+//4. fileprivate   - 같은 파일 내에서만 접근 가능
+//5. private       - 같은 scope내에서만 접근 가능
 
-// 반대로 문자열에서 Date로 변환하는 것도 가능
+// 모듈 : 프레임워크, 라이브러리, 앱 등 import해서 사용할 수 있는 외부의 코드
+// 개발자인 내가 만든 코드 / 다른 개발자들이 만든 코드를 import해서 사용할 수 있는 것을 라이브러리
 
-let newFormatter = DateFormatter()
-newFormatter.dateFormat = "yyyy/MM/dd"
+// 접근 제어를 가질 수 있는 요소
+// 1) 타입 (클래스/구조체/열거형/스위프트 기본타입)
+// 2) 변수/속성
+// 3) 함수/메서드(생성자, 서브스크립트 포함)
+// 4) 프로토콜도 특정영역으로 제한될 수 있음
 
-let someDate = newFormatter.date(from: "2022/06/23")!
-print(someDate)
+// 클래스의 접근수준을 가장 넓히면 open / 구조체 - public (구조체는 상속이 없기 때문)
+// UIViewController 같은 경우 -> open으로 선언한 것!
 
+// String, Int 같은 기본 타입도 구조체의 public으로 선언되어서 우리가 사용할 수 있는 것!
+
+// open var some: String = "접근 불가" // error! why? String -> public으로 선언되었기 때문에
+// open이라는 더 넓은 범위의 접근을 허용하지 못함. 따라서 public까지만 사용 가능
+public var some: String = "접근 가능" // String이 public으로 선언되었기 때문에 some도 public까지는 선언 가능
+// 자신보다 내부에서 더 낮은 타입을 사용하면 접근을 못해서 사용하지 못할 수도 있음.
+
+open class SomeOpenClass{}
+
+public var somPublicVariable = 0
+fileprivate func someFilePrivateFunction() {}
+
+// 아무것도 붙이지 않으면 -> 디폴트 값인 Internal로 자동 선언되는 것!
+
+// 실무에서 사용하는 관습적인 패턴
+
+// 실제 프로젝트에서 많이 사용하는 관습적인 패턴
+
+class SomeOtherClass {
+    private var _name = "이름" // 쓰기 - private
+    
+    var name: String {        // 읽기 - internal
+        return _name
+    }
+}
+// 대부분 _로 선언된 변수는 private로 선언된 것을 관습적으로 사용
+
+// 저장속성의 (외부에서) 쓰기를 제한하기
+
+class SomeAnotherClass {
+    private(set) var name = "이름" // 읽기 - internal / 쓰기 - private
+}
+
+class SomeAnotherClass2 {
+    public private(set) var name = "이름" // 읽기 - public / 쓰기 - private
+}
