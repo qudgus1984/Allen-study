@@ -3616,3 +3616,11 @@ formatter.dateFormat = "yyyy/MM/dd"
 let someString2 = formatter.string(from: Date())
 print(someString2) // 2022/06/23
 
+// 반대로 문자열에서 Date로 변환하는 것도 가능
+
+let newFormatter = DateFormatter()
+newFormatter.dateFormat = "yyyy/MM/dd"
+
+let someDate = newFormatter.date(from: "2022/06/23")!
+print(someDate)
+
