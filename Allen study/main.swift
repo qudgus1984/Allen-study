@@ -3517,70 +3517,102 @@ import Foundation
 // Calendar 구조체의 이해
 
 // 그레로리력 - 양력 : 전세계 표준
-var calendar = Calendar.current // 타입 속성 : 현재의 달력(양력) 변환
-// Calendar(identifier: .gregorian) 직접 생성 but 이런 방식으로는 잘 사용하지 않음
+//var calendar = Calendar.current // 타입 속성 : 현재의 달력(양력) 변환
+//// Calendar(identifier: .gregorian) 직접 생성 but 이런 방식으로는 잘 사용하지 않음
+//
+//// 지역설정
+//
+//calendar.locale   // 달력의 지역 (영어 / 한국어) (달력 표기 방법과 관련된 개념)
+//calendar.timeZone // 타임존 : Aisa / Seoul (UTC 시간관련된 개념)
+//
+//// 필요할 때 찾아서 사용
+////calendar.locale = Locale(identifier: "ko_KR")
+////calendar.timeZone = TimeZone(identifier: "Aisa/Seoul")
+//
+//let now = Date()
+//
+//// Date의 년/월/일/시/분/초를 확인하는 방법
+//let year: Int = calendar.component(.year, from: now)
+//print(year) // 2022
+//let month: Int = calendar.component(.month, from: now)
+//print(month) // 6
+//let day: Int = calendar.component(.day, from: now)
+//print(day) // 23
+//let hour: Int = calendar.component(.hour, from: now)
+//print(hour) // 16
+//let minute: Int = calendar.component(.minute, from: now)
+//print(minute) // 48
+//let second: Int = calendar.component(.second, from: now)
+//print(second) // 46
+//// 현재 시간 : 2022.06.23 16시 48분 46초라는 의미!
+//
+//// 요일
+//let weekday: Int = calendar.component(.weekday, from: now)
+//print(weekday) // 5
+//
+//// 일요일: 1
+//// 월요일: 2
+//// ...
+//// 토요일: 7
+//
+//let myCal = Calendar.current
+//var myDateCom = myCal.dateComponents([.year, .month, .day], from: now)
+//
+//print(myDateCom.year!)  // 2022
+//print(myDateCom.month!) // 6
+//print(myDateCom.day!)   // 23
+//
+//
+//// 실제 사용 예시
+//class Dog {
+//    var name: String
+//    var yearOfBirth: Int
+//
+//    init(name: String, year: Int) {
+//        self.name = name
+//        self.yearOfBirth = year
+//    }
+//
+//    // 나이를 계산하는 계산속성
+//    var age: Int {
+//        get {
+//            let year = Calendar.current.component(.year, from: Date())
+//            return year - yearOfBirth
+//        }
+//    }
+//}
+//
+//let choco = Dog(name: "초코", year: 2015)
+//print(choco.age) // 7
 
-// 지역설정
+// DateFormatter : 날짜와 시간을 원하는 형식의 문자열으로 변환하는 방법을 제공하는 클래스
 
-calendar.locale   // 달력의 지역 (영어 / 한국어) (달력 표기 방법과 관련된 개념)
-calendar.timeZone // 타임존 : Aisa / Seoul (UTC 시간관련된 개념)
+// Date를 특정 형식의 문자열로 변환하려면 -> 지역설정 + 시간대설정 + 날짜형식 + 시간형식
 
-// 필요할 때 찾아서 사용
-//calendar.locale = Locale(identifier: "ko_KR")
-//calendar.timeZone = TimeZone(identifier: "Aisa/Seoul")
+// 날짜 + 시간 <======> String
+let formatter = DateFormatter()
 
-let now = Date()
+// 지역설정 : 나라 / 지역마다 날짜와 시간을 표시하는 형식과 언어가 다르기 때문
+formatter.locale = Locale(identifier: "en_US")
+// Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
+// formatter.locale = Locale(identifier: "ko_KR")
+// 2022년 6월 23일 목요일 오후 5시 11분 30초 대한민국 표준시
 
-// Date의 년/월/일/시/분/초를 확인하는 방법
-let year: Int = calendar.component(.year, from: now)
-print(year) // 2022
-let month: Int = calendar.component(.month, from: now)
-print(month) // 6
-let day: Int = calendar.component(.day, from: now)
-print(day) // 23
-let hour: Int = calendar.component(.hour, from: now)
-print(hour) // 16
-let minute: Int = calendar.component(.minute, from: now)
-print(minute) // 48
-let second: Int = calendar.component(.second, from: now)
-print(second) // 46
-// 현재 시간 : 2022.06.23 16시 48분 46초라는 의미!
+// 시간대 설정
+formatter.timeZone = TimeZone.current
 
-// 요일
-let weekday: Int = calendar.component(.weekday, from: now)
-print(weekday) // 5
+// 날짜 형식 성택
+formatter.dateStyle = .full // Thursday, june 23, 2022
 
-// 일요일: 1
-// 월요일: 2
-// ...
-// 토요일: 7
+// 시간 형식 선택
+formatter.timeStyle = .full // 5:11:30 Korean Standard Time
 
-let myCal = Calendar.current
-var myDateCom = myCal.dateComponents([.year, .month, .day], from: now)
+let someString = formatter.string(from: Date())
+print(someString) // Thursday, June 23, 2022 at 5:16:08 PM Korean Standard Time
 
-print(myDateCom.year!)  // 2022
-print(myDateCom.month!) // 6
-print(myDateCom.day!)   // 23
+// 커스텀 형식으로 생성
+formatter.dateFormat = "yyyy/MM/dd"
 
+let someString2 = formatter.string(from: Date())
+print(someString2) // 2022/06/23
 
-// 실제 사용 예시
-class Dog {
-    var name: String
-    var yearOfBirth: Int
-    
-    init(name: String, year: Int) {
-        self.name = name
-        self.yearOfBirth = year
-    }
-    
-    // 나이를 계산하는 계산속성
-    var age: Int {
-        get {
-            let year = Calendar.current.component(.year, from: Date())
-            return year - yearOfBirth
-        }
-    }
-}
-
-let choco = Dog(name: "초코", year: 2015)
-print(choco.age) // 7
