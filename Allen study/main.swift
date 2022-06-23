@@ -3446,38 +3446,56 @@ import Foundation
 // Result 타입
 // 에러처리를 조금 더 편리하게 사용하기 위한 개념
 
-enum HeightError: Error { // 에러 프로토콜 채택
-    case maxHeight
-    case minHeight
-}
+//enum HeightError: Error { // 에러 프로토콜 채택
+//    case maxHeight
+//    case minHeight
+//}
+//
+//// Result 타입에서는 성공 / 실패했을 경우에 대한 정보가 다 들어있음.
+//func resultTypeCheckingHeight(height: Int) -> Result<Bool, HeightError> {
+//    if height > 190 {
+//        return Result.failure(HeightError.maxHeight)
+//    } else if height < 130 {
+//        return Result.failure(HeightError.minHeight)
+//    } else {
+//        if height >= 160 {
+//            return Result.success(true)
+//        } else {
+//            return Result.success(false)
+//        }
+//    }
+//}
+//
+//// 리턴값을 받음
+//let result = resultTypeCheckingHeight(height: 200)
+//
+//// 처리
+//
+//switch result {
+//case .success(let data):
+//    print("결과값은 \(data)입니다.")
+//case .failure(let error):
+//    print(error)
+//}
+//
+//// do - catch 문 사용할 필요 없이 처리가 간편해지고 코드가 간결해짐
+//// 개발자에게 에러 처리를 다양하게 활용할 수 있도록 만든 것!
 
-// Result 타입에서는 성공 / 실패했을 경우에 대한 정보가 다 들어있음.
-func resultTypeCheckingHeight(height: Int) -> Result<Bool, HeightError> {
-    if height > 190 {
-        return Result.failure(HeightError.maxHeight)
-    } else if height < 130 {
-        return Result.failure(HeightError.minHeight)
-    } else {
-        if height >= 160 {
-            return Result.success(true)
-        } else {
-            return Result.success(false)
-        }
-    }
-}
+// Date 구조체의 이해
 
-// 리턴값을 받음
-let result = resultTypeCheckingHeight(height: 200)
+let now = Date()
+print(now) // 2022-06-23 07:28:35 +0000
 
-// 처리
+let yesterDay = now - 86400
+print(yesterDay) // 2022-06-22 07:28:35 +0000
 
-switch result {
-case .success(let data):
-    print("결과값은 \(data)입니다.")
-case .failure(let error):
-    print(error)
-}
+print(now.timeIntervalSinceReferenceDate) // 2001년 1월 1일 기준으로 얼마나 시간이 흘렀는지
+// 677662172.791793
 
-// do - catch 문 사용할 필요 없이 처리가 간편해지고 코드가 간결해짐
-// 개발자에게 에러 처리를 다양하게 활용할 수 있도록 만든 것!
+print(now.timeIntervalSince1970) // 1970년 1월 1일 기준으로 얼마나 시간이 흘렀는지
+// 1655969419.808432
+
+let oneSecond = TimeInterval(1.0) // 1초간격
+print(oneSecond) // 1.0
+
 
