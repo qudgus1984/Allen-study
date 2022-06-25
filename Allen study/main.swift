@@ -3702,3 +3702,21 @@ class SomeAnotherClass {
 class SomeAnotherClass2 {
     public private(set) var name = "이름" // 읽기 - public / 쓰기 - private
 }
+
+// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음 ⭐️
+
+private class SomePrivateClass {                    // 명시적인 private 선언
+    open var someOpenProperty = "SomeOpen"
+    public var somePublicProperty = "SomePublic"
+    var someInternalProperty = "SomeInternal"
+    var someFilePrivateProperty = "SomeFilePrivate"     // 실제 fileprivate 처럼 동작 ⭐️ (공식문서 오류)
+    private var somePrivateProperty = "SomePrivate"
+}
+
+
+fileprivate let somePrivate = SomePrivateClass()
+somePrivate.someOpenProperty
+somePrivate.somePublicProperty
+somePrivate.someInternalProperty
+somePrivate.someFilePrivateProperty             // 같은 파일 안이기 때문에 접근 가능
+//somePrivate.somePrivateProperty
