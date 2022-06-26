@@ -3703,20 +3703,45 @@ class SomeAnotherClass2 {
     public private(set) var name = "이름" // 읽기 - public / 쓰기 - private
 }
 
-// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음 ⭐️
+//// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음 ⭐️
+//
+//private class SomePrivateClass {                    // 명시적인 private 선언
+//    open var someOpenProperty = "SomeOpen"
+//    public var somePublicProperty = "SomePublic"
+//    var someInternalProperty = "SomeInternal"
+//    var someFilePrivateProperty = "SomeFilePrivate"     // 실제 fileprivate 처럼 동작 ⭐️ (공식문서 오류)
+//    private var somePrivateProperty = "SomePrivate"
+//}
+//
+//
+//fileprivate let somePrivate = SomePrivateClass()
+//somePrivate.someOpenProperty
+//somePrivate.somePublicProperty
+//somePrivate.someInternalProperty
+//somePrivate.someFilePrivateProperty             // 같은 파일 안이기 때문에 접근 가능
+////somePrivate.somePrivateProperty
 
-private class SomePrivateClass {                    // 명시적인 private 선언
-    open var someOpenProperty = "SomeOpen"
-    public var somePublicProperty = "SomePublic"
-    var someInternalProperty = "SomeInternal"
-    var someFilePrivateProperty = "SomeFilePrivate"     // 실제 fileprivate 처럼 동작 ⭐️ (공식문서 오류)
-    private var somePrivateProperty = "SomePrivate"
+// 일반적으로 밖에서 쓰는 것(setter)은 불가능하도록 구현하는 경우가 많음
+
+struct TrackedString {
+    //var numberOfEdits = 0                   // 외부에서도 변경가능
+    //private var numberOfEdits = 0           // 이렇게 선언하면, 읽기도 불가능해짐
+    private(set) var numberOfEdits = 0        // setter에 대해서만 private 선언 ⭐️
+    //internal private(set) var numberOfEdits = 0
+    
+    // 속성 관찰자
+    var value: String = "시작" {
+        didSet {
+            numberOfEdits += 1
+        }
+    }
 }
 
 
-fileprivate let somePrivate = SomePrivateClass()
-somePrivate.someOpenProperty
-somePrivate.somePublicProperty
-somePrivate.someInternalProperty
-somePrivate.someFilePrivateProperty             // 같은 파일 안이기 때문에 접근 가능
-//somePrivate.somePrivateProperty
+var stringToEdit = TrackedString()
+stringToEdit.value = "첫설정"
+stringToEdit.value += " 추가하기1"
+stringToEdit.value += " 추가하기2"
+stringToEdit.value += " 추가하기3"
+print("수정한 횟수: \(stringToEdit.numberOfEdits)")
+print(stringToEdit.value)
