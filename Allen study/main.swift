@@ -3670,78 +3670,95 @@ object1.nameChange(name: "Cody")
 
 // open var some: String = "접근 불가" // error! why? String -> public으로 선언되었기 때문에
 // open이라는 더 넓은 범위의 접근을 허용하지 못함. 따라서 public까지만 사용 가능
-public var some: String = "접근 가능" // String이 public으로 선언되었기 때문에 some도 public까지는 선언 가능
-// 자신보다 내부에서 더 낮은 타입을 사용하면 접근을 못해서 사용하지 못할 수도 있음.
-
-open class SomeOpenClass{}
-
-public var somPublicVariable = 0
-fileprivate func someFilePrivateFunction() {}
-
-// 아무것도 붙이지 않으면 -> 디폴트 값인 Internal로 자동 선언되는 것!
-
-// 실무에서 사용하는 관습적인 패턴
-
-// 실제 프로젝트에서 많이 사용하는 관습적인 패턴
-
-class SomeOtherClass {
-    private var _name = "이름" // 쓰기 - private
-    
-    var name: String {        // 읽기 - internal
-        return _name
-    }
-}
-// 대부분 _로 선언된 변수는 private로 선언된 것을 관습적으로 사용
-
-// 저장속성의 (외부에서) 쓰기를 제한하기
-
-class SomeAnotherClass {
-    private(set) var name = "이름" // 읽기 - internal / 쓰기 - private
-}
-
-class SomeAnotherClass2 {
-    public private(set) var name = "이름" // 읽기 - public / 쓰기 - private
-}
-
-//// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음 ⭐️
+//public var some: String = "접근 가능" // String이 public으로 선언되었기 때문에 some도 public까지는 선언 가능
+//// 자신보다 내부에서 더 낮은 타입을 사용하면 접근을 못해서 사용하지 못할 수도 있음.
 //
-//private class SomePrivateClass {                    // 명시적인 private 선언
-//    open var someOpenProperty = "SomeOpen"
-//    public var somePublicProperty = "SomePublic"
-//    var someInternalProperty = "SomeInternal"
-//    var someFilePrivateProperty = "SomeFilePrivate"     // 실제 fileprivate 처럼 동작 ⭐️ (공식문서 오류)
-//    private var somePrivateProperty = "SomePrivate"
+//open class SomeOpenClass{}
+//
+//public var somPublicVariable = 0
+//fileprivate func someFilePrivateFunction() {}
+//
+//// 아무것도 붙이지 않으면 -> 디폴트 값인 Internal로 자동 선언되는 것!
+//
+//// 실무에서 사용하는 관습적인 패턴
+//
+//// 실제 프로젝트에서 많이 사용하는 관습적인 패턴
+//
+//class SomeOtherClass {
+//    private var _name = "이름" // 쓰기 - private
+//
+//    var name: String {        // 읽기 - internal
+//        return _name
+//    }
+//}
+//// 대부분 _로 선언된 변수는 private로 선언된 것을 관습적으로 사용
+//
+//// 저장속성의 (외부에서) 쓰기를 제한하기
+//
+//class SomeAnotherClass {
+//    private(set) var name = "이름" // 읽기 - internal / 쓰기 - private
+//}
+//
+//class SomeAnotherClass2 {
+//    public private(set) var name = "이름" // 읽기 - public / 쓰기 - private
+//}
+//
+////// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음 ⭐️
+////
+////private class SomePrivateClass {                    // 명시적인 private 선언
+////    open var someOpenProperty = "SomeOpen"
+////    public var somePublicProperty = "SomePublic"
+////    var someInternalProperty = "SomeInternal"
+////    var someFilePrivateProperty = "SomeFilePrivate"     // 실제 fileprivate 처럼 동작 ⭐️ (공식문서 오류)
+////    private var somePrivateProperty = "SomePrivate"
+////}
+////
+////
+////fileprivate let somePrivate = SomePrivateClass()
+////somePrivate.someOpenProperty
+////somePrivate.somePublicProperty
+////somePrivate.someInternalProperty
+////somePrivate.someFilePrivateProperty             // 같은 파일 안이기 때문에 접근 가능
+//////somePrivate.somePrivateProperty
+//
+//// 일반적으로 밖에서 쓰는 것(setter)은 불가능하도록 구현하는 경우가 많음
+//
+//struct TrackedString {
+//    //var numberOfEdits = 0                   // 외부에서도 변경가능
+//    //private var numberOfEdits = 0           // 이렇게 선언하면, 읽기도 불가능해짐
+//    private(set) var numberOfEdits = 0        // setter에 대해서만 private 선언 ⭐️
+//    //internal private(set) var numberOfEdits = 0
+//
+//    // 속성 관찰자
+//    var value: String = "시작" {
+//        didSet {
+//            numberOfEdits += 1
+//        }
+//    }
 //}
 //
 //
-//fileprivate let somePrivate = SomePrivateClass()
-//somePrivate.someOpenProperty
-//somePrivate.somePublicProperty
-//somePrivate.someInternalProperty
-//somePrivate.someFilePrivateProperty             // 같은 파일 안이기 때문에 접근 가능
-////somePrivate.somePrivateProperty
+//var stringToEdit = TrackedString()
+//stringToEdit.value = "첫설정"
+//stringToEdit.value += " 추가하기1"
+//stringToEdit.value += " 추가하기2"
+//stringToEdit.value += " 추가하기3"
+//print("수정한 횟수: \(stringToEdit.numberOfEdits)")
+//print(stringToEdit.value)
 
-// 일반적으로 밖에서 쓰는 것(setter)은 불가능하도록 구현하는 경우가 많음
+// 커스텀 타입의 접근 제어
 
-struct TrackedString {
-    //var numberOfEdits = 0                   // 외부에서도 변경가능
-    //private var numberOfEdits = 0           // 이렇게 선언하면, 읽기도 불가능해짐
-    private(set) var numberOfEdits = 0        // setter에 대해서만 private 선언 ⭐️
-    //internal private(set) var numberOfEdits = 0
-    
-    // 속성 관찰자
-    var value: String = "시작" {
-        didSet {
-            numberOfEdits += 1
-        }
-    }
+public class SomePublicClass {
+    open var someOpenProperty = "SomeOpen"
+    public var somePublicProperty = "SomePublic"
+    var someInternalProperty = "SomeInternal"
+    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
+    private var somePrivateProperty = "SomePrivate"
 }
 
-
-var stringToEdit = TrackedString()
-stringToEdit.value = "첫설정"
-stringToEdit.value += " 추가하기1"
-stringToEdit.value += " 추가하기2"
-stringToEdit.value += " 추가하기3"
-print("수정한 횟수: \(stringToEdit.numberOfEdits)")
-print(stringToEdit.value)
+let somePublic = SomePublicClass()
+somePublic.someOpenProperty
+somePublic.somePublicProperty
+somePublic.someInternalProperty
+somePublic.someFilePrivateProperty
+// somePublic.somePublicProperty
