@@ -3802,16 +3802,35 @@ object1.nameChange(name: "Cody")
 //    }
 //}
 
- 문자열과 문자
+// 문자열과 문자
+//
+// 아스키코드 / 유니코드
+// 유니코드는 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있는 체계
+//
+//var someString: String = "SomeSwift"
+//
+//for code in someString.unicodeScalars {
+//    print(code.value)
+//}
+//
+//someString = "\u{53}\u{6F}"
+//print(someString)
 
- 아스키코드 / 유니코드
- 유니코드는 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있는 체계
+var hangul1 = "\u{D55C}" // 한
+print("\"한\"의 글자수: ",hangul1.count)
 
-var someString: String = "SomeSwift"
+// ㅎ + ㅏ + ㄴ == 한
+// 한글과 같은 언어들을 하나의 글자로 취급
+// 스위프트의 문자열에서는 배열같은 단순 인덱스 접근이 불가능
 
-for code in someString.unicodeScalars {
-    print(code.value)
-}
+// 스위프트의 문자열 String / NSString
+var nsString: NSString = "Swift"
+let string: String = nsString as String // 서로간의 타입캐스팅 가능
+// 두 형식은 비릿징이 가능한 타입 (Toll - Free Bidged)
 
-someString = "\u{53}\u{6F}"
-print(someString)
+nsString.length // 유니코드수(UTF-16) 기반
+string.count // String의 count 속성 ==> 의미 글자수 기반
+nsString = string as NSString
+
+// 두 자료형은 서로 호환되는 자료형이지만, 유니코드를 처리하는 방식이 달라서 조심해서 사용해야함.
+// NSString은 Object-C에서 사용되는 문자열임
