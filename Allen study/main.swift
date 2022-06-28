@@ -3762,3 +3762,42 @@ somePublic.somePublicProperty
 somePublic.someInternalProperty
 somePublic.someFilePrivateProperty
 // somePublic.somePublicProperty
+
+// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음
+// -> fileprivate 처럼 동작!
+private class SomePrivateClass {
+    open var someOpenProperty = "SomeOpen"
+    public var somePublicProperty = "SomePublic"
+    var someInternalProperty = "SomeInternal"
+    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
+    private var somePrivateProperty = "SomePrivate"
+}
+
+fileprivate let somePrivate = SomePrivateClass()
+somePrivate.someOpenProperty
+somePrivate.somePublicProperty
+somePrivate.someInternalProperty
+somePrivate.someFilePrivateProperty
+
+// 상속의 접근제어
+public class A {
+    fileprivate func someMethod() {}
+}
+
+// public 이하의 접근 수준만 가능 why? 부모 클래스가 public이기 때문
+internal class B: A {
+    override internal func someMethod() { // 접근 수준 올려서 재정의 가능
+        super.someMethod() // (더 낮아도) 모듈에서 접근 가능하기 때문에 호출 가능
+    }
+}
+
+// 확장의 접근제어
+public class SomeClass {
+    private var somePrivateProperty = "somePrivate"
+}
+
+extension SomeClass { // public으로 선언한 것과 같음
+    func somePrivateControlFunction() {
+        somePrivateProperty = "접근가능"
+    }
+}
