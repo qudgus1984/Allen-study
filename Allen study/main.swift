@@ -3747,57 +3747,71 @@ object1.nameChange(name: "Cody")
 //print(stringToEdit.value)
 
 // 커스텀 타입의 접근 제어
+//
+//public class SomePublicClass {
+//    open var someOpenProperty = "SomeOpen"
+//    public var somePublicProperty = "SomePublic"
+//    var someInternalProperty = "SomeInternal"
+//    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
+//    private var somePrivateProperty = "SomePrivate"
+//}
+//
+//let somePublic = SomePublicClass()
+//somePublic.someOpenProperty
+//somePublic.somePublicProperty
+//somePublic.someInternalProperty
+//somePublic.someFilePrivateProperty
+//// somePublic.somePublicProperty
+//
+//// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음
+//// -> fileprivate 처럼 동작!
+//private class SomePrivateClass {
+//    open var someOpenProperty = "SomeOpen"
+//    public var somePublicProperty = "SomePublic"
+//    var someInternalProperty = "SomeInternal"
+//    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
+//    private var somePrivateProperty = "SomePrivate"
+//}
+//
+//fileprivate let somePrivate = SomePrivateClass()
+//somePrivate.someOpenProperty
+//somePrivate.somePublicProperty
+//somePrivate.someInternalProperty
+//somePrivate.someFilePrivateProperty
+//
+//// 상속의 접근제어
+//public class A {
+//    fileprivate func someMethod() {}
+//}
+//
+//// public 이하의 접근 수준만 가능 why? 부모 클래스가 public이기 때문
+//internal class B: A {
+//    override internal func someMethod() { // 접근 수준 올려서 재정의 가능
+//        super.someMethod() // (더 낮아도) 모듈에서 접근 가능하기 때문에 호출 가능
+//    }
+//}
+//
+//// 확장의 접근제어
+//public class SomeClass1 {
+//    private var somePrivateProperty = "somePrivate"
+//}
+//
+//extension SomeClass1 { // public으로 선언한 것과 같음
+//    func somePrivateControlFunction() {
+//        somePrivateProperty = "접근가능"
+//    }
+//}
 
-public class SomePublicClass {
-    open var someOpenProperty = "SomeOpen"
-    public var somePublicProperty = "SomePublic"
-    var someInternalProperty = "SomeInternal"
-    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
-    private var somePrivateProperty = "SomePrivate"
+ 문자열과 문자
+
+ 아스키코드 / 유니코드
+ 유니코드는 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있는 체계
+
+var someString: String = "SomeSwift"
+
+for code in someString.unicodeScalars {
+    print(code.value)
 }
 
-let somePublic = SomePublicClass()
-somePublic.someOpenProperty
-somePublic.somePublicProperty
-somePublic.someInternalProperty
-somePublic.someFilePrivateProperty
-// somePublic.somePublicProperty
-
-// 타입을 private으로 선언하면 아무곳에서도 사용할 수 없기 때문에 의미가 없음
-// -> fileprivate 처럼 동작!
-private class SomePrivateClass {
-    open var someOpenProperty = "SomeOpen"
-    public var somePublicProperty = "SomePublic"
-    var someInternalProperty = "SomeInternal"
-    fileprivate var someFilePrivateProperty = "SomeFilePrivate"
-    private var somePrivateProperty = "SomePrivate"
-}
-
-fileprivate let somePrivate = SomePrivateClass()
-somePrivate.someOpenProperty
-somePrivate.somePublicProperty
-somePrivate.someInternalProperty
-somePrivate.someFilePrivateProperty
-
-// 상속의 접근제어
-public class A {
-    fileprivate func someMethod() {}
-}
-
-// public 이하의 접근 수준만 가능 why? 부모 클래스가 public이기 때문
-internal class B: A {
-    override internal func someMethod() { // 접근 수준 올려서 재정의 가능
-        super.someMethod() // (더 낮아도) 모듈에서 접근 가능하기 때문에 호출 가능
-    }
-}
-
-// 확장의 접근제어
-public class SomeClass {
-    private var somePrivateProperty = "somePrivate"
-}
-
-extension SomeClass { // public으로 선언한 것과 같음
-    func somePrivateControlFunction() {
-        somePrivateProperty = "접근가능"
-    }
-}
+someString = "\u{53}\u{6F}"
+print(someString)
