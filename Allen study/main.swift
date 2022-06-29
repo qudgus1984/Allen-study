@@ -3627,24 +3627,24 @@ import Foundation
 
 // 접근제어
 
-class SomeClass {
-    private var name = "이름" // 내부적으로만 사용하겠다고 제한
-    
-    func nameChange(name: String) {
-        if name == "길동" {
-            return
-        }
-        self.name = name
-    }
-}
-
-let object1 = SomeClass()
+//class SomeClass {
+//    private var name = "이름" // 내부적으로만 사용하겠다고 제한
+//
+//    func nameChange(name: String) {
+//        if name == "길동" {
+//            return
+//        }
+//        self.name = name
+//    }
+//}
+//
+//let object1 = SomeClass()
 
 //object1.name // error 발생 -> private로 접근을 제한했기 때문!
 //object1.name = "Cody" // 마찬가지로 error 이러한 것이 접근 제어!
 
 // 이름을 바꾸려면 특정 메서드로 실행 가능
-object1.nameChange(name: "Cody")
+//object1.nameChange(name: "Cody")
 
 // 스위프트의 5가지 접근 수준 (Access Levels)
 
@@ -3816,21 +3816,38 @@ object1.nameChange(name: "Cody")
 //someString = "\u{53}\u{6F}"
 //print(someString)
 
-var hangul1 = "\u{D55C}" // 한
-print("\"한\"의 글자수: ",hangul1.count)
+//var hangul1 = "\u{D55C}" // 한
+//print("\"한\"의 글자수: ",hangul1.count)
+//
+//// ㅎ + ㅏ + ㄴ == 한
+//// 한글과 같은 언어들을 하나의 글자로 취급
+//// 스위프트의 문자열에서는 배열같은 단순 인덱스 접근이 불가능
+//
+//// 스위프트의 문자열 String / NSString
+//var nsString: NSString = "Swift"
+//let string: String = nsString as String // 서로간의 타입캐스팅 가능
+//// 두 형식은 비릿징이 가능한 타입 (Toll - Free Bidged)
+//
+//nsString.length // 유니코드수(UTF-16) 기반
+//string.count // String의 count 속성 ==> 의미 글자수 기반
+//nsString = string as NSString
+//
+//// 두 자료형은 서로 호환되는 자료형이지만, 유니코드를 처리하는 방식이 달라서 조심해서 사용해야함.
+//// NSString은 Object-C에서 사용되는 문자열임
 
-// ㅎ + ㅏ + ㄴ == 한
-// 한글과 같은 언어들을 하나의 글자로 취급
-// 스위프트의 문자열에서는 배열같은 단순 인덱스 접근이 불가능
+//var name = #"Steve"# // 로스트링 (Raw String)
+//print(name) // 샵 기호로 문자열 앞뒤를 감싸면 내부의 문자열을 글자 그대로 인식
 
-// 스위프트의 문자열 String / NSString
-var nsString: NSString = "Swift"
-let string: String = nsString as String // 서로간의 타입캐스팅 가능
-// 두 형식은 비릿징이 가능한 타입 (Toll - Free Bidged)
+// 문자열 보간법
 
-nsString.length // 유니코드수(UTF-16) 기반
-string.count // String의 count 속성 ==> 의미 글자수 기반
-nsString = string as NSString
+// \() : 스트링 인터폴레이션
+let name = "유나"
+print("브레이브걸스: \(name)")
 
-// 두 자료형은 서로 호환되는 자료형이지만, 유니코드를 처리하는 방식이 달라서 조심해서 사용해야함.
-// NSString은 Object-C에서 사용되는 문자열임
+let multiplier = 3
+let message = "\(multiplier) times 2.5 is \(Double(multiplier)*2.5)"
+print(message)
+
+// 문자열 보간법 사용 시, 출력 형태를 직접 구현
+
+
