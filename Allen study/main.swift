@@ -3978,41 +3978,91 @@ import Foundation
 //print(range)
 
 // 문자열 삽입
-var welcome = "Hello there!"
+//var welcome = "Hello there!"
+//
+//welcome.insert("!", at: welcome.endIndex)
+//print(welcome)
+//
+//// 문자열 교체
+//
+//if let range = welcome.range(of: " there!") {
+//    welcome.replaceSubrange(range, with: " Swift")
+//    print(welcome)
+//}
+//
+//// 교체하되, 문자열 원본은 그대로
+//var newWelcome = welcome.replacingOccurrences(of: "Swift", with: "World")
+//// "Swift"라는 문자열이 있으면, "World"로 교체
+//
+//print(welcome)
+//print(newWelcome)
+//
+//// 문자열 추가하기
+//welcome.append(" Rainny Day!")
+//print(welcome)
+//
+//// 문자열 삭제하기
+//welcome.remove(at: welcome.index(before: welcome.endIndex))
+//print(welcome)
+//
+//// 문자열 삽입과 삭제의 활용
+//
+//var string = "Hello World"
+//
+//// " " 공백 문자열의 인덱스 찾기
+//// " " 공백 문자열의 인덱스에 " super" 삽입하기
+//
+//if let someIndex = string.firstIndex(of: " ") {
+//    string.insert(contentsOf: " super", at: someIndex)
+//    print(string)
+//}
+//var name = "Cody"
+//var myName = name.map{ String($0) } // 이전에 배웠던 고차함수 map을 이용하여 배열로 변환
+//
+//myName[0] // 출력이 가능할까?
 
-welcome.insert("!", at: welcome.endIndex)
-print(welcome)
+//var name = "Cody"
+//var myName = name.map{ String($0) } // 배열로 변환
+//print(myName[myName.startIndex])
+//var name = "Cody"
+//var myName = name.map{ String($0) } // 배열로 변환
+//print(myName.joined()) // 다시 배열을 문자열로 변환
+//
+//print("Cody".lowercased())
+//print("cody".capitalized)  // "Cody"
+//print("cody".count)
+//print("cody".isEmpty)
+//print("Cody".startIndex)
+//
+//var welcome = "Hello there!"
+//
+//welcome.insert("!", at: welcome.endIndex)
+//print(welcome)
+//
+//// 문자열 교체
+//
+//if let range = welcome.range(of: " there!") {
+//    welcome.replaceSubrange(range, with: " Swift")
+//    print(welcome)
+//}
+//
+//// 교체하되, 문자열 원본은 그대로
+//var newWelcome = welcome.replacingOccurrences(of: "Swift", with: "World")
+//// "Swift"라는 문자열이 있으면, "World"로 교체
+//
+//print(welcome)
+//print(newWelcome)
+//
+//// 문자열 추가하기
+//welcome.append(" Rainny Day!")
+//print(welcome)
+//
+//// 문자열 삭제하기
+//welcome.remove(at: welcome.index(before: welcome.endIndex))
+//print(welcome)
 
-// 문자열 교체
-
-if let range = welcome.range(of: " there!") {
-    welcome.replaceSubrange(range, with: " Swift")
-    print(welcome)
-}
-
-// 교체하되, 문자열 원본은 그대로
-var newWelcome = welcome.replacingOccurrences(of: "Swift", with: "World")
-// "Swift"라는 문자열이 있으면, "World"로 교체
-
-print(welcome)
-print(newWelcome)
-
-// 문자열 추가하기
-welcome.append(" Rainny Day!")
-print(welcome)
-
-// 문자열 삭제하기
-welcome.remove(at: welcome.index(before: welcome.endIndex))
-print(welcome)
-
-// 문자열 삽입과 삭제의 활용
-
-var string = "Hello World"
-
-// " " 공백 문자열의 인덱스 찾기
-// " " 공백 문자열의 인덱스에 " super" 삽입하기
-
-if let someIndex = string.firstIndex(of: " ") {
-    string.insert(contentsOf: " super", at: someIndex)
-    print(string)
-}
+var introduce = "Cody is my nickname!"
+var name = introduce.prefix(4)
+print(name)
+var name1 = String(name)
+print(name1)
