@@ -3841,36 +3841,90 @@ import Foundation
 // 문자열 보간법
 
 // \() : 스트링 인터폴레이션
-let name = "유나"
-print("브레이브걸스: \(name)")
+//let name = "유나"
+//print("브레이브걸스: \(name)")
+//
+//let multiplier = 3
+//let message = "\(multiplier) times 2.5 is \(Double(multiplier)*2.5)"
+//print(message)
+//
+//// 문자열 보간법 사용 시, 출력 형태를 직접 구현
+//
+//var pi = 3.1415926
+//
+//// 출력 형식 지정자
+//var string: String = ""
+//
+//string = String(pi)
+//print(string)
+//
+//print(String(format: "%.3f", pi)) // 3.142 f는 실수, .3은 소수점 아래 3자리 %는 형식 지정에 대한 모든것을 의미
+//print(String(format: "%.2f", pi)) // 3.14
+//print(String(format: "%.1f", pi)) // 3.1
+//
+//
+//// String(format: <#T##String#>, arguments: <#T##[CVarArg]#>) 자주사용!
+//
+//string = String(format: "%d", 7) // %d => 정수
+//// 7
+//string = String(format: "%2d", 7) // 두자리로 표현
+////  7
+//string = String(format: "%02d", 7) // 두자리로 표현하되, 0포함
+//// 07
+//string = String(format: "%07.3f", pi) // 일곱자리로 표현하되, 0과 .(dot)포함, 소수점아래는 3자리
+//// 003.142
+//
+//var swift = "Swift"
+//string = String(format: "Hello, %@", swift) // %@ => 문자열
+//// Hello, Swift
+//
+//// 외울 필요 없음 -> 필요할 때 찾아쓰기
+//
+//// 자주 사용하는 경우
+//
+//var firstName = "ByeongHyeon"
+//var lastName = "Lee"
+//
+//var korean = "사용자의 이름은 %2$@ %1$@ 입니다."
+//string = String(format: korean, firstName, lastName)
+//print(string) // 사용자의 이름은 Lee ByeongHyeon 입니다.
 
-let multiplier = 3
-let message = "\(multiplier) times 2.5 is \(Double(multiplier)*2.5)"
-print(message)
+// 서브스트링의 개념
+var greeting = "Hello, world!"
 
-// 문자열 보간법 사용 시, 출력 형태를 직접 구현
+let index: String.Index = greeting.firstIndex(of: ",") ?? greeting.endIndex // ,의 인덱스
+let beginning = greeting[..<index] // 처음부터 인덱스까지
 
-var pi = 3.1415926
+print(beginning) // Hello가 담겨져있음
 
-// 출력 형식 지정자
-var string: String = ""
+var someString = "Swift"
 
-string = String(pi)
-print(string)
+// 문자열을 문자열 배열화하기
+var array = someString.map { String($0) }
+print(array)
 
-print(String(format: "%.3f", pi)) // 3.142 f는 실수, .3은 소수점 아래 3자리 %는 형식 지정에 대한 모든것을 의미
-print(String(format: "%.2f", pi)) // 3.14
-print(String(format: "%.1f", pi)) // 3.1
+// 문자열을 문자[Character] 배열화 하기
+var array2: [Character] = Array(someString) // [Character]
+print(array2)
 
+// 문자열 배열 [String] -> 문자열로 바꾸기
+var newString = array.joined()
+print(newString)
 
-// String(format: <#T##String#>, arguments: <#T##[CVarArg]#>) 자주사용!
+// 문자 배열 [Charater] -> 문자열로 바꾸기
+var newString2 = String(array2)
+print(newString2)
 
-string = String(format: "%d", 7) // %d => 정수
-// 7
-string = String(format: "%2d", 7) // 두자리로 표현
-//  7
-string = String(format: "%02d", 7) // 두자리로 표현하되, 0포함
-// 07
-string = String(format: "%07.3f", pi) // 일곱자리로 표현하되, 0과 .(dot)포함, 소수점아래는 3자리
-// 003.142
+// 활용 예시
 
+someString = "Swift"
+
+print(someString.randomElement()) // 문자열에서 랜덤으로 뽑아내기
+print(someString.shuffled()) // 섞어서 문자(Character) 배열로 리턴
+
+var newString3 = String(someString.shuffled())
+print(newString3)
+
+// map 고차함수를 사용해서 변환
+newString3 = someString.map { String($0) }.shuffled().joined()
+print(newString3)
