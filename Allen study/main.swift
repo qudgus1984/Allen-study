@@ -3850,4 +3850,27 @@ print(message)
 
 // 문자열 보간법 사용 시, 출력 형태를 직접 구현
 
+var pi = 3.1415926
+
+// 출력 형식 지정자
+var string: String = ""
+
+string = String(pi)
+print(string)
+
+print(String(format: "%.3f", pi)) // 3.142 f는 실수, .3은 소수점 아래 3자리 %는 형식 지정에 대한 모든것을 의미
+print(String(format: "%.2f", pi)) // 3.14
+print(String(format: "%.1f", pi)) // 3.1
+
+
+// String(format: <#T##String#>, arguments: <#T##[CVarArg]#>) 자주사용!
+
+string = String(format: "%d", 7) // %d => 정수
+// 7
+string = String(format: "%2d", 7) // 두자리로 표현
+//  7
+string = String(format: "%02d", 7) // 두자리로 표현하되, 0포함
+// 07
+string = String(format: "%07.3f", pi) // 일곱자리로 표현하되, 0과 .(dot)포함, 소수점아래는 3자리
+// 003.142
 
