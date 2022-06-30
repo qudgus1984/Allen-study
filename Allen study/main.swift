@@ -3929,49 +3929,90 @@ import Foundation
 //newString3 = someString.map { String($0) }.shuffled().joined()
 //print(newString3)
 
-var string = "Swift"
+//var string = "Swift"
+//
+//print(string.lowercased()) // 전체 소문자로 바꾼 문자열 리턴 (원본은 그대로)
+//print(string.uppercased()) // 전체 대문자로 바꾼 문자열 리턴 (원본은 그대로)
+//
+//print(string.capitalized) // 대문자로 시작하는 글자로 리턴하는 속성 (원본은 그대로)
+//
+//print("swift" == "Swift") // false
+//print("swift".lowercased() == "Swift".lowercased()) // true
+//
+//var emptyString = " " // [공백]이 포함된 문자열
+//// 문자열은 길이를 기준으로 빈 문장인지를 판단
+//
+//print(emptyString.count)
+//print(emptyString.isEmpty)
+//
+//var realEmptyString = ""
+//
+//print(realEmptyString.count)
+//print(realEmptyString.isEmpty)
+//
+//if emptyString == nil { // 빈문자열은 nil이 아님 -> String 타입!
+//    print("nil")
+//}
+//
+//let greeting = "Guten Tag!"
+//
+//print(greeting[greeting.startIndex]) // G
+//// 정수형태를 한번 변형해서 사용하는 방식을 사용해야함!
+//
+//var someIndex = greeting.index(greeting.startIndex, offsetBy: 6)
+//print(greeting[someIndex]) // startIndex에서 6만큼 떨어진 글자를 출력해줘! 라는 의미
+//
+//print(greeting[greeting.index(after: greeting.startIndex)])
+//// startIndex 다음 걸 출력해줘
+//
+//for index in greeting.indices {
+//    print("\(greeting[index])", terminator: " ")
+//}
+//print("")
+//
+//let lower = greeting.index(greeting.startIndex, offsetBy: 2)
+//let upper = greeting.index(greeting.startIndex, offsetBy: 5)
+//print(greeting[lower...upper])
+//
+//var range = greeting.range(of: "Tag!")
+//print(range)
 
-print(string.lowercased()) // 전체 소문자로 바꾼 문자열 리턴 (원본은 그대로)
-print(string.uppercased()) // 전체 대문자로 바꾼 문자열 리턴 (원본은 그대로)
+// 문자열 삽입
+var welcome = "Hello there!"
 
-print(string.capitalized) // 대문자로 시작하는 글자로 리턴하는 속성 (원본은 그대로)
+welcome.insert("!", at: welcome.endIndex)
+print(welcome)
 
-print("swift" == "Swift") // false
-print("swift".lowercased() == "Swift".lowercased()) // true
+// 문자열 교체
 
-var emptyString = " " // [공백]이 포함된 문자열
-// 문자열은 길이를 기준으로 빈 문장인지를 판단
-
-print(emptyString.count)
-print(emptyString.isEmpty)
-
-var realEmptyString = ""
-
-print(realEmptyString.count)
-print(realEmptyString.isEmpty)
-
-if emptyString == nil { // 빈문자열은 nil이 아님 -> String 타입!
-    print("nil")
+if let range = welcome.range(of: " there!") {
+    welcome.replaceSubrange(range, with: " Swift")
+    print(welcome)
 }
 
-let greeting = "Guten Tag!"
+// 교체하되, 문자열 원본은 그대로
+var newWelcome = welcome.replacingOccurrences(of: "Swift", with: "World")
+// "Swift"라는 문자열이 있으면, "World"로 교체
 
-print(greeting[greeting.startIndex]) // G
-// 정수형태를 한번 변형해서 사용하는 방식을 사용해야함!
+print(welcome)
+print(newWelcome)
 
-var someIndex = greeting.index(greeting.startIndex, offsetBy: 6)
-print(greeting[someIndex]) // startIndex에서 6만큼 떨어진 글자를 출력해줘! 라는 의미
+// 문자열 추가하기
+welcome.append(" Rainny Day!")
+print(welcome)
 
-print(greeting[greeting.index(after: greeting.startIndex)])
-// startIndex 다음 걸 출력해줘
+// 문자열 삭제하기
+welcome.remove(at: welcome.index(before: welcome.endIndex))
+print(welcome)
 
-for index in greeting.indices {
-    print("\(greeting[index])", terminator: " ")
+// 문자열 삽입과 삭제의 활용
+
+var string = "Hello World"
+
+// " " 공백 문자열의 인덱스 찾기
+// " " 공백 문자열의 인덱스에 " super" 삽입하기
+
+if let someIndex = string.firstIndex(of: " ") {
+    string.insert(contentsOf: " super", at: someIndex)
+    print(string)
 }
-print("")
-
-let lower = greeting.index(greeting.startIndex, offsetBy: 2)
-let upper = greeting.index(greeting.startIndex, offsetBy: 5)
-print(greeting[lower...upper])
-
-var range = greeting.range(of: "Tag!")
