@@ -3931,12 +3931,47 @@ import Foundation
 
 var string = "Swift"
 
-string.lowercased() // 전체 소문자로 바꾼 문자열 리턴 (원본은 그대로)
-string.uppercased() // 전체 대문자로 바꾼 문자열 리턴 (원본은 그대로)
+print(string.lowercased()) // 전체 소문자로 바꾼 문자열 리턴 (원본은 그대로)
+print(string.uppercased()) // 전체 대문자로 바꾼 문자열 리턴 (원본은 그대로)
 
-string.capitalized // 대문자로 시작하는 글자로 리턴하는 속성 (원번은 그대로)
+print(string.capitalized) // 대문자로 시작하는 글자로 리턴하는 속성 (원본은 그대로)
 
-"swift" == "Swift" // false
-"swift".lowercased() == "Swift".lowercased() // true
+print("swift" == "Swift") // false
+print("swift".lowercased() == "Swift".lowercased()) // true
 
+var emptyString = " " // [공백]이 포함된 문자열
+// 문자열은 길이를 기준으로 빈 문장인지를 판단
 
+print(emptyString.count)
+print(emptyString.isEmpty)
+
+var realEmptyString = ""
+
+print(realEmptyString.count)
+print(realEmptyString.isEmpty)
+
+if emptyString == nil { // 빈문자열은 nil이 아님 -> String 타입!
+    print("nil")
+}
+
+let greeting = "Guten Tag!"
+
+print(greeting[greeting.startIndex]) // G
+// 정수형태를 한번 변형해서 사용하는 방식을 사용해야함!
+
+var someIndex = greeting.index(greeting.startIndex, offsetBy: 6)
+print(greeting[someIndex]) // startIndex에서 6만큼 떨어진 글자를 출력해줘! 라는 의미
+
+print(greeting[greeting.index(after: greeting.startIndex)])
+// startIndex 다음 걸 출력해줘
+
+for index in greeting.indices {
+    print("\(greeting[index])", terminator: " ")
+}
+print("")
+
+let lower = greeting.index(greeting.startIndex, offsetBy: 2)
+let upper = greeting.index(greeting.startIndex, offsetBy: 5)
+print(greeting[lower...upper])
+
+var range = greeting.range(of: "Tag!")
