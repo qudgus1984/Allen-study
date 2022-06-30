@@ -3890,41 +3890,53 @@ import Foundation
 //print(string) // 사용자의 이름은 Lee ByeongHyeon 입니다.
 
 // 서브스트링의 개념
-var greeting = "Hello, world!"
+//var greeting = "Hello, world!"
+//
+//let index: String.Index = greeting.firstIndex(of: ",") ?? greeting.endIndex // ,의 인덱스
+//let beginning = greeting[..<index] // 처음부터 인덱스까지
+//
+//print(beginning) // Hello가 담겨져있음
+//
+//var someString = "Swift"
+//
+//// 문자열을 문자열 배열화하기
+//var array = someString.map { String($0) }
+//print(array)
+//
+//// 문자열을 문자[Character] 배열화 하기
+//var array2: [Character] = Array(someString) // [Character]
+//print(array2)
+//
+//// 문자열 배열 [String] -> 문자열로 바꾸기
+//var newString = array.joined()
+//print(newString)
+//
+//// 문자 배열 [Charater] -> 문자열로 바꾸기
+//var newString2 = String(array2)
+//print(newString2)
+//
+//// 활용 예시
+//
+//someString = "Swift"
+//
+//print(someString.randomElement()) // 문자열에서 랜덤으로 뽑아내기
+//print(someString.shuffled()) // 섞어서 문자(Character) 배열로 리턴
+//
+//var newString3 = String(someString.shuffled())
+//print(newString3)
+//
+//// map 고차함수를 사용해서 변환
+//newString3 = someString.map { String($0) }.shuffled().joined()
+//print(newString3)
 
-let index: String.Index = greeting.firstIndex(of: ",") ?? greeting.endIndex // ,의 인덱스
-let beginning = greeting[..<index] // 처음부터 인덱스까지
+var string = "Swift"
 
-print(beginning) // Hello가 담겨져있음
+string.lowercased() // 전체 소문자로 바꾼 문자열 리턴 (원본은 그대로)
+string.uppercased() // 전체 대문자로 바꾼 문자열 리턴 (원본은 그대로)
 
-var someString = "Swift"
+string.capitalized // 대문자로 시작하는 글자로 리턴하는 속성 (원번은 그대로)
 
-// 문자열을 문자열 배열화하기
-var array = someString.map { String($0) }
-print(array)
+"swift" == "Swift" // false
+"swift".lowercased() == "Swift".lowercased() // true
 
-// 문자열을 문자[Character] 배열화 하기
-var array2: [Character] = Array(someString) // [Character]
-print(array2)
 
-// 문자열 배열 [String] -> 문자열로 바꾸기
-var newString = array.joined()
-print(newString)
-
-// 문자 배열 [Charater] -> 문자열로 바꾸기
-var newString2 = String(array2)
-print(newString2)
-
-// 활용 예시
-
-someString = "Swift"
-
-print(someString.randomElement()) // 문자열에서 랜덤으로 뽑아내기
-print(someString.shuffled()) // 섞어서 문자(Character) 배열로 리턴
-
-var newString3 = String(someString.shuffled())
-print(newString3)
-
-// map 고차함수를 사용해서 변환
-newString3 = someString.map { String($0) }.shuffled().joined()
-print(newString3)
