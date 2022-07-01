@@ -4066,3 +4066,32 @@ var name = introduce.prefix(4)
 print(name)
 var name1 = String(name)
 print(name1)
+
+// 문자열 비교
+
+print("swift" == "Swfit") // false 대소문자 구분함
+print("swift" < "Swift") // false 크기 비교도 가능
+// 가장 첫번째 글자의 유니코드 순서를 비교함
+// 영문자에서 아스키코드는 대문자 S는 소문자 s보다 더 앞에 있으므로 false
+print("Swift" <= "swift") // true
+
+print("swift".lowercased() == "Swift".lowercased()) // 대소문자 구분 없이 비교하는 방법 -> 다 소문자로
+
+// 대소문자 무시하고 비교하는 메서드 존재 : caseInsensitiveCompare
+var a = "swift"
+var b = "SWIFT"
+
+print(a.caseInsensitiveCompare(b)) // 결과값이 참 거짓이 아니라 새로운 타입으로 나옴
+var result = a.caseInsensitiveCompare(b)
+switch result {
+case .orderedSame:
+    print("동일한 차순으로 나옴")
+case .orderedAscending:
+    print("오름차순으로 나옴")
+case .orderedDescending:
+    print("내림차순으로 나옴")
+}
+// 열거형 타입으로 정의
+// .orderedSame : 동일
+// .orderedAscending : 오름차순
+// .orderedDescending : 내림차순
