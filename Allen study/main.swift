@@ -4096,44 +4096,63 @@ import Foundation
 // .orderedAscending : 오름차순
 // .orderedDescending : 내림차순
 
-var name = "Hello, Swift"
+//var name = "Hello, Swift"
+//
+//name.compare("hello", options: [.caseInsensitive]) == .orderedDescending
+////name.compare("hello", options: [.caseInsensitive]) == .orderedDescending // 내림차순
+//
+//// .caseInsensitive : 대소문자 무시
+//// .regularExpression : 정규식 검증
+//
+//// 비교옵션은 OptionSet 프로토콜을 채택하여 배열형식으로 전달 가능
+//
+//let string = "Hello, world!"
+//
+//// 전체문자열에서 포함 여부
+//print(string.contains("Hello"))
+//print(string.lowercased().contains("Hello"))
+//print(string.contains("world"))
+//
+//// 접두어 / 접미어 포함 여부
+//// 접두어 : Prefix
+//print(string.hasPrefix("Hello"))
+//print(string.hasPrefix("world"))
+//print(string.lowercased().hasPrefix("Hello"))
+//
+//// 접미어 : Suffix
+//print(string.hasSuffix("!"))
+//print(string.hasSuffix("world!"))
+//
+//// 접두어 / 접미어 변환 (앞/뒷글자 뽑아내기)
+//print(string.prefix(2))
+//print(string.suffix(3))
+//
+//// 공통 접두어 변환
+//print(string.commonPrefix(with: "Hello, swift"))
+////print(string.commonPrefix(with: "Hello"), options: [.caseInsensitive])
+//// 대소문자 구분하지 말고
+//
+//// 앞/뒤를 drop시킨 나머지 변환
+//print(string.dropFirst(3)) // 앞에서 3글자를 뺀 나머지를 달라
+//print(string.dropLast(3)) // 뒤에서 3글자를 뺀 나머지를 달라
+//
+//
 
-name.compare("hello", options: [.caseInsensitive]) == .orderedDescending
-//name.compare("hello", options: [.caseInsensitive]) == .orderedDescending // 내림차순
+// 정규식 / 정규표현식
 
-// .caseInsensitive : 대소문자 무시
-// .regularExpression : 정규식 검증
+// 정규식 : 특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어
 
-// 비교옵션은 OptionSet 프로토콜을 채택하여 배열형식으로 전달 가능
+let number = "010-1234-1234"
+// 정규식 (RawString으로 작성하면 메타문자를 바로 입력가능) ===> 가독성 높아짐
+// (스위프트에서는 \ 백슬래시를 이스케이프 문자로 인식하기 때문)
 
-let string = "Hello, world!"
+var telephoneNumRegex = #"[0-9]{3}\-[0-9]{4}\-[0-9]{4}"#
+// [0-9까지의 숫자가 3자리] - [0-9까지의 숫자가 4자리] - [0-9까지의 숫자가 4자리] 라는 의미
+// 외울 필요 없음. 필요할때 찾아서 사용. but 보고 무슨 뜻인지는 알아야 함!
+if let _ = number.range(of: telephoneNumRegex, options: [.regularExpression]) {
+    print("유효한 전화번호로 판단")
+} // 위와 같은 형식으로 작성되었는지 확인
 
-// 전체문자열에서 포함 여부
-print(string.contains("Hello"))
-print(string.lowercased().contains("Hello"))
-print(string.contains("world"))
-
-// 접두어 / 접미어 포함 여부
-// 접두어 : Prefix
-print(string.hasPrefix("Hello"))
-print(string.hasPrefix("world"))
-print(string.lowercased().hasPrefix("Hello"))
-
-// 접미어 : Suffix
-print(string.hasSuffix("!"))
-print(string.hasSuffix("world!"))
-
-// 접두어 / 접미어 변환 (앞/뒷글자 뽑아내기)
-print(string.prefix(2))
-print(string.suffix(3))
-
-// 공통 접두어 변환
-print(string.commonPrefix(with: "Hello, swift"))
-//print(string.commonPrefix(with: "Hello"), options: [.caseInsensitive])
-// 대소문자 구분하지 말고
-
-// 앞/뒤를 drop시킨 나머지 변환
-print(string.dropFirst(3)) // 앞에서 3글자를 뺀 나머지를 달라
-print(string.dropLast(3)) // 뒤에서 3글자를 뺀 나머지를 달라
+print(number)
 
 
