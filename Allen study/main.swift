@@ -4098,4 +4098,42 @@ import Foundation
 
 var name = "Hello, Swift"
 
-name.compare("hello", options: [.caseInsensitive]) == .orderedDescending // 내림차순
+name.compare("hello", options: [.caseInsensitive]) == .orderedDescending
+//name.compare("hello", options: [.caseInsensitive]) == .orderedDescending // 내림차순
+
+// .caseInsensitive : 대소문자 무시
+// .regularExpression : 정규식 검증
+
+// 비교옵션은 OptionSet 프로토콜을 채택하여 배열형식으로 전달 가능
+
+let string = "Hello, world!"
+
+// 전체문자열에서 포함 여부
+print(string.contains("Hello"))
+print(string.lowercased().contains("Hello"))
+print(string.contains("world"))
+
+// 접두어 / 접미어 포함 여부
+// 접두어 : Prefix
+print(string.hasPrefix("Hello"))
+print(string.hasPrefix("world"))
+print(string.lowercased().hasPrefix("Hello"))
+
+// 접미어 : Suffix
+print(string.hasSuffix("!"))
+print(string.hasSuffix("world!"))
+
+// 접두어 / 접미어 변환 (앞/뒷글자 뽑아내기)
+print(string.prefix(2))
+print(string.suffix(3))
+
+// 공통 접두어 변환
+print(string.commonPrefix(with: "Hello, swift"))
+//print(string.commonPrefix(with: "Hello"), options: [.caseInsensitive])
+// 대소문자 구분하지 말고
+
+// 앞/뒤를 drop시킨 나머지 변환
+print(string.dropFirst(3)) // 앞에서 3글자를 뺀 나머지를 달라
+print(string.dropLast(3)) // 뒤에서 3글자를 뺀 나머지를 달라
+
+
