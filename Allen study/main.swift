@@ -4155,4 +4155,39 @@ if let _ = number.range(of: telephoneNumRegex, options: [.regularExpression]) {
 
 print(number)
 
+// 앞뒤의 공백문자의 제거
+var userEmail = " qudgus1984@naver.com "
+
+var trimmedString = userEmail.trimmingCharacters(in: [" "]) // 공백 제거
+print(trimmedString)
+
+// 앞뒤의 특정문자의 제거
+var someString = "?swift!"
+var removedString = someString.trimmingCharacters(in: ["?","!"])
+print(removedString)
+
+// 중간에 있는 공백문자의 제거
+
+var name = "C o d y"
+var removedName = name.components(separatedBy: " ").joined()
+print(removedName)
+
+// 중간에 포함된 특수문자의 제거
+
+var phoneNum = "010-1234-1234"
+var newPhoneNum = phoneNum.components(separatedBy: "-").joined()
+print(newPhoneNum)
+
+// 여러개의 특수문자를 한꺼번에 제거
+
+var numString = "1+2-3*4/5"
+var removedNumString = numString.components(separatedBy: ["+","-","*","/"]).joined()
+print(removedNumString)
+
+// components와 비슷한 메서드 : split 그러나 차이 있음
+var str = "Hello, Swift"
+var arr = str.split(separator: " ") // 서브스트링으로 반환
+print(arr)
+print(arr.joined())
+
 
