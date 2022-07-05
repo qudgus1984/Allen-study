@@ -18,8 +18,16 @@ class MoiveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         firstPoster.layer.cornerRadius = 65
+        firstPoster.layer.borderWidth = 3
+        firstPoster.layer.borderColor = UIColor.blue.cgColor
+        
         secondPoster.layer.cornerRadius = 65
+        secondPoster.layer.borderWidth = 3
+        secondPoster.layer.borderColor = UIColor.black.cgColor
+        
         lastPoster.layer.cornerRadius = 65
+        lastPoster.layer.borderWidth = 3
+        lastPoster.layer.borderColor = UIColor.red.cgColor
     }
     
     @IBAction func startClicked(_ sender: UIButton) {
