@@ -26,6 +26,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="resultButtonClicked:" destination="6JQ-xm-33x" eventType="touchUpInside" id="5cw-ng-Fyk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyg-2P-sPI">
                                 <rect key="frame" x="63" y="308" width="288" height="21"/>
@@ -40,7 +43,7 @@
                     </view>
                     <connections>
                         <outlet property="bannerImageView" destination="j5H-Lr-NaK" id="HH6-aD-amL"/>
-                        <outlet property="bannerTitleLabel" destination="qyg-2P-sPI" id="xBH-XN-sfh"/>
+                        <outlet property="bannerTitle" destination="qyg-2P-sPI" id="OgM-p7-Vx9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="72T-6a-LlC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

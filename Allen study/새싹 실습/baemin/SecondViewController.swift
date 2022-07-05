@@ -11,7 +11,7 @@ class SecondViewController: UIViewController {
     
     // 아웃렛 변수
     @IBOutlet weak var bannerImageView: UIImageView!
-    @IBOutlet weak var bannerTitleLabel: UILabel!
+    @IBOutlet weak var bannerTitle: UILabel!
     
     
     // 뷰 컨트롤러의 생명주기 종류 중 하나
@@ -19,18 +19,21 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bannerImageView.image = UIImage(named: "banner03")
+        bannerImageView.image = UIImage(named: "banner\(Int.random(in: 1...3))")
         bannerImageView.layer.cornerRadius = 30
         bannerImageView.layer.borderWidth = 5
         bannerImageView.layer.borderColor = UIColor.blue.cgColor
         
-        bannerTitleLabel.text = "우리가 어떤민족 입니까"
-        bannerTitleLabel.backgroundColor = .lightGray
-        bannerTitleLabel.textColor = .white
-        bannerTitleLabel.font = .boldSystemFont(ofSize: 20)
+        bannerTitle.text = "우리가 어떤민족 입니까"
+        bannerTitle.backgroundColor = .lightGray
+        bannerTitle.textColor = .white
+        bannerTitle.font = .boldSystemFont(ofSize: 20)
 
     }
     
-
+    @IBAction func resultButtonClicked(_ sender: UIButton) {
+        bannerImageView.image = UIImage(named: "banner\(Int.random(in: 1...3))")
+    }
+    
 
 }

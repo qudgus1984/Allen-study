@@ -8,25 +8,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Moive View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MoiveViewController" customModule="Movie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="어벤져스엔드게임" translatesAutoresizingMaskIntoConstraints="NO" id="O8P-d8-b00">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="poster1" translatesAutoresizingMaskIntoConstraints="NO" id="hLF-04-uf6">
+                                <rect key="frame" x="-8" y="0.0" width="422" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWp-2E-xoF">
-                                <rect key="frame" x="174" y="629" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="SL0-MI-MpP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -112,15 +105,15 @@
                                 <rect key="frame" x="303" y="639" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="겨울왕국2" translatesAutoresizingMaskIntoConstraints="NO" id="qjR-xa-FRF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="겨울왕국2" translatesAutoresizingMaskIntoConstraints="NO" id="qjR-xa-FRF">
                                 <rect key="frame" x="0.0" y="734" width="130" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="신과함께인과연" translatesAutoresizingMaskIntoConstraints="NO" id="2H6-Eg-m6N">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="신과함께인과연" translatesAutoresizingMaskIntoConstraints="NO" id="2H6-Eg-m6N">
                                 <rect key="frame" x="142" y="734" width="130" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="알라딘" highlightedImage="국제시장" translatesAutoresizingMaskIntoConstraints="NO" id="3I2-W2-X1B">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="알라딘" highlightedImage="국제시장" translatesAutoresizingMaskIntoConstraints="NO" id="3I2-W2-X1B">
                                 <rect key="frame" x="284" y="734" width="130" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -130,7 +123,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
-                                    <segue destination="8BN-jK-CGX" kind="show" id="aK7-VU-UeB"/>
+                                    <action selector="startClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ws9-4v-EYh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dk-oK-dKE">
@@ -164,6 +157,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="ImagePoster" destination="hLF-04-uf6" id="iZY-50-QoM"/>
+                        <outlet property="firstPoster" destination="qjR-xa-FRF" id="KUA-ub-aHX"/>
+                        <outlet property="lastPoster" destination="3I2-W2-X1B" id="V9h-A2-1Er"/>
+                        <outlet property="secondPoster" destination="2H6-Eg-m6N" id="D7j-sm-DtB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -195,18 +194,18 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Vnz-Xt-V2g"/>
+        <segue reference="XPm-PW-Urt"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="375" height="667"/>
         <image name="check" width="18" height="13"/>
         <image name="info" width="22" height="22"/>
         <image name="play_normal" width="97" height="26"/>
+        <image name="poster1" width="240" height="361"/>
         <image name="겨울왕국2" width="240" height="361"/>
         <image name="국제시장" width="240" height="361"/>
         <image name="신과함께인과연" width="240" height="361"/>
         <image name="알라딘" width="240" height="361"/>
-        <image name="어벤져스엔드게임" width="240" height="361"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -215,9 +214,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
