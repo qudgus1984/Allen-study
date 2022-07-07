@@ -50,6 +50,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFieldClicked:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="wCI-Iu-lr1"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -95,6 +98,7 @@
                         <outlet property="resultLabel" destination="y2S-fQ-N6I" id="hwK-Xy-5Zt"/>
                         <outlet property="sendButton" destination="ZGW-S5-TuH" id="eAb-1H-PIY"/>
                         <outlet property="textColorButton" destination="uOA-rv-W15" id="EBc-Sr-cqF"/>
+                        <outlet property="textFieldView" destination="QL9-9b-Jsc" id="10I-CR-uDx"/>
                         <outlet property="userTextField" destination="IH3-Lt-Dnu" id="ZYi-eY-0dX"/>
                         <outletCollection property="buttonList" destination="ZGW-S5-TuH" collectionClass="NSMutableArray" id="yG7-fS-roC"/>
                         <outletCollection property="buttonList" destination="uOA-rv-W15" collectionClass="NSMutableArray" id="Q6E-ce-s04"/>
