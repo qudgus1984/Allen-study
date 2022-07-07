@@ -14,6 +14,7 @@
 		2FCBCD682872766A0052A7B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FCBCD672872766A0052A7B1 /* Assets.xcassets */; };
 		2FCBCD6B2872766A0052A7B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCBCD692872766A0052A7B1 /* LaunchScreen.storyboard */; };
 		2FCBCD9728745EA50052A7B1 /* MoiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBCD9628745EA50052A7B1 /* MoiveViewController.swift */; };
+		2FCBCDBB28756D0B0052A7B1 /* CodyFlixViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCBCDBA28756D0B0052A7B1 /* CodyFlixViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2FCBCD6A2872766A0052A7B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2FCBCD6C2872766A0052A7B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2FCBCD9628745EA50052A7B1 /* MoiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoiveViewController.swift; sourceTree = "<group>"; };
+		2FCBCDBA28756D0B0052A7B1 /* CodyFlixViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodyFlixViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		2FCBCD5D287276670052A7B1 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
+				2FCBCDBA28756D0B0052A7B1 /* CodyFlixViewController.swift */,
 				2FCBCD5E287276670052A7B1 /* AppDelegate.swift */,
 				2FCBCD60287276670052A7B1 /* SceneDelegate.swift */,
 				2FCBCD62287276670052A7B1 /* ViewController.swift */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FCBCD63287276670052A7B1 /* ViewController.swift in Sources */,
+				2FCBCDBB28756D0B0052A7B1 /* CodyFlixViewController.swift in Sources */,
 				2FCBCD5F287276670052A7B1 /* AppDelegate.swift in Sources */,
 				2FCBCD61287276670052A7B1 /* SceneDelegate.swift in Sources */,
 				2FCBCD9728745EA50052A7B1 /* MoiveViewController.swift in Sources */,
