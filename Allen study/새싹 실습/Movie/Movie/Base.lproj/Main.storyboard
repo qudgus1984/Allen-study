@@ -88,6 +88,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="quf-sa-oxn"/>
                         <color key="backgroundColor" systemColor="labelColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="4Lz-Xl-khN" appends="YES" id="Nyn-AQ-b4o"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="SignUpButton" destination="GFv-uU-fJG" id="bf3-Ce-Sf2"/>
@@ -100,6 +104,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghm-8J-Ens" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4Lz-Xl-khN">
+                    <connections>
+                        <action selector="tapViewClicked:" destination="odH-BR-i3M" id="2d9-x5-z4w"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-713.04347826086962" y="82.366071428571431"/>
         </scene>

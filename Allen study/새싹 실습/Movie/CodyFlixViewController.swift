@@ -57,8 +57,11 @@ class CodyFlixViewController: UIViewController {
         textFieldName.isSecureTextEntry = isSecureText
     }
     @IBAction func SighUpButtonClicked(_ sender: UIButton) {
-        
+        view.endEditing(true)
     }
     
-
+    @IBAction func tapViewClicked(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
 }
