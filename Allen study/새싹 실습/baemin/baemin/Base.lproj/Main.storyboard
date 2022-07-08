@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N6C-3G-U0l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -585,29 +585,143 @@
             </objects>
             <point key="canvasLocation" x="702.89855072463774" y="79.6875"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="CAP-h9-fSJ">
             <objects>
-                <viewController id="N6C-3G-U0l" sceneMemberID="viewController">
+                <viewController id="N6C-3G-U0l" customClass="mainViewController" customModule="baemin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yN9-Ut-2xv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etA-3G-eN8">
-                                <rect key="frame" x="186" y="71" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배달의 민족" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etA-3G-eN8">
+                                <rect key="frame" x="154.5" y="64" width="105" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="105" id="95e-Xz-M2p"/>
+                                    <constraint firstAttribute="height" constant="28" id="yKh-IL-j2O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1" translatesAutoresizingMaskIntoConstraints="NO" id="qaW-JF-CSr">
+                                <rect key="frame" x="20" y="112" width="374" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qaW-JF-CSr" secondAttribute="height" multiplier="187:67" id="kA4-io-MYG"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Hm-eg-Ufg">
+                                <rect key="frame" x="5" y="251" width="404" height="116"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-rj-yG2">
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="116"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B마트" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQV-Fp-re7">
+                                                <rect key="frame" x="20" y="75" width="55" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mono_baedal03" translatesAutoresizingMaskIntoConstraints="NO" id="G9X-jj-DrM">
+                                                <rect key="frame" x="20" y="20" width="55" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O18-lO-pu3">
+                                        <rect key="frame" x="103" y="0.0" width="95" height="116"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="배민라이더스" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-mL-BHo">
+                                                <rect key="frame" x="0.0" y="75" width="95" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mono_baedal01" translatesAutoresizingMaskIntoConstraints="NO" id="4uA-St-YUf">
+                                                <rect key="frame" x="20" y="20" width="55" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlJ-uR-w6a">
+                                        <rect key="frame" x="206" y="0.0" width="95" height="116"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2인분" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxA-k1-WgK">
+                                                <rect key="frame" x="20" y="75" width="55" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mono_baedal02" translatesAutoresizingMaskIntoConstraints="NO" id="koK-r4-4wO">
+                                                <rect key="frame" x="20" y="20" width="55" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBr-X1-Mvi">
+                                        <rect key="frame" x="309" y="0.0" width="95" height="116"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="배민오더" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHd-FP-boX">
+                                                <rect key="frame" x="0.0" y="75" width="95" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop" translatesAutoresizingMaskIntoConstraints="NO" id="Y78-SD-sNE">
+                                                <rect key="frame" x="20" y="20" width="55" height="55"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Hm-eg-Ufg" secondAttribute="height" multiplier="101:29" id="Ezw-bI-3ug"/>
+                                    <constraint firstAttribute="width" secondItem="8Hm-eg-Ufg" secondAttribute="height" multiplier="101:29" id="Qvs-DT-EaO"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UbI-W0-rKK">
+                                <rect key="frame" x="20" y="112" width="374" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UbI-W0-rKK" secondAttribute="height" multiplier="187:67" id="zsQ-86-PNB"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                <connections>
+                                    <action selector="resultButtonClicked:" destination="N6C-3G-U0l" eventType="touchUpInside" id="aeY-DL-HW0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YcN-XI-0Q5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="etA-3G-eN8" firstAttribute="top" secondItem="YcN-XI-0Q5" secondAttribute="top" constant="20" id="3r9-Ti-teu"/>
+                            <constraint firstItem="UbI-W0-rKK" firstAttribute="leading" secondItem="YcN-XI-0Q5" secondAttribute="leading" constant="20" id="BLp-gX-N6s"/>
+                            <constraint firstItem="8Hm-eg-Ufg" firstAttribute="top" secondItem="qaW-JF-CSr" secondAttribute="bottom" constant="5" id="F7O-wC-3ue"/>
+                            <constraint firstItem="YcN-XI-0Q5" firstAttribute="trailing" secondItem="UbI-W0-rKK" secondAttribute="trailing" constant="20" id="Lgj-wM-PGg"/>
+                            <constraint firstItem="etA-3G-eN8" firstAttribute="centerX" secondItem="yN9-Ut-2xv" secondAttribute="centerX" id="RlV-ra-7ch"/>
+                            <constraint firstItem="YcN-XI-0Q5" firstAttribute="trailing" secondItem="8Hm-eg-Ufg" secondAttribute="trailing" constant="5" id="aIf-B9-fPl"/>
+                            <constraint firstItem="qaW-JF-CSr" firstAttribute="leading" secondItem="YcN-XI-0Q5" secondAttribute="leading" constant="20" id="fjA-ch-v6f"/>
+                            <constraint firstItem="8Hm-eg-Ufg" firstAttribute="leading" secondItem="YcN-XI-0Q5" secondAttribute="leading" constant="5" id="gZT-Ey-8DH"/>
+                            <constraint firstItem="YcN-XI-0Q5" firstAttribute="trailing" secondItem="qaW-JF-CSr" secondAttribute="trailing" constant="20" id="kmd-jR-DHc"/>
+                            <constraint firstItem="UbI-W0-rKK" firstAttribute="top" secondItem="etA-3G-eN8" secondAttribute="bottom" constant="20" id="lIQ-eG-3BZ"/>
+                            <constraint firstItem="qaW-JF-CSr" firstAttribute="top" secondItem="etA-3G-eN8" secondAttribute="bottom" constant="20" id="ofg-PC-v06"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bannerImageView" destination="qaW-JF-CSr" id="43c-Ab-fif"/>
+                        <outlet property="bannerTitle" destination="etA-3G-eN8" id="Ih2-8I-78n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YfS-3E-CX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1368" y="88"/>
+            <point key="canvasLocation" x="1573.913043478261" y="87.723214285714278"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -615,6 +729,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="banner03" width="909" height="510"/>
+        <image name="banner1" width="915" height="516"/>
         <image name="banner2" width="909" height="510"/>
         <image name="banner3" width="909" height="510"/>
         <image name="mono_baedal01" width="112" height="62"/>
