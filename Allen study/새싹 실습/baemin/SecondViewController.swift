@@ -30,8 +30,8 @@ class SecondViewController: UIViewController {
         bannerImageView.layer.borderWidth = 5
         bannerImageView.layer.borderColor = UIColor.blue.cgColor
         
-        bannerTitle.text = "우리가 어떤민족 입니까"
-        bannerTitle.backgroundColor = .lightGray
+        bannerTitle.text = "배달의 민족"
+        bannerTitle.backgroundColor = .black
         bannerTitle.textColor = .white
         bannerTitle.font = .boldSystemFont(ofSize: 20)
 

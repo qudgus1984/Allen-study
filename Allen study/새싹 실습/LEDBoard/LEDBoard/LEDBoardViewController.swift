@@ -84,22 +84,9 @@ class LEDBoardViewController: UIViewController {
         }
     }
     
-    @IBAction func exampleButton1(_ sender: UIButton) {
-        view.endEditing(true)
+    
+    
+    
 
-    }
-    
-    
-    @IBAction func exampleButton2(_ sender: UIButton) {
-    }
-    
-    @IBAction func exampleButton3(_ sender: UIButton) {
-    }
-    
-    //연결관계를 다 끊어보고 Any
-
-    @IBAction func textFieldClicked(_ sender: UITextField) {
-        view.endEditing(true)
-    }
     
 }
