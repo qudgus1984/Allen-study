@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "macaroon.png",
+      "filename" : "smile.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "macaroon@2x.png",
+      "filename" : "smile@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "macaroon@3x.png",
+      "filename" : "smile@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
